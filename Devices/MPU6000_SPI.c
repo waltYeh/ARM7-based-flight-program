@@ -1,4 +1,4 @@
-#include "SPI.h"
+#include "../Drivers/SPI.h"
 #include "MPU6000_SPI.h"
 void mpu6000_config(void)
 {

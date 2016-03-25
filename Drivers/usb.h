@@ -15,7 +15,7 @@
 #ifndef CDC_ENUMERATE_H
 #define CDC_ENUMERATE_H
 #include "at91sam7s256.h"
-#include "lib_AT91SAM7S256.h"
+#include "../Library/lib_AT91SAM7S256.h"
 
 #define AT91C_EP_OUT 1
 #define AT91C_EP_OUT_SIZE 0x20

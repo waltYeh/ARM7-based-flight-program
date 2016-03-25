@@ -1,7 +1,7 @@
-#include "global.h"
+#include "../Main/global.h"
 #include "IMU.h"
-#include "timer.h"
-#include "TWI.h"
+#include "../Main/timer.h"
+#include "../Drivers/TWI.h"
 #include "Filter.h"
 IIRFilter iir_ax={0.0,0.0,0.0,
 				0.0,0.0,0.0,

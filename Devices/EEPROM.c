@@ -1,7 +1,7 @@
 #include "EEPROM.h"
-#include "TWI.h"
-#include "timer.h"
-#include "global.h"
+#include "../Drivers/TWI.h"
+#include "../Main/timer.h"
+#include "../Main/global.h"
 /*
 	eeprom_read(_data1, 18, PAGE_1, 0);
 	eeprom_read(_data2, 18, PAGE_2, 0);

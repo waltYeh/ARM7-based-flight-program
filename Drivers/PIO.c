@@ -1,7 +1,7 @@
 #include "at91sam7s256.h"	
 #include "Pins.h"
-#include "timer.h"
-#include "global.h"
+#include "../Main/timer.h"
+#include "../Main/global.h"
 #include "PIO.h"	
 void pio_init()
 {

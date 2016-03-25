@@ -18,7 +18,7 @@
 //#include "project.h"
 #include "USB.h"
 #include "Pins.h"
-#include "global.h"
+#include "../Main/global.h"
 #include "at91sam7s256.h"
 #include "PIO.h"
 #include "string.h"

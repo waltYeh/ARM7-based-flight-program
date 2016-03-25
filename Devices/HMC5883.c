@@ -1,7 +1,7 @@
 #include "HMC5883.h"
-#include "TWI.h"
-#include "timer.h"
-#include "global.h"
+#include "../Drivers/TWI.h"
+#include "../Main/timer.h"
+#include "../Main/global.h"
 void hmc5883_config(void)
 {
 //	char tmp[1];

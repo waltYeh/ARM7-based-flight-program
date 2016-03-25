@@ -1,7 +1,7 @@
 #include "at91sam7s256.h"
-#include "timer.h"
-#include "SPI.h"
-#include "global.h"
+#include "../Main/timer.h"
+#include "../Drivers/SPI.h"
+#include "../Main/global.h"
 static int delay_count=0;
 static int ppm_ms_clock=0;//in unit of ms
 static int timer_ms=0;

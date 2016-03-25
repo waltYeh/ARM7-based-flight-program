@@ -1,7 +1,7 @@
 #include "at91sam7s256.h"
 #include "XBee.h"
 #include "string.h"
-#include "global.h"
+#include "../Main/global.h"
 #define VICON_BUFFER_SIZE 14
 char xbee_buffer0[VICON_BUFFER_SIZE];
 char xbee_buffer1[VICON_BUFFER_SIZE];

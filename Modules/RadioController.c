@@ -1,7 +1,7 @@
 #include "RadioController.h"
-#include "global.h"
+#include "../Main/global.h"
 #include "AttitudeEstimator.h"
-#include "commons.h"
+#include "../Main/commons.h"
 void command_init(void)
 {
 	cmd.pos_z_sp = pos.z_est[0] / 1000;	

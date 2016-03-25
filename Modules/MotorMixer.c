@@ -1,6 +1,6 @@
-#include "global.h"
-#include "PWM.h"
-#include "Pins.h"
+#include "../Main/global.h"
+#include "../Drivers/PWM.h"
+#include "../Drivers/Pins.h"
 #include "MotorMixer.h"
 void force2output(int force[4], unsigned short duty[4], unsigned int battery)
 //mNewton to 0~2400

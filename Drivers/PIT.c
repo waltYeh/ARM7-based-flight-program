@@ -1,7 +1,7 @@
 #include "at91sam7s256.h"
 #include "PIT.h"
 #include "Pins.h"
-#include "global.h"
+#include "../Main/global.h"
 
 #if ORIGINAL_FREQ
 #define PIV (3000000/PIT_FREQ-1)//599//59

@@ -1,6 +1,6 @@
 #include "Filter.h"
 #include "math.h"
-#include "global.h"
+#include "../Main/global.h"
 void IIR_set_cutoff_freq(IIRFilter *filter, float cutoff_freq, float smpl_freq)
 {
 	float fr = smpl_freq/cutoff_freq;

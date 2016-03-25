@@ -1,7 +1,7 @@
 #include "SPI.h"
-#include "global.h"
+#include "../Main/global.h"
 #include "at91sam7s256.h"
-#include "IMU.h"
+#include "../Modules/IMU.h"
 #include "PIO.h"
 const unsigned int spibuf_ga_tx[15] = //enough for only giving the first reg address
 	{0x000B00BB,0x000B00BC,0x000B00BD,0x000B00BE,

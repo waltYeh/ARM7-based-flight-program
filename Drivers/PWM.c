@@ -1,7 +1,7 @@
 #include "at91sam7s256.h"
 #include "PWM.h"
 #include "Pins.h"
-#include "global.h"
+#include "../Main/global.h"
 void pwm_configure_channel (unsigned int channel, unsigned int prescaler,unsigned int alignment, unsigned int polarity){
     if ((AT91C_BASE_PWMC->PWMC_SR & (1 << channel)) != 0) {   
         AT91C_BASE_PWMC->PWMC_DIS = 1 << channel;   

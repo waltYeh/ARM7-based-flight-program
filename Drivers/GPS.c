@@ -1,6 +1,6 @@
 #include "at91sam7s256.h"
 #include "GPS.h"
-#include "global.h"
+#include "../Main/global.h"
 #define GPS_BUFFER_SIZE 160
 #if OUTDOOR
 char gps_buffer0[GPS_BUFFER_SIZE];//change bigger?

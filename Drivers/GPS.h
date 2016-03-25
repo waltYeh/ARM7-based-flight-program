@@ -1,6 +1,6 @@
 #ifndef GPS_H
 #define GPS_H
-#include "global.h"
+#include "../Main/global.h"
 //#define notCONFIG_GPS 1
 #if OUTDOOR
 extern void gps_init(void);

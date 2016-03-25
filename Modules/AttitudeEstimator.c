@@ -1,9 +1,9 @@
 #include "AttitudeEstimator.h"
 #include "math.h"
-#include "global.h"
+#include "../Main/global.h"
 #include "IMU.h"
-#include "timer.h"
-#include "commons.h"
+#include "../Main/timer.h"
+#include "../Main/commons.h"
 #if NEW_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
 #define Kp_ACC 0.1f//0.5f //too much noise if  large, too slow to recover the drift if small

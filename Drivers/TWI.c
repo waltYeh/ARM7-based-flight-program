@@ -1,8 +1,8 @@
 #include "at91sam7s256.h"
 #include "TWI.h"
-#include "IMU.h"
-#include "timer.h"
-#include "global.h"
+#include "../Modules/IMU.h"
+#include "../Main/timer.h"
+#include "../Main/global.h"
 #define CPS_READER 0
 TWI_Reader readers[1]={
 //acc

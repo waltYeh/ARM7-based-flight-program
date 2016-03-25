@@ -1,4 +1,4 @@
-#include "global.h"
+#include "../Main/global.h"
 #include "AttitudeEstimator.h"
 #include "math.h"
 #include "Controls.h"

@@ -1,6 +1,6 @@
 #include "ADC.h"
-#include "global.h"
 #include "at91sam7s256.h"
+#include "../Main/commons.h"
 void adc_init(void)
 {
     #define adcClock 5000000

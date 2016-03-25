@@ -6,31 +6,32 @@
  *	Author: Siyao HU, Tong WU, Jiahao FANG, Xin YE
  */
 #include "timer.h"
-
-#include "PWM.h"
-#include "USB.h"
-#include "SPI.h"
-#include "TWI.h"
-#include "ADC.h"
-#include "PIO.h"
-#include "Pins.h"
-#include "PIT.h"
-#include "GPS.h"
-#include "XBee.h"
-
-#include "MS5611_SPI.h"
-#include "HMC5883.h"
-#include "MPU6000_SPI.h"
-#include "EEPROM.h"
-
-#include "IMU.h"
-#include "AttitudeEstimator.h"
-#include "PositionEstimator.h"
-#include "Controls.h"
-#include "RadioController.h"
-#include "MotorMixer.h"
-
 #include "global.h"
+
+#include "../Drivers/PWM.h"
+#include "../Drivers/USB.h"
+#include "../Drivers/SPI.h"
+#include "../Drivers/TWI.h"
+#include "../Drivers/ADC.h"
+#include "../Drivers/PIO.h"
+#include "../Drivers/Pins.h"
+#include "../Drivers/PIT.h"
+#include "../Drivers/GPS.h"
+#include "../Drivers/XBee.h"
+
+#include "../Devices/MS5611_SPI.h"
+#include "../Devices/HMC5883.h"
+#include "../Devices/MPU6000_SPI.h"
+#include "../Devices/EEPROM.h"
+
+#include "../Modules/IMU.h"
+#include "../Modules/AttitudeEstimator.h"
+#include "../Modules/PositionEstimator.h"
+#include "../Modules/Controls.h"
+#include "../Modules/RadioController.h"
+#include "../Modules/MotorMixer.h"
+
+
 
 void init_loop(void);
 int self_check(void);

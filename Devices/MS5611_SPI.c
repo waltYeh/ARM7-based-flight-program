@@ -1,8 +1,8 @@
-#include "SPI.h"
+#include "../Drivers/SPI.h"
 #include "MS5611_SPI.h"
-#include "timer.h"	
+#include "../Main/timer.h"	
 #include "math.h"
-#include "global.h"
+#include "../Main/global.h"
 
 unsigned short setup,CRC,C1,C2,C3,C4,C5,C6;
 //unsigned long D1,D2; 
