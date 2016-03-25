@@ -1,0 +1,4 @@
+--cpu ARM7TDMI "main.o" "timer.o" "test_cpp.o" "commons.o" "twi.o" "gps.o" "xbee.o" "usb.o" "sam7.o" "adc.o" "spi.o" "pwm.o" "pio.o" "pit.o" "imu.o" "filter.o" "motormixer.o" "radiocontroller.o" "attitudeestimator.o" "positionestimator.o" "controls.o" "eeprom.o" "ms5611_spi.o" "mpu6000_spi.o" "hmc5883.o" --strict --scatter "my.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\my.map" -o "my.axf"
