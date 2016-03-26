@@ -1,0 +1,465 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"r",
+				"rawAcc_y"
+			],
+			[
+				"raw",
+				"rawAcc_x"
+			],
+			[
+				"rel",
+				"relative_lon"
+			],
+			[
+				"relat",
+				"relative_lat"
+			],
+			[
+				"Wa",
+				"Wall1"
+			],
+			[
+				"Bt",
+				"BtWall1"
+			],
+			[
+				"de",
+				"deactivate"
+			],
+			[
+				"BtW",
+				"BtWall1"
+			],
+			[
+				"Wall",
+				"Wall1"
+			],
+			[
+				"rd",
+				"rdm_y"
+			],
+			[
+				"sn",
+				"snk_y"
+			],
+			[
+				"F",
+				"Food1"
+			],
+			[
+				"cl",
+				"clicked"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "global.h",
+			"settings":
+			{
+				"buffer_size": 2816,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main.c",
+			"settings":
+			{
+				"buffer_size": 4754,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "PosEst.c",
+			"settings":
+			{
+				"buffer_size": 3972,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "PosEst.h",
+			"settings":
+			{
+				"buffer_size": 403,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/media/walt/Windows8_OS/Users/Walt Yeh/Desktop/2015.7.3morning修改y方向的负号，调节PID参数/position_est.c",
+			"settings":
+			{
+				"buffer_size": 5896,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/IWantToFly/Fly/mypit.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/IWantToFly/Fly/inout.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/IWantToFly/Fly/spibaro.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/IWantToFly/Fly/attitude.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/IWantToFly/Fly/gps.c",
+		"/media/walt/Die Software/Python/software/Snake/Snack.py",
+		"/media/walt/Die Software/Python/software/Snack.py",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/topics/vehicle_attitude.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/lib/geo/geo.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/lib/geo_lookup/geo_mag_declination.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/topics/satellite_info.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/Publication.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/topics/battery_status.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/topics/navigation_capabilities.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/ekf_att_pos_estimator/ekf_att_pos_estimator_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/mc_pos_control/mc_pos_control_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/ekf_att_pos_estimator/ekf_att_pos_estimator_params.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/position_estimator_inav/inertial_filter.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/mc_att_control/mc_att_control_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_so3/attitude_estimator_so3_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/segway/BlockSegwayController.hpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/segway/BlockSegwayController.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/systemcmds/mtd/24xxxx_mtd.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/segway/segway_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/topics/sensor_combined.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/Makefile",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/systemcmds/param/param.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/Subscription.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/objects_common.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/Subscription.hpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/uORB/uORB.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/dataman/dataman.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_so3/attitude_estimator_so3_params.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_so3/attitude_estimator_so3_params.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/README.md",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/systemlib/systemlib.c",
+		"/media/walt/LEMON/tempedr.txt",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_ekf/attitude_estimator_ekf_main.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_ekf/codegen/rtwtypes.h",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/unittests/sbus2_test.cpp",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/examples/flow_position_estimator/flow_position_estimator_params.c",
+		"/media/walt/Die Dokumente/yExin/实验室/我研究过的/PX4/Firmware-master/src/modules/attitude_estimator_ekf/AttitudeEKF.m"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Snack",
+			"pid",
+			"map_projection_project",
+			"pub",
+			"sensor_combined_s",
+			"raw",
+			"gyro",
+			"vehicle_attitude_s",
+			"curr_sp_s",
+			"pos_sp_s",
+			"Auto",
+			"L1",
+			"eph",
+			"eps",
+			"gps"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Snake"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "global.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2816,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								218,
+								218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4754,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								398,
+								398
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "PosEst.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3972,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3034,
+								3034
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "PosEst.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								395,
+								395
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/media/walt/Windows8_OS/Users/Walt Yeh/Desktop/2015.7.3morning修改y方向的负号，调节PID参数/position_est.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5896,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								995,
+								995
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1482.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "PX4",
+	"project": "global.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"unittests/sbus2_test.cpp"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 313.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

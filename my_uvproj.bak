@@ -42,7 +42,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Outputs\</OutputDirectory>
+          <OutputDirectory>.\</OutputDirectory>
           <OutputName>my</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
@@ -386,24 +386,24 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>commons.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Main\commons.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Main\timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Main\main.c</FilePath>
+              <FilePath>.\timer.c</FilePath>
             </File>
             <File>
               <FileName>test_cpp.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\Main\test_cpp.cpp</FilePath>
+              <FilePath>.\test_cpp.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>commons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\commons.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -411,54 +411,54 @@
           <GroupName>Drivers</GroupName>
           <Files>
             <File>
-              <FileName>ADC.c</FileName>
+              <FileName>TWI.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\ADC.c</FilePath>
+              <FilePath>.\TWI.c</FilePath>
             </File>
             <File>
               <FileName>GPS.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\GPS.c</FilePath>
-            </File>
-            <File>
-              <FileName>PIO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\PIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>PIT.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\PIT.c</FilePath>
-            </File>
-            <File>
-              <FileName>PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\PWM.c</FilePath>
-            </File>
-            <File>
-              <FileName>SPI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\SPI.c</FilePath>
-            </File>
-            <File>
-              <FileName>TWI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\TWI.c</FilePath>
-            </File>
-            <File>
-              <FileName>USB.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\USB.c</FilePath>
+              <FilePath>.\GPS.c</FilePath>
             </File>
             <File>
               <FileName>XBee.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Drivers\XBee.c</FilePath>
+              <FilePath>.\XBee.c</FilePath>
+            </File>
+            <File>
+              <FileName>USB.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USB.c</FilePath>
             </File>
             <File>
               <FileName>SAM7.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\Drivers\SAM7.s</FilePath>
+              <FilePath>.\SAM7.s</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>PIO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PIO.c</FilePath>
+            </File>
+            <File>
+              <FileName>PIT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PIT.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -466,39 +466,39 @@
           <GroupName>Modules</GroupName>
           <Files>
             <File>
-              <FileName>AttitudeEstimator.c</FileName>
+              <FileName>IMU.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Modules\AttitudeEstimator.c</FilePath>
-            </File>
-            <File>
-              <FileName>Controls.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Modules\Controls.c</FilePath>
+              <FilePath>.\IMU.c</FilePath>
             </File>
             <File>
               <FileName>Filter.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Modules\Filter.c</FilePath>
-            </File>
-            <File>
-              <FileName>IMU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Modules\IMU.c</FilePath>
+              <FilePath>.\Filter.c</FilePath>
             </File>
             <File>
               <FileName>MotorMixer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Modules\MotorMixer.c</FilePath>
-            </File>
-            <File>
-              <FileName>PositionEstimator.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Modules\PositionEstimator.c</FilePath>
+              <FilePath>.\MotorMixer.c</FilePath>
             </File>
             <File>
               <FileName>RadioController.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Modules\RadioController.c</FilePath>
+              <FilePath>.\RadioController.c</FilePath>
+            </File>
+            <File>
+              <FileName>AttitudeEstimator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\AttitudeEstimator.c</FilePath>
+            </File>
+            <File>
+              <FileName>PositionEstimator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PositionEstimator.c</FilePath>
+            </File>
+            <File>
+              <FileName>Controls.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Controls.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -508,22 +508,22 @@
             <File>
               <FileName>EEPROM.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Devices\EEPROM.c</FilePath>
-            </File>
-            <File>
-              <FileName>HMC5883.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Devices\HMC5883.c</FilePath>
-            </File>
-            <File>
-              <FileName>MPU6000_SPI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Devices\MPU6000_SPI.c</FilePath>
+              <FilePath>.\EEPROM.c</FilePath>
             </File>
             <File>
               <FileName>MS5611_SPI.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Devices\MS5611_SPI.c</FilePath>
+              <FilePath>.\MS5611_SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6000_SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MPU6000_SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>HMC5883.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HMC5883.c</FilePath>
             </File>
           </Files>
         </Group>
