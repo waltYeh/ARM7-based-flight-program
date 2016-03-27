@@ -7,6 +7,9 @@ void attitude_compute(void);
 void attitude_compute(void);
 void MARG_update(void);
 void AR_predict(void);
+#elif MADGWICK_ATT
+void marg_update(void);
+void attitude_compute(void);
 #endif
 float data_2_angle(float x, float y, float z);
 void quarternion_init(void);

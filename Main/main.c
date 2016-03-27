@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendSENS};
+					0,SonarOFF,sendATT};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -113,19 +113,19 @@ void data_select(void)
 	#endif	
 		break;
 	case sendATT://3
-		data2[0] = att.roll*573>>DSCRT;
-		data2[1] = att.pitch*573>>DSCRT;		
-		data2[2] = att.yaw*573>>DSCRT;				
-		data2[3] = att.q[0];
-		data2[4] = att.q[1];
-		data2[5] = att.q[2];
-		data2[6] = att.rollspeed*573>>DSCRT;
-		data2[7] = att.pitchspeed*573>>DSCRT;		
-		data2[8] = att.yawspeed*573>>DSCRT;
+//		data2[0] = att.roll*573>>DSCRT;
+//		data2[1] = att.pitch*573>>DSCRT;		
+//		data2[2] = att.yaw*573>>DSCRT;				
+//		data2[3] = att.q[0];
+//		data2[4] = att.q[1];
+//		data2[5] = att.q[2];
+//		data2[6] = att.rollspeed*573>>DSCRT;
+//		data2[7] = att.pitchspeed*573>>DSCRT;		
+//		data2[8] = att.yawspeed*573>>DSCRT;
 		break;
 	case sendPOS://4
-		data2[0] = sens.az;//cmd.pos_x_sp;
-		data2[1] = baro.alt;
+		data2[0] = pos.x_est[0] / 1000;
+		data2[1] = pos.y_est[0] / 1000;
 		data2[2] = pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
 		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
 		data2[4] = pos.y_est[1] / 1000;
@@ -387,7 +387,7 @@ void ground_work_once(void)
 }
 void Process500Hz(void)
 {
-//	beep(ON);
+ //	beep(ON);
 	attitude_compute();
 	pos_predict(ATT_PERIOD,process_count);
 	attitude_control(ATT_PERIOD);

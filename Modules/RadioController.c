@@ -77,16 +77,16 @@ void get_rc(short dt)
 *
 */	
 	
-//	pos_xPID.Prate = 2.0 + (cmd.rc[5]/1024.0)*1.0;
-//	pos_xPID.P = 0.22 + (cmd.rc[6]/1024.0)*0.10;
+	pos_xPID.Prate = 1.5 + (cmd.rc[5]/1024.0)*1.0;
+	pos_xPID.P = 0.2 + (cmd.rc[6]/1024.0)*0.10;
 //	pos_xPID.Drate = 0.1 + (cmd.rc[7]/1024.0)*0.1;
 	
-//	pos_yPID.P = pos_xPID.P;
-//	pos_yPID.Prate = pos_xPID.Prate;	
+	pos_yPID.P = pos_xPID.P;
+	pos_yPID.Prate = pos_xPID.Prate;	
 //	pos_yPID.Irate = pos_xPID.Irate;
 //	pos_yPID.Drate = pos_xPID.Drate;	
 //	altPID.Prate = 1.8 + (cmd.rc[5]/1024.0)*0.7;
-	altPID.P = 1.9 + (cmd.rc[6]/1024.0)*0.7;
+//	altPID.P = 1.9 + (cmd.rc[6]/1024.0)*0.7;
 //	altPID.Irate = 0.05 + (cmd.rc[7]/1024.0)*0.05;
 	
 //	pitchPID.Prate = 22.5 + (cmd.rc[5]/1024.0)*8.0;

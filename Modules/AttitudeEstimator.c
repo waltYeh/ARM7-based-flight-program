@@ -6,8 +6,8 @@
 #include "../Main/commons.h"
 #if NEW_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
-#define Kp_ACC 0.1f//0.5f //too much noise if  large, too slow to recover the drift if small
-#define Kp_MAG 0.2f//1.2f
+#define Kp_ACC 0.4f//0.5f //too much noise if  large, too slow to recover the drift if small
+#define Kp_MAG 1.2f//1.2f
 #define gyro_bias_weight 0.1f
 #define scale_gyr 7506 //correspond to 1 rad/s
 float gyr_bias[3]={0,0,0};//change to float??
@@ -301,6 +301,194 @@ void attitude_compute(void)
 	
 //	yaw_v = sens.gz*1000/scale_gyr;	
 }
+#elif MADGWICK_ATT
+volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
+#define Kp_ACC 1.0f
+#define gyro_bias_weight 0.25f
+#define scale_gyr 7506 //correspond to 1 rad/s
+float gyr_bias[3]={0,0,0};//change to float??
+void marg_update(void) //(1<<14)rad
+{
+	float norm;
+	int m_bdy[3],a_bdy[3],m_glb[3];
+	int m_bdy_est[3];
+	static int m_ENU[3]={0,16626,-28169};
+	short dt_gyr = 2;//, dt_acc = 2, dt_mag = 2;
+	int corr_x = 0, corr_y = 0, corr_z = 0;
+	int qi0,qi1,qi2,qi3;
+	int dq[4] = {0,0,0,0};
+	int fa[3], fm[3]={0,0,0};
+	int wx,wy,wz;
+	int wq0,wq1,wq2,wq3;
+	int i,j;
+	int Jcb_a[3][4];
+	int Jcb_m[3][4];
+	qi0=q0;
+	qi1=q1;
+	qi2=q2;
+	qi3=q3;
+	if(1){
+		norm = inv_sqrt((int)sens.ax*sens.ax + (int)sens.ay*sens.ay + (int)sens.az*sens.az);       
+		a_bdy[0] = ((int)sens.ax<<DSCRT)*norm;
+		a_bdy[1] = ((int)sens.ay<<DSCRT)*norm;
+		a_bdy[2] = ((int)sens.az<<DSCRT)*norm;
+		for(i=0;i<3;i++)
+			fa[i] = att.R[2][i] - a_bdy[i];//obj func
+		Jcb_a[0][0] = -qi2<<1;
+		Jcb_a[0][1] = qi3<<1;
+		Jcb_a[0][2] = -qi0<<1;
+		Jcb_a[0][3] = qi1<<1;
+		Jcb_a[1][0] = qi1<<1;
+		Jcb_a[1][1] = qi0<<1;
+		Jcb_a[1][2] = qi3<<1;
+		Jcb_a[1][3] = qi2<<1;
+		Jcb_a[2][0] = 0;
+		Jcb_a[2][1] = -qi1<<2;
+		Jcb_a[2][2] = -qi2<<2;
+		Jcb_a[2][3] = 0;
+		for(i=0;i<4;i++){
+			for(j=0;j<3;j++){
+				dq[i] += Jcb_a[j][i] * fa[j]>>DSCRT;
+			}
+		}
+		data2[0] = fa[0];
+		data2[1] = fa[1];
+		data2[2] = fa[2];
+	}
+	if(sens.mag_updated){
+		
+//		sens.mag_updated = 0;
+		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
+		m_bdy[0]=((int)sens.mx<<DSCRT)*norm;
+		m_bdy[1]=((int)sens.my<<DSCRT)*norm;
+		m_bdy[2]=((int)sens.mz<<DSCRT)*norm;	
+		glob2body(m_bdy_est, m_ENU, 3);
+		for(i=0;i<3;i++)
+			fm[i] = m_bdy_est[i] - m_bdy[i];
+			
+/*		Jcb_m[0][0] = -qi2*m_ENU[2] >> (DSCRT-1);
+		Jcb_m[0][1] = qi3*m_ENU[2] >> (DSCRT-1);
+		Jcb_m[0][2] = -(qi2*m_ENU[1] >> (DSCRT-2)) - (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][3] = -(qi3*m_ENU[1] >> (DSCRT-2)) + (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][0] = -(qi3*m_ENU[1] >> (DSCRT-1)) + (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][1] =  (qi2*m_ENU[1] >> (DSCRT-1)) + (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][2] =  (qi1*m_ENU[1] >> (DSCRT-1)) + (qi3*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][3] = -(qi0*m_ENU[1] >> (DSCRT-1)) + (qi2*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[2][0] =   qi2*m_ENU[1] >> (DSCRT-1);
+		Jcb_m[2][1] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi1*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][2] =  (qi0*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][3] =   qi1*m_ENU[1] >> (DSCRT-1);
+		*/
+		Jcb_m[0][0] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][1] =  (qi2*m_ENU[1] >> (DSCRT-1)) + (qi3*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][2] =  (qi1*m_ENU[1] >> (DSCRT-1)) - (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][3] =  (qi0*m_ENU[1] >> (DSCRT-1)) + (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][0] =  (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][1] = -(qi1*m_ENU[1] >> (DSCRT-2)) + (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][2] =  (qi3*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][3] = -(qi3*m_ENU[1] >> (DSCRT-2)) + (qi2*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[2][0] = -(qi1*m_ENU[1] >> (DSCRT-1));
+		Jcb_m[2][1] = -(qi0*m_ENU[1] >> (DSCRT-1)) - (qi1*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][2] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][3] =   qi2*m_ENU[1] >> (DSCRT-1);
+		for(i=0;i<4;i++){
+			for(j=0;j<3;j++){
+				dq[i] += (Jcb_m[j][i] * fm[j]*10>>DSCRT);
+			}
+		}
+		data2[3] = fm[0];
+		data2[4] = fm[1];
+		data2[5] = fm[2];
+	}
+	data2[6] = dq[0];
+		data2[7] = dq[1];
+		data2[8] = dq[2];
+//	norm = inv_sqrt(dq[0] * dq[0] + dq[1] * dq[1] + dq[2] * dq[2] + dq[3] * dq[3]);
+//	dq[0] =(dq[0]*DSCRT_F)*norm;
+//	dq[1] =(dq[1]*DSCRT_F)*norm;
+//	dq[2] =(dq[2]*DSCRT_F)*norm;
+//	dq[3] =(dq[3]*DSCRT_F)*norm;
+	
+	corr_x = (qi0*dq[1] - qi1*dq[0] - qi2*dq[3] + qi3*dq[2])>>(DSCRT-1);
+	corr_y = (qi0*dq[2] + qi1*dq[3] - qi2*dq[0] - qi3*dq[1])>>(DSCRT-1);
+	corr_z = (qi0*dq[3] - qi1*dq[2] + qi2*dq[1] - qi3*dq[0])>>(DSCRT-1);
+	
+	
+	
+	gyr_bias[0] += constrain_f(corr_x * gyro_bias_weight * dt_gyr,-100.0f,100.0f);
+	gyr_bias[1] += constrain_f(corr_y * gyro_bias_weight * dt_gyr,-100.0f,100.0f);
+	gyr_bias[2] += constrain_f(corr_z * gyro_bias_weight * dt_gyr,-100.0f,100.0f);
+
+	
+	att.rollspeed=((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0]/1000;
+	att.pitchspeed=((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1]/1000;   
+	att.yawspeed=((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2]/1000;
+	#define ZOOM 2
+	wx = att.rollspeed>>ZOOM;
+	wy = att.pitchspeed>>ZOOM;
+	wz = att.yawspeed>>ZOOM;
+
+	wq0 = (-qi1*wx - qi2*wy - qi3*wz)>>(DSCRT-ZOOM+1);
+	wq1 = (qi0*wx + qi2*wz - qi3*wy)>>(DSCRT-ZOOM+1);
+	wq2 = (qi0*wy - qi1*wz + qi3*wx)>>(DSCRT-ZOOM+1);
+	wq3 = (qi0*wz + qi1*wy - qi2*wx)>>(DSCRT-ZOOM+1);
+
+	q0 += (wq0 - Kp_ACC*dq[0])*dt_gyr/1000.0f;
+	q1 += (wq1 - Kp_ACC*dq[1])*dt_gyr/1000.0f;
+	q2 += (wq2 - Kp_ACC*dq[2])*dt_gyr/1000.0f;
+	q3 += (wq3 - Kp_ACC*dq[3])*dt_gyr/1000.0f;
+	// quarternion normalization
+	norm = inv_sqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
+	q0 =(q0*DSCRT_F)*norm;
+	q1 =(q1*DSCRT_F)*norm;
+	q2 =(q2*DSCRT_F)*norm;
+	q3 =(q3*DSCRT_F)*norm;
+	
+	qi0=q0;
+	qi1=q1;
+	qi2=q2;
+	qi3=q3;
+	//obtain the rotation matrix that can be applied elsewhere
+	att.R[0][0]=(1<<DSCRT) - ((qi2 * qi2 + qi3 * qi3)>>(DSCRT-1));
+	att.R[0][1]=(qi1 * qi2 - qi0 * qi3)>>(DSCRT-1);
+	att.R[0][2]=(qi1 * qi3 + qi0 * qi2)>>(DSCRT-1);
+	att.R[1][0]=(qi1 * qi2 + qi0 * qi3)>>(DSCRT-1);
+	att.R[1][1]=(1<<DSCRT) - ((qi1 * qi1 + qi3 * qi3)>>(DSCRT-1));
+	att.R[1][2]=(qi2 * qi3 - qi0 * qi1)>>(DSCRT-1);
+	att.R[2][0]=(qi1 * qi3 - qi0 * qi2)>>(DSCRT-1);
+	att.R[2][1]=(qi2 * qi3 + qi0 * qi1)>>(DSCRT-1);
+	att.R[2][2]=(1<<DSCRT) - ((qi1 * qi1 + qi2 * qi2)>>(DSCRT-1));
+	att.q[0] = qi0;
+	att.q[1] = qi1;
+	att.q[2] = qi2;
+	att.q[3] = qi3;
+	if(sens.mag_updated){
+		sens.mag_updated = 0;
+		body2glob(m_bdy, m_glb, 3);
+		m_ENU[0]=0;
+		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+	    m_ENU[2]=m_glb[2];
+	}
+}
+
+void attitude_compute(void)
+{
+	static short turn=0;
+	static int l_yaw=0;
+	int pitch,roll,yaw;  //in (1<<14)rad
+	marg_update();
+	pitch = -asin(att.R[2][0]/DSCRT_F)*DSCRT_F;
+	roll  = atan2(att.R[2][1], att.R[2][2])*DSCRT_F;
+	yaw = -atan2(att.R[0][1], att.R[1][1])*DSCRT_F;
+	//yaw changes continuously without jumping from -180 to 180
+	if(yaw < (-(DSCRT_I*19/20)*PI) && l_yaw>((DSCRT_I*19/20)*PI))turn++;//0.95*16384=15565
+	if(yaw > ((DSCRT_I*19/20)*PI) && l_yaw<(-(DSCRT_I*19/20)*PI))turn--;	
+	l_yaw = yaw;
+	yaw += turn*((DSCRT_I*2)*PI);	
+	att.pitch=pitch;
+	att.roll=roll;
+	att.yaw=yaw;
+}
 #endif
 float data_2_angle(float x, float y, float z)	 //in rad
 {
@@ -320,7 +508,6 @@ void quarternion_init(void)
 	for(i=0;i<50;i++){
 		continue_cps_read();
 		delay_ms(8);
-//		get_imu_wait();
 		sum_ax+=sens.ax;
 		sum_ay+=sens.ay;
 		sum_az+=sens.az;

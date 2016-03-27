@@ -20,12 +20,13 @@
 #define HMC_COMPASS 1
 #define MPU_COMPASS 0
 
-#define ON_FLIGHT 0
-#define OFF_FLIGHT 1
+#define ON_FLIGHT 1
+#define OFF_FLIGHT 0
 #define WAIT_GPS 0
-#define OLD_ATT 1
+#define OLD_ATT 0
 #define NEW_ATT 0
-#define MAG_PITCH_ROLL 0
+#define MADGWICK_ATT 1
+#define MAG_PITCH_ROLL 1
 #define ORIGINAL_FREQ 1
 #define DOUBLED_FREQ 0
 #define USB_TEST 0
@@ -47,7 +48,7 @@ struct _gps{
 	int vy;
 	unsigned char v_valid;
 	#define GPS_PERIOD 200
-	#define GPS_DELAY 500
+	#define GPS_DELAY 400
 };
 extern struct _gps gps;
 #elif INDOOR
@@ -233,7 +234,6 @@ struct _output {
 	int pitchMmt;//U1=(F3-F1)L
 	int rollMmt;//U2=(F2-F4)L
 	int yawMmt;//U4=M2+M4-M1-M3, 1 mNewton*mm
-//	int ref_thrust;
 };
 extern struct _output output;
 
@@ -285,16 +285,22 @@ extern PID pos_yPID;
 #elif F330
 	#define thrCmndRatio 1
 #elif F240
-	#define thrCmndRatio 13/5
+	#define thrCmndRatio 1
 #endif
-//#define MAX_ATT_SP 5718//20deg,0.349rad
-#define MAX_ATT_MANUEL 14437//11437 40deg,0.698rad
+#if DSCRT_15
+	#define MAX_ATT_MANUEL 28874//11437 40deg,0.698rad
+	#define MAX_YAW_RATE 28606//50.0
+	#define MAX_YAW_RATE_MANEUL 28606
+#elif DSCRT_14
+	#define MAX_ATT_MANUEL 14437//11437 40deg,0.698rad
+	#define MAX_YAW_RATE 14303//50.0
+	#define MAX_YAW_RATE_MANEUL 14303
+#endif
+
 #define MAX_ALT_VEL 1000//in loop
 #define MAX_ALT_VEL_MANUEL 500//manuel
 #define MAX_XY_VEL 80000
 #define MAX_XY_VEL_MANUEL 1500
-#define MAX_YAW_RATE 14303//50.0
-#define MAX_YAW_RATE_MANEUL 14303
 
 #define BAT_WARNING 3500
 #if F450
@@ -318,14 +324,6 @@ extern PID pos_yPID;
 	#define D2_SQRT2 339//(2*D)/SQRT2_2D
 	#define FORCE_TORQUE_RATIO 15
 #endif
-extern int constrain(int a, int b, int c);
-extern int dead_zone(int a, int b);
-extern float constrain_f(float a, float b, float c);
-extern int minimum(int a, int b);
-extern int maximum(int a, int b);
-
-
-
 
 extern struct _AT91S_CDC 	pCDC;
 #endif
