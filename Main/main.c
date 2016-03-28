@@ -113,9 +113,9 @@ void data_select(void)
 	#endif	
 		break;
 	case sendATT://3
-//		data2[0] = att.roll*573>>DSCRT;
-//		data2[1] = att.pitch*573>>DSCRT;		
-//		data2[2] = att.yaw*573>>DSCRT;				
+		data2[0] = att.roll*573>>DSCRT;
+		data2[1] = att.pitch*573>>DSCRT;		
+		data2[2] = att.yaw*573>>DSCRT;				
 //		data2[3] = att.q[0];
 //		data2[4] = att.q[1];
 //		data2[5] = att.q[2];

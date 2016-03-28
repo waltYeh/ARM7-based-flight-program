@@ -4,7 +4,7 @@
 #include "AttitudeEstimator.h"
 #include "string.h"
 #include "../Main/commons.h"
-#define acc_bais_corr_weight 0.00009f
+#define acc_bais_corr_weight 0.00007f
 #define acc_gain 1.0f
 #define sonar_weight 1.0f
 #if OUTDOOR
