@@ -362,9 +362,9 @@ void marg_update(void) //(1<<14)rad
 				Df[i] += Jcb_a[j][i] * fa[j]>>DSCRT;
 			}
 		}
-		data2[3] = pos.Acc_x;
-		data2[4] = pos.Acc_y;
-		data2[5] = pos.Acc_z;
+//		data2[3] = pos.Acc_x;
+//		data2[4] = pos.Acc_y;
+//		data2[5] = pos.Acc_z;
 	}
 	if(1){//sens.mag_updated){
 		
@@ -403,9 +403,9 @@ void marg_update(void) //(1<<14)rad
 			}
 		}
 	}
-	data2[6] = Df[0];
-	data2[7] = Df[1];
-	data2[8] = Df[2];
+//	data2[6] = Df[0];
+//	data2[7] = Df[1];
+//	data2[8] = Df[2];
 	norm = inv_sqrt(Df[0] * Df[0] + Df[1] * Df[1] + Df[2] * Df[2] + Df[3] * Df[3]);
 	if(isfinite(norm)){
 		Df[0] =(Df[0]<<DSCRT)*norm;

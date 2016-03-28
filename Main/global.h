@@ -48,7 +48,7 @@ struct _gps{
 	int vy;
 	unsigned char v_valid;
 	#define GPS_PERIOD 200
-	#define GPS_DELAY 400
+	#define GPS_DELAY 480
 };
 extern struct _gps gps;
 #elif INDOOR

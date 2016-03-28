@@ -95,9 +95,9 @@ void data_select(void)
 		data2[3]=sens.gx;
 		data2[4]=sens.gy;
 		data2[5]=sens.gz;
-		data2[6]=pos.z_est[1] / 1000;
-		data2[7]=pos.z_est[0] / 1000;
-		data2[8]=baro.temp;
+		data2[6]=sens.mx;
+		data2[7]=sens.my;
+		data2[8]=sens.mz;
 		break;
 	case sendGPS://2
 	#if OUTDOOR
@@ -119,14 +119,14 @@ void data_select(void)
 //		data2[3] = att.q[0];
 //		data2[4] = att.q[1];
 //		data2[5] = att.q[2];
-//		data2[6] = att.rollspeed*573>>DSCRT;
-//		data2[7] = att.pitchspeed*573>>DSCRT;		
-//		data2[8] = att.yawspeed*573>>DSCRT;
+		data2[6] = att.rollspeed*573>>DSCRT;
+		data2[7] = att.pitchspeed*573>>DSCRT;		
+		data2[8] = att.yawspeed*573>>DSCRT;
 		break;
 	case sendPOS://4
-		data2[0] = pos.x_est[0] / 1000;
-		data2[1] = pos.y_est[0] / 1000;
-		data2[2] = pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
+		data2[0] = gps.vx;//pos.x_est[0] / 1000;
+		data2[1] = gps.vy;//pos.y_est[0] / 1000;
+		data2[2] = baro.alt;//pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
 		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
 		data2[4] = pos.y_est[1] / 1000;
 		data2[5] = pos.z_est[1] / 1000;

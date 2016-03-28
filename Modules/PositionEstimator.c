@@ -4,14 +4,14 @@
 #include "AttitudeEstimator.h"
 #include "string.h"
 #include "../Main/commons.h"
-#define acc_bais_corr_weight 0.00007f
+#define acc_bais_corr_weight 0.00003f
 #define acc_gain 1.0f
 #define sonar_weight 1.0f
 #if OUTDOOR
-#define gps_xy_weight 1.1f
-#define gps_vxy_weight 1.6f
+#define gps_xy_weight 0.8f
+#define gps_vxy_weight 1.1f
 #define gps_z_weight 0.0f
-#define baro_weight 1.0f
+#define baro_weight 0.83f
 #elif INDOOR
 #define vicon_xy_weight 4.0f
 #define vicon_z_weight 4.0f

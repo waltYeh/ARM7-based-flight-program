@@ -3,6 +3,7 @@
 #include "../Main/timer.h"
 #include "../Main/global.h"
 #include "PIO.h"	
+//#include "../Main/global.h"
 void pio_init()
 {
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;	
@@ -75,19 +76,23 @@ __irq void PIO_handler(void){
 	int timePPM=0;
 	int status;
 	static unsigned short channel=0;
+//	static int beben=0;
 	status = *AT91C_PIOA_ISR;
     status &= *AT91C_PIOA_IMR;
 	if(status & USB_VBUS){
 		if (*AT91C_PIOA_PDSR & USB_VBUS){
 			myusb.connect_flag = PLUG_IN;
 			*AT91C_PIOA_IDR = USB_VBUS;
+		//	beben++;
+		//	data2[3] = beben;
 		}
 	}
 	if(status & USB_OUT_I){
 		if (*AT91C_PIOA_PDSR & USB_OUT_I){
 			myusb.out_coming = 1;
-		} else{
-		//	myusb.out_coming = 1;
+		}
+		else{
+
 		}
 	}
 	if(status & UNLOCK_BUT){

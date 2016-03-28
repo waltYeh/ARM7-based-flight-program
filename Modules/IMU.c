@@ -38,12 +38,12 @@ short ax,ay,az;
 	short mag_z_bias=-35;
 
 	#elif F450
-	short acc_x_bias=-90;
-	short acc_y_bias=0;
-	short acc_z_bias=-299;
-	short mag_x_bias=-120;
+	short acc_x_bias=90;
+	short acc_y_bias=56;
+	short acc_z_bias=145;
+	short mag_x_bias=-50;
 	short mag_y_bias=30;
-	short mag_z_bias=-10;
+	short mag_z_bias=-30;
 
 	#elif XINSONG
 	short acc_x_bias=-50;
@@ -135,11 +135,11 @@ void gyro_lowpass_biascorr(short gx, short gy, short gz, unsigned char store)
 }
 void imu_IIR_init(void)
 {	
-	float cutoff_freq = 10.0;//, cutoff_freq2 = 40.0;
+	float cutoff_freq = 15.0;//, cutoff_freq2 = 40.0;
 	float smpl_freq = 500.0;
 	IIR_set_cutoff_freq(&iir_ax, cutoff_freq, smpl_freq);
 	IIR_set_cutoff_freq(&iir_ay, cutoff_freq, smpl_freq);
-	IIR_set_cutoff_freq(&iir_az, 6.0, smpl_freq);
+	IIR_set_cutoff_freq(&iir_az, 8.0, smpl_freq);
 	sens.ax = IIR_reset(&iir_ax, 0);
 	sens.ay = IIR_reset(&iir_ay, 0);
 	sens.az = IIR_reset(&iir_az, 8192);
