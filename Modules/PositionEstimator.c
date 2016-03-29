@@ -7,6 +7,7 @@
 
 #define acc_bais_corr_weight 0.00005f
 #define acc_offset 0.15f
+
 #if OUTDOOR
 	#define gps_xy_weight 1.0f
 	#define gps_vxy_weight 1.3f
