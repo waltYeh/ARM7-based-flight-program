@@ -5,11 +5,11 @@
 #include "string.h"
 #include "../Main/commons.h"
 
-#define acc_bais_corr_weight 0.00003f
-
+#define acc_bais_corr_weight 0.00005f
+#define acc_offset 0.11f
 #if OUTDOOR
-	#define gps_xy_weight 0.8f
-	#define gps_vxy_weight 1.1f
+	#define gps_xy_weight 1.0f
+	#define gps_vxy_weight 1.3f
 	#define gps_z_weight 0.0f
 	#define baro_weight 0.83f
 	#define sonar_weight 1.0f
@@ -265,8 +265,8 @@ void pos_predict(short dt,unsigned int record_count)
 {
 	int globAcc[3]={0,0,0};
 	get_geo_acc(globAcc);
-	pos.Acc_x = globAcc[0];
-	pos.Acc_y = globAcc[1];
+	pos.Acc_x = globAcc[0] + pos.x_est[1]/1000*acc_offset;
+	pos.Acc_y = globAcc[1] + pos.y_est[1]/1000*acc_offset;
 	pos.Acc_z = globAcc[2];	
 	inertial_filter_predict(dt, pos.x_est, pos.Acc_x);
 	inertial_filter_predict(dt, pos.y_est, pos.Acc_y);
