@@ -22,7 +22,7 @@
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
-#define WAIT_GPS 0
+#define WAIT_GPS 1
 #define OLD_ATT 0
 #define NEW_ATT 0
 #define MADGWICK_ATT 1
@@ -48,7 +48,7 @@ struct _gps{
 	int vy;
 	unsigned char v_valid;
 	#define GPS_PERIOD 200
-	#define GPS_DELAY 480
+	#define GPS_DELAY 400
 };
 extern struct _gps gps;
 #elif INDOOR

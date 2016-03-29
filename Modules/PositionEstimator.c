@@ -4,28 +4,32 @@
 #include "AttitudeEstimator.h"
 #include "string.h"
 #include "../Main/commons.h"
+
 #define acc_bais_corr_weight 0.00003f
-#define acc_gain 1.0f
-#define sonar_weight 1.0f
+
 #if OUTDOOR
-#define gps_xy_weight 0.8f
-#define gps_vxy_weight 1.1f
-#define gps_z_weight 0.0f
-#define baro_weight 0.83f
+	#define gps_xy_weight 0.8f
+	#define gps_vxy_weight 1.1f
+	#define gps_z_weight 0.0f
+	#define baro_weight 0.83f
+	#define sonar_weight 1.0f
 #elif INDOOR
-#define vicon_xy_weight 4.0f
-#define vicon_z_weight 4.0f
-#define vicon_vxy_weight 1.0f
-#define vicon_vz_weight 1.0f
-#define baro_weight 0.0f
+	#define vicon_xy_weight 4.0f
+	#define vicon_z_weight 4.0f
+	#define vicon_vxy_weight 1.0f
+	#define vicon_vz_weight 1.0f
+	#define baro_weight 0.0f
+	#define sonar_weight 1.0f
 #endif
+
 short buf_ptr = 0;
 #define EST_BUF_SIZE 40//800ms
+#define BUF_INTERVAL 20//ms, 50Hz
 int est_buf[EST_BUF_SIZE][3][2];
 int R_buf[EST_BUF_SIZE][3][3];
-#define BUF_INTERVAL 20//ms, 50Hz
 float acc_body_bias[3] = {0,0,0};
 int l_x=0,l_y=0,l_z=0;
+
 #if OUTDOOR
 int home_lat, home_lon, home_gps_alt;
 int cos_lat_100;
@@ -77,24 +81,37 @@ void gps_pos_corr(short dt)
 	float c;
 	float glob_acc_bias_corr_x = 0.0f, glob_acc_bias_corr_y = 0.0f;
 	int corr_x, corr_y;
-	short corr_vx, corr_vy;
-	short est_i;	
+	int corr_vx=0, corr_vy=0;
+	short est_i;
+
+//gps to local projection	
 	gps2xyz(dt);
+	
+//find the delay buffer pointer
 	est_i = buf_ptr - 1 - minimum(EST_BUF_SIZE - 1,GPS_DELAY / BUF_INTERVAL);
 	if (est_i < 0) {
 		est_i += EST_BUF_SIZE;
 	}
-	corr_x = gps.x - est_buf[est_i][0][0] / 1000;
+	
+//position correct
+	corr_x = gps.x - est_buf[est_i][0][0] / 1000;	
 	corr_y = gps.y - est_buf[est_i][1][0] / 1000;
 	inertial_filter_correct(corr_x, dt, pos.x_est, 0, gps_xy_weight);
 	inertial_filter_correct(corr_y, dt, pos.y_est, 0, gps_xy_weight);
-	if(gps.v_valid){
+
+//velocity correct
+	if(1){//gps.v_valid){
+	//if use vel corr conditionally, the est will converge slow towards 0 after stop moving
 		corr_vx = gps.vx - est_buf[est_i][0][1] / 1000;
 		corr_vy = gps.vy - est_buf[est_i][1][1] / 1000;
 		inertial_filter_correct(corr_vx, dt, pos.x_est, 1, gps_vxy_weight);
 		inertial_filter_correct(corr_vy, dt, pos.y_est, 1, gps_vxy_weight);
 		smpl.d_ctrl_disable = 1;
 	}
+	data2[3]=corr_vx;
+	data2[6]=corr_x;
+	
+//correct acc bias	
 	glob_acc_bias_corr_x = -corr_x * gps_xy_weight * gps_xy_weight;
 	glob_acc_bias_corr_y = -corr_y * gps_xy_weight * gps_xy_weight;
 	if(gps.v_valid){
@@ -106,7 +123,6 @@ void gps_pos_corr(short dt)
 		c += glob_acc_bias_corr_y * R_buf[est_i][1][i];
 		c /= DSCRT_F;
 		acc_body_bias[i] += constrain_f(c * dt * acc_bais_corr_weight,-5,5);
-	//	data2[i] = acc_body_bias[i];
 	}
 
 }
@@ -202,8 +218,8 @@ void zero_pos_corr(short dt)
 	int corr_x, corr_y;
 	corr_x = 0 - pos.x_est[0] / 1000;
 	corr_y = 0 - pos.y_est[0] / 1000;
-	inertial_filter_correct(corr_x, dt, pos.x_est, 0, 1.0);
-	inertial_filter_correct(corr_y, dt, pos.y_est, 0, 1.0);
+	inertial_filter_correct(corr_x, dt, pos.x_est, 0, 0.2);
+	inertial_filter_correct(corr_y, dt, pos.y_est, 0, 0.2);
 	
 	glob_acc_bias_corr_x = -corr_x;
 	glob_acc_bias_corr_y = -corr_y;
@@ -251,7 +267,7 @@ void pos_predict(short dt,unsigned int record_count)
 	get_geo_acc(globAcc);
 	pos.Acc_x = globAcc[0];
 	pos.Acc_y = globAcc[1];
-	pos.Acc_z = globAcc[2];
+	pos.Acc_z = globAcc[2];	
 	inertial_filter_predict(dt, pos.x_est, pos.Acc_x);
 	inertial_filter_predict(dt, pos.y_est, pos.Acc_y);
 	inertial_filter_predict(dt, pos.z_est, pos.Acc_z);
@@ -271,7 +287,7 @@ void pos_predict(short dt,unsigned int record_count)
 		}
 	}
 }
-void inertial_filter_predict(short dt, int x[2], int acc)//dt in ms, x in mm and mm/s, acc in mm/s2
+void inertial_filter_predict(short dt, int x[2], int acc)//dt in ms, x in um and um/s, acc in mm/s2
 {	
 	x[0] += (x[1] * dt  + acc * dt  * dt / 2)/1000;// x[1] at least 500, that is, 0.5mm/s, to move x[0]
 	//v 1e-6m/s, dt 1e-3s, v*dt 1e-6m/s * 1e-3s = 1e-9m, div by 1000-> 1e-6m

@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendATT};
+					0,SonarOFF,sendPOS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -124,13 +124,13 @@ void data_select(void)
 		data2[8] = att.yawspeed*573>>DSCRT;
 		break;
 	case sendPOS://4
-		data2[0] = gps.vx;//pos.x_est[0] / 1000;
-		data2[1] = gps.vy;//pos.y_est[0] / 1000;
-		data2[2] = baro.alt;//pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
-		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
-		data2[4] = pos.y_est[1] / 1000;
-		data2[5] = pos.z_est[1] / 1000;
-		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
+		data2[0] = pos.Acc_x;
+		data2[1] = gps.vx;//pos.y_est[0] / 1000;
+		data2[2] = pos.x_est[1] / 1000;//cmd.pitch_sp*573>>DSCRT;			
+//		data2[3] = ;//cmd.pos_y_sp
+		data2[4] = gps.x;
+		data2[5] = pos.x_est[0] / 1000;
+//		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
 		data2[7] = pos.Acc_y;
 		data2[8] = pos.Acc_z;
 
