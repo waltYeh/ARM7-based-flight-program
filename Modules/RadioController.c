@@ -15,6 +15,8 @@ void get_rc(short dt)
 	int expctAltRate,expctYawRate;
 	//mode change
 	mode.l_FlightMode = mode.FlightMode;
+	
+	#if OFFBOARD_AVAIL
 	if (cmd.rc[5] > -307 || myusb.rcv_timeout == 0){//on board
 		mode.offboard = 0;
 		if (cmd.rc[4] > 307){//switch upward	
@@ -39,6 +41,19 @@ void get_rc(short dt)
 			mode.FlightMode = RASP_MANUEL;
 		}
 	}
+	#else
+	mode.offboard = 0;
+	if (cmd.rc[4] > 307){//switch upward	
+		mode.FlightMode = POS_CTRL;	
+	}
+	else if(cmd.rc[4] > -307){		//in the middle
+		mode.FlightMode = ALT_CTRL;
+	}
+	else{		//downward
+		mode.FlightMode = MANUEL;
+	}
+
+	#endif
 	mode.l_CalMode = mode.CalibrationMode;
 	mode.CalibrationMode = 0;
 	//pitch roll att command for acrob, manuel, altctrl

@@ -303,7 +303,7 @@ void attitude_compute(void)
 }
 #elif MADGWICK_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
-#define beta 0.06f
+#define beta 0.025f//0.06f
 #define gyro_bias_weight 0.001f
 #define scale_gyr 7506 //correspond to 1 rad/s
 float gyr_bias[3]={0,0,0};//change to float??

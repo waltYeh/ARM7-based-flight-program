@@ -34,7 +34,7 @@
 ### ADS-LD Output File: '.\Outputs\my.axf'
 ### ADS-LD Command File: '.\Outputs\my.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\Outputs\my.lnp', Handle=0x00000664
+### Creating CmdFile '.\Outputs\my.lnp', Handle=0x0000065C
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\Outputs\my.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

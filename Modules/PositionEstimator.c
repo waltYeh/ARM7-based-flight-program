@@ -6,7 +6,7 @@
 #include "../Main/commons.h"
 
 #define acc_bais_corr_weight 0.00005f
-#define acc_offset 0.11f
+#define acc_offset 0.15f
 #if OUTDOOR
 	#define gps_xy_weight 1.0f
 	#define gps_vxy_weight 1.3f
@@ -108,8 +108,8 @@ void gps_pos_corr(short dt)
 		inertial_filter_correct(corr_vy, dt, pos.y_est, 1, gps_vxy_weight);
 		smpl.d_ctrl_disable = 1;
 	}
-	data2[3]=corr_vx;
-	data2[6]=corr_x;
+//	data2[3]=corr_vx;
+//	data2[6]=corr_x;
 	
 //correct acc bias	
 	glob_acc_bias_corr_x = -corr_x * gps_xy_weight * gps_xy_weight;

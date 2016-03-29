@@ -124,13 +124,13 @@ void data_select(void)
 		data2[8] = att.yawspeed*573>>DSCRT;
 		break;
 	case sendPOS://4
-		data2[0] = pos.Acc_x;
-		data2[1] = gps.vx;//pos.y_est[0] / 1000;
-		data2[2] = pos.x_est[1] / 1000;//cmd.pitch_sp*573>>DSCRT;			
-//		data2[3] = ;//cmd.pos_y_sp
-		data2[4] = gps.x;
-		data2[5] = pos.x_est[0] / 1000;
-//		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
+		data2[0] = pos.x_est[0] / 1000;
+		data2[1] = pos.y_est[0] / 1000;//pos.y_est[0] / 1000;
+		data2[2] = pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
+		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
+		data2[4] = pos.y_est[1] / 1000;
+		data2[5] = pos.z_est[1] / 1000;
+		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
 		data2[7] = pos.Acc_y;
 		data2[8] = pos.Acc_z;
 

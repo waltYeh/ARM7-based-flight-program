@@ -31,6 +31,8 @@
 #define DOUBLED_FREQ 0
 #define USB_TEST 0
 
+#define OFFBOARD_AVAIL 0
+
 #if OUTDOOR
 struct _gps{
 	int lat;
