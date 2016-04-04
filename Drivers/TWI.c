@@ -120,8 +120,8 @@ int twi_cps_read_start(char *buf)
 	*AT91C_TWI_MMR = (readers[CPS_READER].devAdd << 16) 
 		| AT91C_TWI_IADRSZ_1_BYTE | AT91C_TWI_MREAD;
 	*AT91C_TWI_IADR = readers[CPS_READER].intAdd[0];
-	*AT91C_TWI_CR = AT91C_TWI_START|AT91C_TWI_STOP;
-	*AT91C_TWI_IER = AT91C_TWI_TXCOMP;
+	*AT91C_TWI_CR = AT91C_TWI_START;
+	*AT91C_TWI_IER = AT91C_TWI_RXRDY;
 	working_reader = CPS_READER;
 	read_rdy_flag = 0;
 	return 0;
@@ -143,21 +143,23 @@ __irq void twi_int_handler(void)
 	int status;
 	status = *AT91C_TWI_IMR;
 	status = *AT91C_TWI_SR;
-	if(status & AT91C_TWI_TXCOMP){
+	if(status & AT91C_TWI_RXRDY){
 		if(working_reader !=NON_WORKING){
 			*((readers[working_reader].Buf)+readers[working_reader].readCnt) = *AT91C_TWI_RHR;
 			readers[working_reader].readCnt++;
-			if(readers[working_reader].readCnt < 6){//go on reading
-				*AT91C_TWI_IADR = readers[working_reader].intAdd[readers[working_reader].readCnt];
-				*AT91C_TWI_CR = AT91C_TWI_START|AT91C_TWI_STOP;
+			if(readers[working_reader].readCnt == 5){//go on reading
+						*AT91C_TWI_CR = AT91C_TWI_STOP;
 			}
-			else{//reading of a sensor complete, now conclude
-				if(working_reader==CPS_READER){//cps over		
+			else if(readers[working_reader].readCnt == 6)
+			{//reading of a sensor complete, now conclude
+				if(working_reader==CPS_READER)
+				{//cps over		
 					data_conclude(CPS_SWITCH);
 					sens.mag_updated = 1;		
 					working_reader = NON_WORKING;
 					read_rdy_flag = 1;
-					*AT91C_TWI_IDR = AT91C_TWI_TXCOMP;
+					*AT91C_TWI_IDR = AT91C_TWI_RXRDY;
+					
 				}				
 			}
 		}

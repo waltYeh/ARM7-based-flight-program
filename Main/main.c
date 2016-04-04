@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendPOS};
+					0,SonarOFF,sendSENS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -116,9 +116,9 @@ void data_select(void)
 		data2[0] = att.roll*573>>DSCRT;
 		data2[1] = att.pitch*573>>DSCRT;		
 		data2[2] = att.yaw*573>>DSCRT;				
-//		data2[3] = att.q[0];
-//		data2[4] = att.q[1];
-//		data2[5] = att.q[2];
+		data2[3] = cmd.roll_sp*573>>DSCRT;
+		data2[4] = cmd.pitch_sp*573>>DSCRT;
+		data2[5] = cmd.yaw_sp*573>>DSCRT;
 		data2[6] = att.rollspeed*573>>DSCRT;
 		data2[7] = att.pitchspeed*573>>DSCRT;		
 		data2[8] = att.yawspeed*573>>DSCRT;
@@ -214,7 +214,7 @@ int main (void)
 #if ON_FLIGHT
 #if USB_TEST
 #else
-		while(self_check());
+//		while(self_check());
 #endif
 #endif
 		led_ctrl(LED1, OFF);

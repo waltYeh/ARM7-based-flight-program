@@ -213,15 +213,15 @@ void baro_pos_corr(short dt)//this has same freq as baro update
 }
 void zero_pos_corr(short dt)
 {
-	unsigned char i;
-	float c;
-	float glob_acc_bias_corr_x = 0.0f, glob_acc_bias_corr_y = 0.0f;
+//	unsigned char i;
+//	float c;
+//	float glob_acc_bias_corr_x = 0.0f, glob_acc_bias_corr_y = 0.0f;
 	int corr_x, corr_y;
 	corr_x = 0 - pos.x_est[0] / 1000;
 	corr_y = 0 - pos.y_est[0] / 1000;
-	inertial_filter_correct(corr_x, dt, pos.x_est, 0, 0.2);
-	inertial_filter_correct(corr_y, dt, pos.y_est, 0, 0.2);
-	
+	inertial_filter_correct(corr_x, dt, pos.x_est, 0, 0.5);
+	inertial_filter_correct(corr_y, dt, pos.y_est, 0, 0.5);
+/*	
 	glob_acc_bias_corr_x = -corr_x;
 	glob_acc_bias_corr_y = -corr_y;
 	
@@ -231,7 +231,7 @@ void zero_pos_corr(short dt)
 		c /= DSCRT_F;
 		acc_body_bias[i] += constrain_f(c * dt * acc_bais_corr_weight,-5,5);
 	}
-
+*/
 }
 void sonar_pos_corr(short dt)//this has same freq as sonar update
 {

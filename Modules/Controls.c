@@ -249,6 +249,9 @@ void Qsp2Rsp(void)
 	R_sp[2][0]=(ctrl.rasp_q_sp[1] * ctrl.rasp_q_sp[3] - ctrl.rasp_q_sp[0] * ctrl.rasp_q_sp[2])>>(DSCRT-1);
 	R_sp[2][1]=(ctrl.rasp_q_sp[2] * ctrl.rasp_q_sp[3] + ctrl.rasp_q_sp[0] * ctrl.rasp_q_sp[1])>>(DSCRT-1);
 	R_sp[2][2]=(1<<DSCRT) - ((ctrl.rasp_q_sp[1] * ctrl.rasp_q_sp[1] + ctrl.rasp_q_sp[2] * ctrl.rasp_q_sp[2])>>(DSCRT-1));
+	cmd.pitch_sp = -asin(R_sp[2][0]/DSCRT_F)*DSCRT_F;
+	cmd.roll_sp  = atan2(R_sp[2][1], R_sp[2][2])*DSCRT_F;
+	cmd.yaw_sp = -atan2(R_sp[0][1], R_sp[1][1])*DSCRT_F;
 }
 void set_thrust_force(void)
 {

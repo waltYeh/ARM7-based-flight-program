@@ -1,4 +1,30 @@
---cpu ARM7TDMI ".\outputs\commons.o" ".\outputs\timer.o" ".\outputs\main.o" ".\outputs\test_cpp.o" ".\outputs\adc.o" ".\outputs\gps.o" ".\outputs\pio.o" ".\outputs\pit.o" ".\outputs\pwm.o" ".\outputs\spi.o" ".\outputs\twi.o" ".\outputs\usb.o" ".\outputs\xbee.o" ".\outputs\sam7.o" ".\outputs\attitudeestimator.o" ".\outputs\controls.o" ".\outputs\filter.o" ".\outputs\imu.o" ".\outputs\motormixer.o" ".\outputs\positionestimator.o" ".\outputs\radiocontroller.o" ".\outputs\eeprom.o" ".\outputs\hmc5883.o" ".\outputs\mpu6000_spi.o" ".\outputs\ms5611_spi.o" --strict --scatter ".\Outputs\my.sct" 
---autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
---info sizes --info totals --info unused --info veneers 
- --list ".\my.map" -o ".\Outputs\my.axf"
+--cpu ARM7TDMI
+".\outputs\commons.o"
+".\outputs\timer.o"
+".\outputs\main.o"
+".\outputs\test_cpp.o"
+".\outputs\adc.o"
+".\outputs\gps.o"
+".\outputs\pio.o"
+".\outputs\pit.o"
+".\outputs\pwm.o"
+".\outputs\spi.o"
+".\outputs\twi.o"
+".\outputs\usb.o"
+".\outputs\xbee.o"
+".\outputs\sam7.o"
+".\outputs\attitudeestimator.o"
+".\outputs\controls.o"
+".\outputs\filter.o"
+".\outputs\imu.o"
+".\outputs\motormixer.o"
+".\outputs\positionestimator.o"
+".\outputs\radiocontroller.o"
+".\outputs\eeprom.o"
+".\outputs\hmc5883.o"
+".\outputs\mpu6000_spi.o"
+".\outputs\ms5611_spi.o"
+--strict --scatter ".\Outputs\my.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\my.map" -o .\Outputs\my.axf

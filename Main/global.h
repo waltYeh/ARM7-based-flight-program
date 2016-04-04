@@ -22,7 +22,7 @@
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
-#define WAIT_GPS 1
+#define WAIT_GPS 0
 #define OLD_ATT 0
 #define NEW_ATT 0
 #define MADGWICK_ATT 1
@@ -31,7 +31,7 @@
 #define DOUBLED_FREQ 0
 #define USB_TEST 0
 
-#define OFFBOARD_AVAIL 0
+#define OFFBOARD_AVAIL 1
 
 #if OUTDOOR
 struct _gps{
