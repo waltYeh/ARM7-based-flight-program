@@ -3,8 +3,8 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Project:</h2>
-E:\yExin\实验室\我研究过的\IWantToFly\forGit\Fly\my.uvproj
-Project File Date:  03/26/2016
+E:\yExin\实验室\我研究过的\IWantToFly\forGit\FlyHe\my.uvproj
+Project File Date:  04/04/2016
 
 <h2>Output:</h2>
 Build target 'Target 1'
@@ -34,9 +34,189 @@ compiling HMC5883.c...
 compiling MPU6000_SPI.c...
 compiling MS5611_SPI.c...
 linking...
-Program Size: Code=62172 RO-data=948 RW-data=776 ZI-data=10552  
+Program Size: Code=62328 RO-data=952 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.313V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=62312 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.313V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling TWI.c...
+linking...
+Program Size: Code=62312 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.313V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling TWI.c...
+linking...
+Program Size: Code=62296 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.313V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling TWI.c...
+linking...
+Program Size: Code=62192 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=62200 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.313V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling TWI.c...
+linking...
+Program Size: Code=62200 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
 Build target 'Target 1'
 compiling commons.c...
 compiling timer.c...
@@ -64,41 +244,10 @@ compiling HMC5883.c...
 compiling MPU6000_SPI.c...
 compiling MS5611_SPI.c...
 linking...
-Program Size: Code=62308 RO-data=948 RW-data=776 ZI-data=10552  
+Program Size: Code=62164 RO-data=948 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=62308 RO-data=948 RW-data=776 ZI-data=10552  
-FromELF: creating hex file...
-".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling timer.c...
-compiling main.c...
-compiling GPS.c...
-compiling PIO.c...
-compiling PIT.c...
-compiling PWM.c...
-compiling SPI.c...
-compiling TWI.c...
-compiling USB.c...
-compiling XBee.c...
-compiling AttitudeEstimator.c...
-compiling Controls.c...
-compiling Filter.c...
-compiling IMU.c...
-compiling MotorMixer.c...
-compiling PositionEstimator.c...
-compiling RadioController.c...
-compiling EEPROM.c...
-compiling HMC5883.c...
-compiling MS5611_SPI.c...
-linking...
-Program Size: Code=62040 RO-data=952 RW-data=768 ZI-data=10552  
-FromELF: creating hex file...
-".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
 VTarget = 3.274V
 Info: TotalIRLen = 4, IRPrint = 0x01
 Info: TotalIRLen = 4, IRPrint = 0x01
@@ -149,10 +298,10 @@ compiling HMC5883.c...
 compiling MPU6000_SPI.c...
 compiling MS5611_SPI.c...
 linking...
-Program Size: Code=62136 RO-data=952 RW-data=768 ZI-data=10552  
+Program Size: Code=62116 RO-data=948 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
 VTarget = 3.274V
 Info: TotalIRLen = 4, IRPrint = 0x01
 Info: TotalIRLen = 4, IRPrint = 0x01
@@ -177,42 +326,19 @@ Erase Done.
 Programming Done.
 Verify OK.
 Build target 'Target 1'
-compiling Controls.c...
+compiling AttitudeEstimator.c...
 linking...
-Program Size: Code=62380 RO-data=948 RW-data=768 ZI-data=10552  
+Program Size: Code=62144 RO-data=952 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
-VTarget = 3.274V
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: RTCK seems to be bridged with TCK
-Info: Auto JTAG speed: 8000 kHz
-Info: Core does not stop after Reset, setting WP to stop it.
-DLL version V4.15n, compiled Jun 18 2010 19:55:09
-Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
-Hardware: V8.00
-Hardware-Breakpoints: 2
-Software-Breakpoints: 2048
-Watchpoints:          0
-Found 1 JTAG device, Total IRLen = 4:
- Id of device #0: 0x3F0F0F0F
-ARM7 identified.
-JTAG speed: 8000 kHz
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: Core does not stop after Reset, setting WP to stop it.
-JTAG speed: 1000 kHz
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'Target 1'
 compiling main.c...
+compiling AttitudeEstimator.c...
 linking...
-Program Size: Code=62380 RO-data=948 RW-data=768 ZI-data=10552  
+Program Size: Code=62052 RO-data=948 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
 VTarget = 3.274V
 Info: TotalIRLen = 4, IRPrint = 0x01
 Info: TotalIRLen = 4, IRPrint = 0x01
@@ -237,22 +363,206 @@ Erase Done.
 Programming Done.
 Verify OK.
 Build target 'Target 1'
-compiling PositionEstimator.c...
-Modules\PositionEstimator.c(216): warning:  #177-D: variable "i" was declared but never referenced
-Modules\PositionEstimator.c:    unsigned char i;
-Modules\PositionEstimator.c:                  ^
-Modules\PositionEstimator.c: Modules\PositionEstimator.c: 1 warning, 0 errors
+compiling AttitudeEstimator.c...
 linking...
-Program Size: Code=62156 RO-data=948 RW-data=768 ZI-data=10552  
+Program Size: Code=62052 RO-data=948 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=62068 RO-data=948 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=62072 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling commons.c...
+compiling timer.c...
+compiling main.c...
+compiling test_cpp.cpp...
+compiling ADC.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+assembling SAM7.s...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MPU6000_SPI.c...
+compiling MS5611_SPI.c...
+linking...
+Program Size: Code=62076 RO-data=948 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+Modules\AttitudeEstimator.c(316): warning:  #550-D: variable "m_ENU" was set but never used
+Modules\AttitudeEstimator.c:    static int m_ENU[3]={0,16626,-28169};
+Modules\AttitudeEstimator.c:               ^
+Modules\AttitudeEstimator.c: Modules\AttitudeEstimator.c: 1 warning, 0 errors
+linking...
+Program Size: Code=61924 RO-data=948 RW-data=768 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 1 Warning(s).
 Build target 'Target 1'
-compiling PositionEstimator.c...
+compiling AttitudeEstimator.c...
+Modules\AttitudeEstimator.c(316): warning:  #177-D: variable "m_ENU" was declared but never referenced
+Modules\AttitudeEstimator.c:    static int m_ENU[3]={0,16626,-28169};
+Modules\AttitudeEstimator.c:               ^
+Modules\AttitudeEstimator.c: Modules\AttitudeEstimator.c: 1 warning, 0 errors
 linking...
-Program Size: Code=62156 RO-data=948 RW-data=768 ZI-data=10552  
+Program Size: Code=61808 RO-data=952 RW-data=768 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61808 RO-data=952 RW-data=760 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
+Build target 'Target 1'
+compiling commons.c...
+compiling timer.c...
+compiling main.c...
+compiling test_cpp.cpp...
+compiling ADC.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+assembling SAM7.s...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MPU6000_SPI.c...
+compiling MS5611_SPI.c...
+linking...
+Program Size: Code=61808 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
 VTarget = 3.274V
 Info: TotalIRLen = 4, IRPrint = 0x01
 Info: TotalIRLen = 4, IRPrint = 0x01
@@ -279,10 +589,10 @@ Verify OK.
 Build target 'Target 1'
 compiling main.c...
 linking...
-Program Size: Code=62156 RO-data=948 RW-data=768 ZI-data=10552  
+Program Size: Code=61908 RO-data=948 RW-data=760 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\Fly\\Outputs\\my.AXF" 
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
 VTarget = 3.274V
 Info: TotalIRLen = 4, IRPrint = 0x01
 Info: TotalIRLen = 4, IRPrint = 0x01
@@ -306,3 +616,567 @@ JTAG speed: 1000 kHz
 Erase Done.
 Programming Done.
 Verify OK.
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=61908 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=61908 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling commons.c...
+compiling timer.c...
+compiling main.c...
+compiling test_cpp.cpp...
+compiling ADC.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+assembling SAM7.s...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MPU6000_SPI.c...
+compiling MS5611_SPI.c...
+linking...
+Program Size: Code=61908 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling PositionEstimator.c...
+linking...
+Program Size: Code=61900 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61900 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61900 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61896 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61896 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61048 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61276 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61284 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61284 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61272 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 0.000V
+***JLink Warning: No matching core found.
+***JLink Error: Supply voltage too low (1 Volt is required, Measured: 0.0 Volt).
+Please check target power.
+***JLink Warning: No matching core found.
+***JLink Error: Supply voltage too low (1 Volt is required, Measured: 0.0 Volt).
+Please check target power.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+***JLink Warning: No matching core found.
+***JLink Error: Supply voltage too low (1 Volt is required, Measured: 0.0 Volt).
+Please check target power.
+***JLink Warning: No matching core found.
+***JLink Error: Supply voltage too low (1 Volt is required, Measured: 0.0 Volt).
+Please check target power.
+JTAG speed: 1000 kHz
+Erase Failed!
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61272 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61040 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61272 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61280 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61272 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61272 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61944 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling AttitudeEstimator.c...
+linking...
+Program Size: Code=61892 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=61892 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling PositionEstimator.c...
+linking...
+Program Size: Code=61896 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).

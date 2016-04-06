@@ -29,14 +29,13 @@ void twi_init(void)
 	*AT91C_PMC_PCER|=(1<<AT91C_ID_TWI);		//TWI时钟使能
 	*AT91C_PIOA_PDR|=0x18;		
 	*AT91C_PIOA_ASR|=0x18;		//分配TWI
-	*AT91C_PIOA_PDR|=0x18;
-	*AT91C_PIOA_PPUER|=0x18;
-//	*AT91C_PIOA_MDER|=0x18;		//pull-up
+//	*AT91C_PIOA_PDR|=0x18;
+//	*AT91C_PIOA_PPUER|=0x18;
+	*AT91C_PIOA_MDER|=0x18;		//pull-up
 	*AT91C_TWI_IDR = 0x107;		
 	*AT91C_TWI_CR =  AT91C_TWI_SWRST;
 	*AT91C_TWI_CR =  AT91C_TWI_MSEN;
-	//*AT91C_TWI_CWGR = 0x11920;
-	*AT91C_TWI_CWGR = 0x11B1B;
+	*AT91C_TWI_CWGR = 0x11920;
 	*AT91C_AIC_IDCR = (1<<AT91C_ID_TWI);		
 }
 
@@ -148,12 +147,11 @@ __irq void twi_int_handler(void)
 			*((readers[working_reader].Buf)+readers[working_reader].readCnt) = *AT91C_TWI_RHR;
 			readers[working_reader].readCnt++;
 			if(readers[working_reader].readCnt == 5){//go on reading
-						*AT91C_TWI_CR = AT91C_TWI_STOP;
+				*AT91C_TWI_CR = AT91C_TWI_STOP;
 			}
-			else if(readers[working_reader].readCnt == 6)
-			{//reading of a sensor complete, now conclude
-				if(working_reader==CPS_READER)
-				{//cps over		
+			else if(readers[working_reader].readCnt == 6){
+			//reading of a sensor complete, now conclude
+				if(working_reader==CPS_READER){//cps over		
 					data_conclude(CPS_SWITCH);
 					sens.mag_updated = 1;		
 					working_reader = NON_WORKING;
@@ -162,6 +160,10 @@ __irq void twi_int_handler(void)
 					
 				}				
 			}
+			else if(readers[working_reader].readCnt > 6){
+			}
+		}
+		else{
 		}
 	}
 	*AT91C_AIC_ICCR |= (1 << AT91C_ID_TWI);

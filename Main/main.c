@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendSENS};
+					0,SonarOFF,sendATT};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -113,15 +113,15 @@ void data_select(void)
 	#endif	
 		break;
 	case sendATT://3
-		data2[0] = att.roll*573>>DSCRT;
-		data2[1] = att.pitch*573>>DSCRT;		
-		data2[2] = att.yaw*573>>DSCRT;				
-		data2[3] = cmd.roll_sp*573>>DSCRT;
-		data2[4] = cmd.pitch_sp*573>>DSCRT;
-		data2[5] = cmd.yaw_sp*573>>DSCRT;
-		data2[6] = att.rollspeed*573>>DSCRT;
-		data2[7] = att.pitchspeed*573>>DSCRT;		
-		data2[8] = att.yawspeed*573>>DSCRT;
+//		data2[0] = att.roll*573>>DSCRT;
+//		data2[1] = att.pitch*573>>DSCRT;		
+//		data2[2] = att.q[0];//att.yaw*573>>DSCRT;				
+		data2[3] = att.roll*573>>DSCRT;
+		data2[4] = att.pitch*573>>DSCRT;
+		data2[5] = att.yaw*573>>DSCRT;
+		data2[6] = pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
+		data2[7] = pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;att.pitchspeed*573>>DSCRT;		
+		data2[8] = pos.Acc_z;//cmd.yaw_sp*573>>DSCRT;att.yawspeed*573>>DSCRT;
 		break;
 	case sendPOS://4
 		data2[0] = pos.x_est[0] / 1000;
@@ -180,7 +180,7 @@ int main (void)
 #if OUTDOOR
 	gps_init();
 #endif
-
+	delay_ms(100);
 	twi_init();
 	hmc5883_config();
 	twi_fast_init();

@@ -486,8 +486,8 @@ ARM Macro Assembler    Page 8
   260 00000064         
   261 00000064         ; Setup EFC0
   262 00000064                 IF               EFC0_SETUP != 0
-  263 00000064 E3E000FF        LDR              R0, =EFC_BASE
-  264 00000068 E59F10C0        LDR              R1, =EFC0_FMR_Val
+  263 00000064 E59F00C4        LDR              R0, =EFC_BASE
+  264 00000068 E59F10C4        LDR              R1, =EFC0_FMR_Val
   265 0000006C E5801060        STR              R1, [R0, #EFC0_FMR]
   266 00000070                 ENDIF
   267 00000070         
@@ -497,7 +497,7 @@ ARM Macro Assembler    Page 8
   274 00000070         
   275 00000070         ; Setup WDT
   276 00000070                 IF               WDT_SETUP != 0
-  277 00000070 E59F00BC        LDR              R0, =WDT_BASE
+  277 00000070 E59F00C0        LDR              R0, =WDT_BASE
   278 00000074 E3A01902        LDR              R1, =WDT_MR_Val
   279 00000078 E5801004        STR              R1, [R0, #WDT_MR]
   280 0000007C                 ENDIF
@@ -505,10 +505,10 @@ ARM Macro Assembler    Page 8
   282 0000007C         
   283 0000007C         ; Setup PMC
   284 0000007C                 IF               PMC_SETUP != 0
-  285 0000007C E59F00B4        LDR              R0, =PMC_BASE
+  285 0000007C E59F00B8        LDR              R0, =PMC_BASE
   286 00000080         
   287 00000080         ;  Setup Main Oscillator
-  288 00000080 E59F10B4        LDR              R1, =PMC_MOR_Val
+  288 00000080 E59F10B8        LDR              R1, =PMC_MOR_Val
   289 00000084 E5801020        STR              R1, [R0, #PMC_MOR]
   290 00000088         
   291 00000088         ;  Wait until Main Oscillator is stablilized
@@ -529,7 +529,7 @@ ARM Macro Assembler    Page 9
   297 00000094         
   298 00000094         ;  Setup the PLL
   299 00000094                 IF               (PMC_PLLR_Val:AND:PMC_MUL) != 0
-  300 00000094 E59F10A4        LDR              R1, =PMC_PLLR_Val
+  300 00000094 E59F10A8        LDR              R1, =PMC_PLLR_Val
   301 00000098 E580102C        STR              R1, [R0, #PMC_PLLR]
   302 0000009C         
   303 0000009C         ;  Wait until PLL is stabilized
@@ -568,7 +568,7 @@ ARM Macro Assembler    Page 9
   361 000000D4         
   362 000000D4         ; Setup Stack for each mode
   363 000000D4         
-  364 000000D4 E59F0068        LDR              R0, =Stack_Top
+  364 000000D4 E59F006C        LDR              R0, =Stack_Top
   365 000000D8         
   366 000000D8         ;  Enter Undefined Instruction Mode and set its Stack Po
                        inter
@@ -620,7 +620,7 @@ _Bit
   405 00000120         ; Enter the C code
   406 00000120         
   407 00000120                 IMPORT           __main
-  408 00000120 E59F0020        LDR              R0, =__main
+  408 00000120 E59F0024        LDR              R0, =__main
   409 00000124 E12FFF10        BX               R0
   410 00000128         
   411 00000128         
@@ -628,6 +628,7 @@ _Bit
   418 00000128         ; User Initial Stack & Heap
   419 00000128 FFFFFD00 
               A5000401 
+              FFFFFF00 
               00320100 
               FFFFFD40 
               FFFFFC00 
@@ -647,22 +648,22 @@ e)
 e)
   428 0000000C E59F3008        LDR              R3, = Stack_Mem
   429 00000010 E12FFF1E        BX               LR
-  430 00000014                 ENDIF
 
 
 
 ARM Macro Assembler    Page 11 
 
 
+  430 00000014                 ENDIF
   431 00000014         
   432 00000014         
   433 00000014                 END
               00000000 
               00000600 
               00000000 
-Command Line: --debug --xref --apcs=interwork --depend=.\outputs\sam7.d -o.\out
-puts\sam7.o -IF:\keil\ARM\RV31\INC -IF:\keil\ARM\CMSIS\Include -IF:\keil\ARM\In
-c\Atmel\SAM7S --list=.\sam7.lst Drivers\SAM7.s
+Command Line: --debug --xref --apcs=interwork --depend=.\Outputs\SAM7.d -o.\Out
+puts\SAM7.o -ID:\KEIL4\ARM\INC -ID:\KEIL4\ARM\INC\Atmel\SAM7S --list=.\SAM7.lst
+ Drivers\SAM7.s
 
 
 
@@ -1529,4 +1530,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 2 symbols
-433 symbols in table
+427 symbols in table

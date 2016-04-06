@@ -304,7 +304,7 @@ void attitude_compute(void)
 #elif MADGWICK_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
 #define beta 0.020f//0.025f//0.06f
-#define gyro_bias_weight 0.001f
+#define gyro_bias_weight 0.002f
 #define scale_gyr 7506 //correspond to 1 rad/s
 float gyr_bias[3]={0,0,0};//change to float??
 void marg_update(void) //(1<<14)rad
@@ -313,9 +313,9 @@ void marg_update(void) //(1<<14)rad
 	int m_bdy[3],a_bdy[3],m_glb[3];
 	int m_bdy_est[3];
 	#if DSCRT_15
-	static int m_ENU[3]={0,16626,-28169};
+//	static int m_ENU[3]={0,16626,-28169};
 	#elif DSCRT_14
-	static int m_ENU[3]={0,8313,-14084};
+//	static int m_ENU[3]={0,8313,-14084};
 	#endif
 	short dt_gyr = 2;//, dt_acc = 2, dt_mag = 2;
 	int corr_x = 0, corr_y = 0, corr_z = 0;
@@ -362,14 +362,9 @@ void marg_update(void) //(1<<14)rad
 				Df[i] += Jcb_a[j][i] * fa[j]>>DSCRT;
 			}
 		}
-//		data2[3] = pos.Acc_x;
-//		data2[4] = pos.Acc_y;
-//		data2[5] = pos.Acc_z;
 	}
-	if(1){//sens.mag_updated){
-		
-//		sens.mag_updated = 0;
-		glob2body(m_bdy_est, m_ENU, 3);
+	if(sens.mag_updated){
+		sens.mag_updated = 0;
 		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
 		if(isfinite(norm)){
 			m_bdy[0]=((int)sens.mx<<DSCRT)*norm;
@@ -377,35 +372,46 @@ void marg_update(void) //(1<<14)rad
 			m_bdy[2]=((int)sens.mz<<DSCRT)*norm;
 		}
 		else{
-			m_bdy[0]=m_bdy_est[0];
-			m_bdy[1]=m_bdy_est[1];
-			m_bdy[2]=m_bdy_est[2];
+			m_bdy[0]=att.R[1][0];
+			m_bdy[1]=att.R[1][1];
+			m_bdy[2]=att.R[1][2];
 		}
-		
-		for(i=0;i<3;i++)
-			fm[i] = m_bdy_est[i] - m_bdy[i];
+		body2glob(m_bdy, m_glb, 3);
+		norm = inv_sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+		if(isfinite(norm)){
+			m_glb[0]=(m_glb[0]<<DSCRT)*norm;
+			m_glb[1]=(m_glb[1]<<DSCRT)*norm;
+			m_glb[2]=0;
+			
+			glob2body(m_bdy_est, m_glb, 3);
 
-		Jcb_m[0][0] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[0][1] =  (qi2*m_ENU[1] >> (DSCRT-1)) + (qi3*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[0][2] =  (qi1*m_ENU[1] >> (DSCRT-1)) - (qi0*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[0][3] =  (qi0*m_ENU[1] >> (DSCRT-1)) + (qi1*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[1][0] =  (qi1*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[1][1] = -(qi1*m_ENU[1] >> (DSCRT-2)) + (qi0*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[1][2] =  (qi3*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[1][3] = -(qi3*m_ENU[1] >> (DSCRT-2)) + (qi2*m_ENU[2] >> (DSCRT-1));
-		Jcb_m[2][0] = -(qi1*m_ENU[1] >> (DSCRT-1));
-		Jcb_m[2][1] = -(qi0*m_ENU[1] >> (DSCRT-1)) - (qi1*m_ENU[2] >> (DSCRT-2));
-		Jcb_m[2][2] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-2));
-		Jcb_m[2][3] =   qi2*m_ENU[1] >> (DSCRT-1);
+			for(i=0;i<3;i++)
+				fm[i] = att.R[1][i] - m_bdy_est[i];
+		}
+		data2[0] = fm[0];
+		data2[1] = fm[1];
+		data2[2] = fm[2];
+		Jcb_m[0][0] =  qi3<<1;
+		Jcb_m[0][1] =  qi2<<1;
+		Jcb_m[0][2] =  qi1<<1;
+		Jcb_m[0][3] =  qi0<<1;
+		Jcb_m[1][0] =  0;
+		Jcb_m[1][1] = -qi1<<2;
+		Jcb_m[1][2] =  0;
+		Jcb_m[1][3] = -qi3<<2;
+		Jcb_m[2][0] = -qi1<<1;
+		Jcb_m[2][1] = -qi0<<1;
+		Jcb_m[2][2] =  qi3<<1;
+		Jcb_m[2][3] =  qi2<<1;
+		
 		for(i=0;i<4;i++){
 			for(j=0;j<3;j++){
-				Df[i] += (Jcb_m[j][i] * fm[j]>>DSCRT);
+				Df[i] += (Jcb_m[j][i] * fm[j]>>DSCRT)*8;
 			}
 		}
+		
 	}
-//	data2[6] = Df[0];
-//	data2[7] = Df[1];
-//	data2[8] = Df[2];
+	
 	norm = inv_sqrt(Df[0] * Df[0] + Df[1] * Df[1] + Df[2] * Df[2] + Df[3] * Df[3]);
 	if(isfinite(norm)){
 		Df[0] =(Df[0]<<DSCRT)*norm;
@@ -474,13 +480,13 @@ void marg_update(void) //(1<<14)rad
 	att.q[1] = qi1;
 	att.q[2] = qi2;
 	att.q[3] = qi3;
-	if(1){//sens.mag_updated){
-		sens.mag_updated = 0;
-		body2glob(m_bdy, m_glb, 3);
-		m_ENU[0]=0;
-		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
-	    m_ENU[2]=m_glb[2];
-	}
+//	if(sens.mag_updated){
+//		sens.mag_updated = 0;
+//		body2glob(m_bdy, m_glb, 3);
+//		m_ENU[0]=0;
+//		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+//	    m_ENU[2]=m_glb[2];
+//	}
 }
 
 void attitude_compute(void)

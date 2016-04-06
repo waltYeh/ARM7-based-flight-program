@@ -102,9 +102,12 @@ void data_conclude(char switcher)
 		z_get.c = -y_get.c;	
 		y_get.c = -x_get.c;
 		x_get.c = -temp;
-		sens.mx = x_get.c + mag_x_bias;
-		sens.my = y_get.c + mag_y_bias;
-		sens.mz = z_get.c + mag_z_bias;
+		if(x_get.c>-800&&x_get.c<800)
+			sens.mx = x_get.c + mag_x_bias;
+		if(y_get.c>-800&&y_get.c<800)
+			sens.my = y_get.c + mag_y_bias;
+		if(z_get.c>-800&&z_get.c<800)
+			sens.mz = z_get.c + mag_z_bias;
 		break;
 	default:
 		break;

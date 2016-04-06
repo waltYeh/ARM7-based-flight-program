@@ -6,7 +6,7 @@
 #include "../Main/commons.h"
 
 #define acc_bais_corr_weight 0.00005f
-#define acc_offset 0.15f//0.15f
+#define acc_offset 0.0f//0.15f//0.15f
 
 #if OUTDOOR
 	#define gps_xy_weight 1.0f
