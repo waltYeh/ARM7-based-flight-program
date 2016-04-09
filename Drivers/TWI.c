@@ -105,7 +105,7 @@ unsigned char i2c_eeprom_read_byte(unsigned char address, unsigned short reg, ch
 void twi_fast_init(void)
 {
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;
-	pAIC->AIC_SMR[AT91C_ID_TWI] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 6;
+	pAIC->AIC_SMR[AT91C_ID_TWI] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 5;
 	pAIC->AIC_SVR[AT91C_ID_TWI] = (unsigned long)twi_int_handler;
 	pAIC->AIC_ICCR |= (1 << AT91C_ID_TWI); 
 	pAIC->AIC_IECR |= (1 << AT91C_ID_TWI);
@@ -119,8 +119,13 @@ int twi_cps_read_start(char *buf)
 	*AT91C_TWI_MMR = (readers[CPS_READER].devAdd << 16) 
 		| AT91C_TWI_IADRSZ_1_BYTE | AT91C_TWI_MREAD;
 	*AT91C_TWI_IADR = readers[CPS_READER].intAdd[0];
+	#if I2C_CONTI
 	*AT91C_TWI_CR = AT91C_TWI_START;
 	*AT91C_TWI_IER = AT91C_TWI_RXRDY;
+	#else
+	*AT91C_TWI_CR = AT91C_TWI_START|AT91C_TWI_STOP;
+	*AT91C_TWI_IER = AT91C_TWI_TXCOMP;
+	#endif
 	working_reader = CPS_READER;
 	read_rdy_flag = 0;
 	return 0;
@@ -142,6 +147,7 @@ __irq void twi_int_handler(void)
 	int status;
 	status = *AT91C_TWI_IMR;
 	status = *AT91C_TWI_SR;
+	#if I2C_CONTI
 	if(status & AT91C_TWI_RXRDY){
 		if(working_reader !=NON_WORKING){
 			*((readers[working_reader].Buf)+readers[working_reader].readCnt) = *AT91C_TWI_RHR;
@@ -166,6 +172,28 @@ __irq void twi_int_handler(void)
 		else{
 		}
 	}
+	#else
+	if(status & AT91C_TWI_TXCOMP){
+		if(working_reader !=NON_WORKING){
+			*((readers[working_reader].Buf)+readers[working_reader].readCnt) = *AT91C_TWI_RHR;
+			readers[working_reader].readCnt++;
+			if(readers[working_reader].readCnt < 6){//go on reading
+				*AT91C_TWI_IADR = readers[working_reader].intAdd[readers[working_reader].readCnt];
+				*AT91C_TWI_CR = AT91C_TWI_START|AT91C_TWI_STOP;
+			}
+			else{//reading of a sensor complete, now conclude
+				if(working_reader==CPS_READER){//cps over		
+					data_conclude(CPS_SWITCH);
+					sens.mag_updated = 1;		
+					working_reader = NON_WORKING;
+					read_rdy_flag = 1;
+					*AT91C_TWI_IDR = AT91C_TWI_TXCOMP;
+				}				
+			}
+		}
+	}
+	
+	#endif
 	*AT91C_AIC_ICCR |= (1 << AT91C_ID_TWI);
 	*AT91C_AIC_EOICR = 0x1;
 }

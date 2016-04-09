@@ -6,6 +6,8 @@
 void pio_init(void);
 void led_ctrl(unsigned int channel,unsigned int control);
 void beep(unsigned int control);
+void usb_pullup(unsigned int control);
+int USB_armed(void);
 void usb_in_pin(unsigned int control);
 __irq void PIO_handler(void);
 #endif

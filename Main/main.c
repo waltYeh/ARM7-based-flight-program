@@ -176,11 +176,18 @@ int main (void)
 	pit_init();		
 	ppm_clock_init();
 	timer_init();
+	
+	USB_init();
+	if(USB_armed()){
+		myusb.connect_flag = PLUG_IN;
+	}
+	USB_check();
+	
 	xbee_init();
 #if OUTDOOR
 	gps_init();
 #endif
-	delay_ms(100);
+//	delay_ms(100);
 	twi_init();
 	hmc5883_config();
 	twi_fast_init();
@@ -191,13 +198,13 @@ int main (void)
 	imu_IIR_init();
 	spi_fast_init();
 	smpl.sens_rdy =1;
-	USB_init();
+//	USB_init();
 	adc_init();
 	adc_start_conversion();
-	if(USB_armed()){
-		myusb.connect_flag = PLUG_IN;
-	}
-	USB_check();
+//	if(USB_armed()){
+//		myusb.connect_flag = PLUG_IN;
+//	}
+//	USB_check();
 	delay_ms(1000);
 	beep(ON);
 	led_ctrl(LED2,OFF);
@@ -219,9 +226,9 @@ int main (void)
 #endif
 		led_ctrl(LED1, OFF);
 		beep(OFF);
-		if(USB_armed()){
-			myusb.connect_flag = 1;
-		}	  
+//		if(USB_armed()){
+//			myusb.connect_flag = 1;
+//		}	  
 		while(1){//flight loop		
 		/*deal with attitude (and position prediction), xbee send, gps (and xy position correction),
 		radio control (and motor output), baro (and altitude correction)*/												

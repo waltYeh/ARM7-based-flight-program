@@ -19,6 +19,7 @@
 #include "USB.h"
 #include "Pins.h"
 #include "../Main/global.h"
+#include "../Main/timer.h"
 #include "at91sam7s256.h"
 #include "PIO.h"
 #include "string.h"
@@ -30,8 +31,8 @@ typedef unsigned int   uint;
 #define USB_STATUS_ABORTED      2
 #define USB_STATUS_RESET        3
 #define UDP_CLEAREPFLAGS(bEndpoint, dFlags) { \
-	CLEAR(pUdp->UDP_CSR[bEndpoint], dFlags); \
-    while (!ISCLEARED(pUdp->UDP_CSR[bEndpoint], dFlags));}
+	CLEAR(pUdp->UDP_CSR[bEndpoint], dFlags);}// \
+//    while (!ISCLEARED(pUdp->UDP_CSR[bEndpoint], dFlags));}
 #define UDP_SETEPFLAGS(bEndpoint, dFlags) { \
 	SET(pUdp->UDP_CSR[bEndpoint], dFlags);\
     while (ISCLEARED(pUdp->UDP_CSR[bEndpoint], dFlags));}
@@ -262,8 +263,8 @@ AT91PS_CDC AT91F_CDC_Open(AT91PS_CDC pCdc, AT91PS_UDP pUdp)
 	pEndpoint[0].wMaxPacketSize = AT91C_EP_IN_SIZE;
 	pEndpoint[AT91C_EP_IN].wMaxPacketSize = AT91C_EP_IN_SIZE;
 	pEndpoint[AT91C_EP_OUT].wMaxPacketSize = AT91C_EP_OUT_SIZE;
-	pEndpoint[AT91C_EP_IN].dNumFIFO = 2;
-	pEndpoint[AT91C_EP_OUT].dNumFIFO = 2;
+	pEndpoint[AT91C_EP_IN].dNumFIFO = 1;
+	pEndpoint[AT91C_EP_OUT].dNumFIFO = 1;
 	pEndpoint[AT91C_EP_IN].dState=endpointStateIdle;
 	pEndpoint[AT91C_EP_OUT].dState=endpointStateIdle;
 	pEndpoint[AT91C_EP_IN].dFlag=AT91C_UDP_RX_DATA_BK0;
@@ -606,7 +607,7 @@ static void AT91F_CDC_Enumerate(AT91PS_CDC pCdc)
 static void UDP_ClearRXFlag(unsigned char bEndpoint)
 {
     // Clear flag
-		AT91S_UDP * pUdp = AT91C_BASE_UDP;
+	AT91S_UDP * pUdp = AT91C_BASE_UDP;
 
     UDP_CLEAREPFLAGS(bEndpoint, pEndpoint[bEndpoint].dFlag);
 
@@ -969,9 +970,9 @@ void USB_init(void)
 
     // Enable UDP PullUp (USB_DP_PUP) : enable & Clear of the corresponding PIO
     // Set in PIO mode and Configure in Output
-    AT91F_PIO_CfgOutput(AT91C_BASE_PIOA,USB_PUP);
+//    AT91F_PIO_CfgOutput(AT91C_BASE_PIOA,USB_PUP);
     // Clear for set the Pul up resistor
-    AT91F_PIO_ClearOutput(AT91C_BASE_PIOA,USB_PUP);
+//    AT91F_PIO_ClearOutput(AT91C_BASE_PIOA,USB_PUP);
 
     // CDC Open by structure initialization
     AT91F_CDC_Open(&pCDC, AT91C_BASE_UDP);
@@ -996,14 +997,14 @@ char USB_wait_connect(int cnt_down)
 		if(cnt_down==0){
 		//	return 1;
 		}
-	//	delay_ms(50);
+//		delay_ms(50);
 	}
 	return 0;	
 }
-int USB_armed(void)
-{
-	return (*AT91C_PIOA_PDSR & USB_VBUS);
-}
+//int USB_armed(void)
+//{
+//	return (*AT91C_PIOA_PDSR & USB_VBUS);
+//}
 int USB_check(void)
 {
 	if(myusb.connect_flag==PLUG_IN){

@@ -8,9 +8,10 @@ void pio_init()
 {
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;	
 	*AT91C_PMC_PCER= (1<<AT91C_ID_PIOA);
-	*AT91C_PIOA_PER=LED_MASK|BP|USB_IN_O|LED3;	  	
-	*AT91C_PIOA_OER=LED_MASK|BP|USB_IN_O|LED3;
+	*AT91C_PIOA_PER=LED_MASK|BP|USB_IN_O|LED3|USB_PUP;	  	
+	*AT91C_PIOA_OER=LED_MASK|BP|USB_IN_O|LED3|USB_PUP;
 	usb_in_pin(OFF);
+	usb_pullup(OFF);
 	pAIC->AIC_SMR[AT91C_ID_PIOA] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 7;
 	pAIC->AIC_SVR[AT91C_ID_PIOA] = (unsigned long)PIO_handler;
 	pAIC->AIC_ICCR |= (1 << AT91C_ID_PIOA); 
@@ -71,7 +72,24 @@ void usb_in_pin(unsigned int control)
 		*AT91C_PIOA_CODR|=USB_IN_O;
 	}
 }
-
+void usb_pullup(unsigned int control)
+{
+	if(control==ON){
+		*AT91C_PIOA_CODR|=USB_PUP;
+	}
+	else if(control==OFF){
+		*AT91C_PIOA_SODR|=USB_PUP;
+	}
+}
+int USB_armed(void)
+{
+	if(*AT91C_PIOA_PDSR & USB_VBUS){
+		usb_pullup(ON);
+		return 1;
+	}
+	else
+		return 0;
+}
 __irq void PIO_handler(void){
 	int timePPM=0;
 	int status;
@@ -82,9 +100,11 @@ __irq void PIO_handler(void){
 	if(status & USB_VBUS){
 		if (*AT91C_PIOA_PDSR & USB_VBUS){
 			myusb.connect_flag = PLUG_IN;
-			*AT91C_PIOA_IDR = USB_VBUS;
-		//	beben++;
-		//	data2[3] = beben;
+		//	*AT91C_PIOA_IDR = USB_VBUS;
+			usb_pullup(ON);
+		}
+		else{
+			usb_pullup(OFF);
 		}
 	}
 	if(status & USB_OUT_I){

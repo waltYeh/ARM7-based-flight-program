@@ -46,7 +46,7 @@ extern void USB_int_init(void);
 char USB_wait_connect(int cnt_down);
 void USB_read_Raspberry(void);
 void USB_write_Raspberry(unsigned int time_stamp, unsigned char descriptor);
-int USB_armed(void);
+//int USB_armed(void);
 int USB_check(void);
 __irq void usb_int_handler(void);
 void USB_read_Process(void);

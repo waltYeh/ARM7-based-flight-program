@@ -30,7 +30,7 @@
 #define ORIGINAL_FREQ 1
 #define DOUBLED_FREQ 0
 #define USB_TEST 0
-
+#define I2C_CONTI 0
 #define OFFBOARD_AVAIL 1
 
 #if OUTDOOR
