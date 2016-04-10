@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Outputs\my.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Outputs\my.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Sat Apr 09 22:54:34 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Sun Apr 10 13:51:14 2016
 <BR><P>
 <H3>Maximum Stack Usage =        704 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -223,7 +223,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[2b]"></a>ppm_get_time</STRONG> (ARM, 48 bytes, Stack size 8 bytes, timer.o(.text), UNUSED)
+<P><STRONG><a name="[2b]"></a>ppm_get_time</STRONG> (ARM, 56 bytes, Stack size 8 bytes, timer.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIO_handler
@@ -451,7 +451,7 @@ Global Symbols
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIO_handler
 </UL>
 
-<P><STRONG><a name="[7b]"></a>PIO_handler</STRONG> (ARM, 420 bytes, Stack size 40 bytes, pio.o(.text), UNUSED)
+<P><STRONG><a name="[7b]"></a>PIO_handler</STRONG> (ARM, 496 bytes, Stack size 40 bytes, pio.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_get
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ppm_reset_clock
 <LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ppm_get_time

@@ -34,405 +34,9 @@ compiling HMC5883.c...
 compiling MPU6000_SPI.c...
 compiling MS5611_SPI.c...
 linking...
-Program Size: Code=61692 RO-data=948 RW-data=760 ZI-data=10552  
+Program Size: Code=61824 RO-data=952 RW-data=760 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
-VTarget = 3.274V
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: RTCK seems to be bridged with TCK
-Info: Auto JTAG speed: 8000 kHz
-Info: Core does not stop after Reset, setting WP to stop it.
-DLL version V4.15n, compiled Jun 18 2010 19:55:09
-Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
-Hardware: V8.00
-Hardware-Breakpoints: 2
-Software-Breakpoints: 2048
-Watchpoints:          0
-Found 1 JTAG device, Total IRLen = 4:
- Id of device #0: 0x3F0F0F0F
-ARM7 identified.
-JTAG speed: 8000 kHz
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: Core does not stop after Reset, setting WP to stop it.
-JTAG speed: 1000 kHz
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'Target 1'
-compiling USB.c...
-Drivers\USB.c(36): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(49): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:   unsigned char data_from_Raspberry[32];
-Drivers\USB.c:                                        ^
-Drivers\USB.c(630): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(630): error:  #67: expected a "}"
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(727): error:  #127: expected a statement
-Drivers\USB.c:                   else {
-Drivers\USB.c:                   ^
-Drivers\USB.c(734): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:           }
-Drivers\USB.c:           ^
-Drivers\USB.c(807): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   __irq void usb_int_handler(void)
-Drivers\USB.c:   ^
-Drivers\USB.c(808): error:  #65: expected a ";"
-Drivers\USB.c:   {
-Drivers\USB.c:   ^
-Drivers\USB.c(865): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:                          CLEAR(dStatus, 1 << bEndpoint);
-Drivers\USB.c:                                                        ^
-Drivers\USB.c(878): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   char UDP_Write(unsigned char bEndpoint,
-Drivers\USB.c:   ^
-Drivers\USB.c(878): error:  #67: expected a "}"
-Drivers\USB.c:   char UDP_Write(unsigned char bEndpoint,
-Drivers\USB.c:   ^
-Drivers\USB.c(914): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   char UDP_Read(unsigned char bEndpoint,
-Drivers\USB.c:   ^
-Drivers\USB.c(914): error:  #67: expected a "}"
-Drivers\USB.c:   char UDP_Read(unsigned char bEndpoint,
-Drivers\USB.c:   ^
-Drivers\USB.c(1082): error:  #20: identifier "data_from_Raspberry" is undefined
-Drivers\USB.c:          UDP_Read(AT91C_EP_OUT,data_from_Raspberry,31);
-Drivers\USB.c:                                ^
-Drivers\USB.c(1098): error:  #20: identifier "data_from_Raspberry" is undefined
-Drivers\USB.c:          memcpy(out_head, data_from_Raspberry, 3);
-Drivers\USB.c:                           ^
-Drivers\USB.c(681): warning:  #177-D: function "UDP_EndpointHandler" was declared but never referenced
-Drivers\USB.c:   static void UDP_EndpointHandler(unsigned char bEndpoint)
-Drivers\USB.c:               ^
-Drivers\USB.c: Drivers\USB.c: 4 warnings, 12 errors
-Target not created
-Build target 'Target 1'
-compiling USB.c...
-Drivers\USB.c(36): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(49): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:   unsigned char data_from_Raspberry[32];
-Drivers\USB.c:                                        ^
-Drivers\USB.c(630): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(630): error:  #67: expected a "}"
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(807): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   __irq void usb_int_handler(void)
-Drivers\USB.c:   ^
-Drivers\USB.c(808): error:  #65: expected a ";"
-Drivers\USB.c:   {
-Drivers\USB.c:   ^
-Drivers\USB.c(865): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:                          CLEAR(dStatus, 1 << bEndpoint);
-Drivers\USB.c:                                                        ^
-Drivers\USB.c(874): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(874): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(874): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:          ^
-Drivers\USB.c(874): error:  #101: "AT91_REG" has already been declared in the current scope
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(874): error:  #65: expected a ";"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:                          ^
-Drivers\USB.c(875): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:           ^
-Drivers\USB.c(875): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:           ^
-Drivers\USB.c(875): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:          ^
-Drivers\USB.c(875): error:  #144: a value of type "int" cannot be used to initialize an entity of type "int *"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:                             ^
-Drivers\USB.c(876): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(909): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:       SET(pUdp->UDP_IER, 1 << bEndpoint);
-Drivers\USB.c:                                         ^
-Drivers\USB.c(911): error:  #169: expected a declaration
-Drivers\USB.c:       return USB_STATUS_SUCCESS;
-Drivers\USB.c:       ^
-Drivers\USB.c(912): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(939): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:          status = pUdp->UDP_IMR;
-Drivers\USB.c:                                ^
-Drivers\USB.c(940): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          status = status;
-Drivers\USB.c:          ^
-Drivers\USB.c(940): error:  #28: expression must have a constant value
-Drivers\USB.c:          status = status;
-Drivers\USB.c:                   ^
-Drivers\USB.c(941): error:  #169: expected a declaration
-Drivers\USB.c:       return USB_STATUS_SUCCESS;
-Drivers\USB.c:       ^
-Drivers\USB.c(942): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(980): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:       AT91F_CDC_Open(&pCDC, AT91C_BASE_UDP);
-Drivers\USB.c:                                            ^
-Drivers\USB.c(982): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(1048): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:                  memcpy(usb_data2send + 46, att.q, 16);//int*4
-Drivers\USB.c:                                                       ^
-Drivers\USB.c(1050): error:  #169: expected a declaration
-Drivers\USB.c:                  break;
-Drivers\USB.c:                  ^
-Drivers\USB.c(1051): error:  #169: expected a declaration
-Drivers\USB.c:          case 'r'://rc commands
-Drivers\USB.c:          ^
-Drivers\USB.c(1053): error:  #40: expected an identifier
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                                                 ^
-Drivers\USB.c(1053): warning:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1053): error:  #92: identifier-list parameters may only be used in a function definition
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1053): error:  #147: declaration is incompatible with "void *memcpy(void *restrict, const void *restrict, size_t)" (declared at line 49 of "D:\KEIL4\ARM\RV31\INC\string.h")
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1054): error:  #20: identifier "usb_data2send" is undefined
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                         ^
-Drivers\USB.c(1054): error:  #18: expected a ")"
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                                       ^
-Drivers\USB.c(1054): warning:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1055): error:  #20: identifier "usb_data2send" is undefined
-Drivers\USB.c:                  memcpy(usb_data2send + 4, &time_stamp, 4);//uint
-Drivers\USB.c:                         ^
-Drivers\USB.c: Drivers\USB.c: 8 warnings, 30 errors
-Target not created
-Build target 'Target 1'
-compiling commons.c...
-compiling timer.c...
-compiling main.c...
-compiling test_cpp.cpp...
-compiling ADC.c...
-compiling GPS.c...
-compiling PIO.c...
-compiling PIT.c...
-compiling PWM.c...
-compiling SPI.c...
-compiling TWI.c...
-compiling USB.c...
-Drivers\USB.c(36): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(48): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:   unsigned char data_from_Raspberry[32];
-Drivers\USB.c:                                        ^
-Drivers\USB.c(629): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(629): error:  #67: expected a "}"
-Drivers\USB.c:   static unsigned int UDP_WritePayload(unsigned char bEndpoint)
-Drivers\USB.c:   ^
-Drivers\USB.c(806): error:  #268: declaration may not appear after executable statement in block
-Drivers\USB.c:   __irq void usb_int_handler(void)
-Drivers\USB.c:   ^
-Drivers\USB.c(807): error:  #65: expected a ";"
-Drivers\USB.c:   {
-Drivers\USB.c:   ^
-Drivers\USB.c(864): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:                          CLEAR(dStatus, 1 << bEndpoint);
-Drivers\USB.c:                                                        ^
-Drivers\USB.c(873): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(873): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(873): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:          ^
-Drivers\USB.c(873): error:  #101: "AT91_REG" has already been declared in the current scope
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:           ^
-Drivers\USB.c(873): error:  #65: expected a ";"
-Drivers\USB.c:          *AT91C_AIC_ICCR |= (1 << AT91C_ID_UDP);
-Drivers\USB.c:                          ^
-Drivers\USB.c(874): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:           ^
-Drivers\USB.c(874): error:  #18: expected a ")"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:           ^
-Drivers\USB.c(874): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:          ^
-Drivers\USB.c(874): error:  #144: a value of type "int" cannot be used to initialize an entity of type "int *"
-Drivers\USB.c:          *AT91C_AIC_EOICR = 1;
-Drivers\USB.c:                             ^
-Drivers\USB.c(875): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(908): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:       SET(pUdp->UDP_IER, 1 << bEndpoint);
-Drivers\USB.c:                                         ^
-Drivers\USB.c(910): error:  #169: expected a declaration
-Drivers\USB.c:       return USB_STATUS_SUCCESS;
-Drivers\USB.c:       ^
-Drivers\USB.c(911): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(938): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:          status = pUdp->UDP_IMR;
-Drivers\USB.c:                                ^
-Drivers\USB.c(939): error:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:          status = status;
-Drivers\USB.c:          ^
-Drivers\USB.c(939): error:  #28: expression must have a constant value
-Drivers\USB.c:          status = status;
-Drivers\USB.c:                   ^
-Drivers\USB.c(940): error:  #169: expected a declaration
-Drivers\USB.c:       return USB_STATUS_SUCCESS;
-Drivers\USB.c:       ^
-Drivers\USB.c(941): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(979): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:       AT91F_CDC_Open(&pCDC, AT91C_BASE_UDP);
-Drivers\USB.c:                                            ^
-Drivers\USB.c(981): error:  #169: expected a declaration
-Drivers\USB.c:   }
-Drivers\USB.c:   ^
-Drivers\USB.c(1047): warning:  #12-D: parsing restarts here after previous syntax error
-Drivers\USB.c:                  memcpy(usb_data2send + 46, att.q, 16);//int*4
-Drivers\USB.c:                                                       ^
-Drivers\USB.c(1049): error:  #169: expected a declaration
-Drivers\USB.c:                  break;
-Drivers\USB.c:                  ^
-Drivers\USB.c(1050): error:  #169: expected a declaration
-Drivers\USB.c:          case 'r'://rc commands
-Drivers\USB.c:          ^
-Drivers\USB.c(1052): error:  #40: expected an identifier
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                                                 ^
-Drivers\USB.c(1052): warning:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1052): error:  #92: identifier-list parameters may only be used in a function definition
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1052): error:  #147: declaration is incompatible with "void *memcpy(void *restrict, const void *restrict, size_t)" (declared at line 49 of "D:\KEIL4\ARM\RV31\INC\string.h")
-Drivers\USB.c:                  memcpy(usb_data2send, in_head, 3);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1053): error:  #20: identifier "usb_data2send" is undefined
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                         ^
-Drivers\USB.c(1053): error:  #18: expected a ")"
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                                       ^
-Drivers\USB.c(1053): warning:  #77-D: this declaration has no storage class or type specifier
-Drivers\USB.c:                  memcpy(usb_data2send + 3, &descriptor, 1);//uchar
-Drivers\USB.c:                  ^
-Drivers\USB.c(1054): error:  #20: identifier "usb_data2send" is undefined
-Drivers\USB.c:                  memcpy(usb_data2send + 4, &time_stamp, 4);//uint
-Drivers\USB.c:                         ^
-Drivers\USB.c: Drivers\USB.c: 8 warnings, 30 errors
-compiling XBee.c...
-assembling SAM7.s...
-compiling AttitudeEstimator.c...
-compiling Controls.c...
-compiling Filter.c...
-compiling IMU.c...
-compiling MotorMixer.c...
-compiling PositionEstimator.c...
-compiling RadioController.c...
-compiling EEPROM.c...
-compiling HMC5883.c...
-compiling MPU6000_SPI.c...
-compiling MS5611_SPI.c...
-Target not created
-Build target 'Target 1'
-compiling USB.c...
-linking...
-Program Size: Code=61580 RO-data=948 RW-data=760 ZI-data=10552  
-FromELF: creating hex file...
-".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling commons.c...
-compiling timer.c...
-compiling main.c...
-compiling test_cpp.cpp...
-compiling ADC.c...
-compiling GPS.c...
-compiling PIO.c...
-compiling PIT.c...
-compiling PWM.c...
-compiling SPI.c...
-compiling TWI.c...
-compiling USB.c...
-compiling XBee.c...
-assembling SAM7.s...
-compiling AttitudeEstimator.c...
-compiling Controls.c...
-compiling Filter.c...
-compiling IMU.c...
-compiling MotorMixer.c...
-compiling PositionEstimator.c...
-compiling RadioController.c...
-compiling EEPROM.c...
-compiling HMC5883.c...
-compiling MPU6000_SPI.c...
-compiling MS5611_SPI.c...
-linking...
-Program Size: Code=61580 RO-data=948 RW-data=760 ZI-data=10552  
-FromELF: creating hex file...
-".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
-Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
-VTarget = 3.274V
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: RTCK seems to be bridged with TCK
-Info: Auto JTAG speed: 8000 kHz
-Info: Core does not stop after Reset, setting WP to stop it.
-DLL version V4.15n, compiled Jun 18 2010 19:55:09
-Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
-Hardware: V8.00
-Hardware-Breakpoints: 2
-Software-Breakpoints: 2048
-Watchpoints:          0
-Found 1 JTAG device, Total IRLen = 4:
- Id of device #0: 0x3F0F0F0F
-ARM7 identified.
-JTAG speed: 8000 kHz
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: TotalIRLen = 4, IRPrint = 0x01
-Info: Core does not stop after Reset, setting WP to stop it.
-JTAG speed: 1000 kHz
-Erase Done.
-Programming Done.
-Verify OK.
 Build target 'Target 1'
 compiling timer.c...
 compiling main.c...
@@ -485,7 +89,278 @@ compiling HMC5883.c...
 compiling MPU6000_SPI.c...
 compiling MS5611_SPI.c...
 linking...
+Program Size: Code=61848 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=61848 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling timer.c...
+compiling main.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MS5611_SPI.c...
+linking...
 Program Size: Code=61824 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling timer.c...
+linking...
+Program Size: Code=61824 RO-data=952 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling timer.c...
+compiling PIO.c...
+linking...
+Program Size: Code=61844 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=61844 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling commons.c...
+compiling timer.c...
+compiling main.c...
+compiling test_cpp.cpp...
+compiling ADC.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+assembling SAM7.s...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MPU6000_SPI.c...
+compiling MS5611_SPI.c...
+linking...
+Program Size: Code=61844 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling PIO.c...
+linking...
+Program Size: Code=61868 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling PIO.c...
+linking...
+Program Size: Code=61924 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 
+VTarget = 3.274V
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: RTCK seems to be bridged with TCK
+Info: Auto JTAG speed: 8000 kHz
+Info: Core does not stop after Reset, setting WP to stop it.
+DLL version V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM V8 compiled Jan 31 2018 18:34:52
+Hardware: V8.00
+Hardware-Breakpoints: 2
+Software-Breakpoints: 2048
+Watchpoints:          0
+Found 1 JTAG device, Total IRLen = 4:
+ Id of device #0: 0x3F0F0F0F
+ARM7 identified.
+JTAG speed: 8000 kHz
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: TotalIRLen = 4, IRPrint = 0x01
+Info: Core does not stop after Reset, setting WP to stop it.
+JTAG speed: 1000 kHz
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling PIO.c...
+linking...
+Program Size: Code=61924 RO-data=948 RW-data=760 ZI-data=10552  
+FromELF: creating hex file...
+".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling commons.c...
+compiling timer.c...
+compiling main.c...
+compiling test_cpp.cpp...
+compiling ADC.c...
+compiling GPS.c...
+compiling PIO.c...
+compiling PIT.c...
+compiling PWM.c...
+compiling SPI.c...
+compiling TWI.c...
+compiling USB.c...
+compiling XBee.c...
+assembling SAM7.s...
+compiling AttitudeEstimator.c...
+compiling Controls.c...
+compiling Filter.c...
+compiling IMU.c...
+compiling MotorMixer.c...
+compiling PositionEstimator.c...
+compiling RadioController.c...
+compiling EEPROM.c...
+compiling HMC5883.c...
+compiling MPU6000_SPI.c...
+compiling MS5611_SPI.c...
+linking...
+Program Size: Code=61924 RO-data=948 RW-data=760 ZI-data=10552  
 FromELF: creating hex file...
 ".\Outputs\my.axf" - 0 Error(s), 0 Warning(s).
 Load "E:\\yExin\\实验室\\我研究过的\\IWantToFly\\forGit\\FlyHe\\Outputs\\my.AXF" 

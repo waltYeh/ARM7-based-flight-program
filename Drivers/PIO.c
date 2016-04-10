@@ -94,7 +94,6 @@ __irq void PIO_handler(void){
 	int timePPM=0;
 	int status;
 	static unsigned short channel=0;
-//	static int beben=0;
 	status = *AT91C_PIOA_ISR;
     status &= *AT91C_PIOA_IMR;
 	if(status & USB_VBUS){
@@ -128,6 +127,27 @@ __irq void PIO_handler(void){
 			press_time = timer_get();
 		}
 	}
+	#if PPM_STORE
+	if(status & IN0){
+		static int last_time = 0;
+		if (*AT91C_PIOA_PDSR & IN0){//end
+			timePPM = ppm_get_time() - last_time;
+			if(timePPM>=0 && timePPM<=4000){
+				if(channel < 9){
+					cmd.rc[channel]=244*(timePPM-1220)/100 *2/5 + cmd.rc[channel]*3/5;
+				}
+				channel++;				
+			} 
+			else{
+				channel=0;
+				ppm_reset_clock();
+			}		
+		}
+		else{//start
+			last_time = ppm_get_time();
+		}
+	}
+	#else
 	if(status & IN0){
 		if (*AT91C_PIOA_PDSR & IN0){
 			timePPM = ppm_get_time();
@@ -145,6 +165,7 @@ __irq void PIO_handler(void){
 			ppm_reset_clock();
 		}
 	}
+	#endif
 	*AT91C_AIC_ICCR |= (1 << AT91C_ID_PIOA);
 	*AT91C_AIC_EOICR = *AT91C_PITC_PIVR;
 	return;

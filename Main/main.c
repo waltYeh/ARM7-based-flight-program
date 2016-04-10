@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendATT};
+					0,SonarOFF,sendCMD};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -138,12 +138,12 @@ void data_select(void)
 	case sendPID://5
 		break;
 		case sendCMD://6
-		data2[0]=cmd.rc[4];
-		data2[1]=cmd.rc[5];		
-		data2[2]=cmd.rc[6];				
-		data2[3]=cmd.rc[7];
-		data2[4]=cmd.rc[8];
-		data2[5]=cmd.rc[2];
+		data2[0]=cmd.rc[0];
+		data2[1]=cmd.rc[1];		
+		data2[2]=cmd.rc[2];				
+		data2[3]=cmd.rc[3];
+		data2[4]=cmd.rc[4];
+		data2[5]=cmd.rc[5];
 		data2[6]=idle_time;
 		data2[7]=l_uart_time;
 		data2[8]=uart_dt;;

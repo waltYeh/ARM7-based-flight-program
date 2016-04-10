@@ -9,7 +9,7 @@ static int timer_ms=0;
 void ppm_clock_init(){
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;
 	*AT91C_PMC_PCER |=(1<<AT91C_ID_TC0);
-	pAIC->AIC_SMR[AT91C_ID_TC0] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 5;
+	pAIC->AIC_SMR[AT91C_ID_TC0] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 4;
 	pAIC->AIC_SVR[AT91C_ID_TC0] = (unsigned long) ppm_ms_clock_int_handler;
 	pAIC->AIC_ICCR |= (1 << AT91C_ID_TC0); 
 	pAIC->AIC_IECR |= (1 << AT91C_ID_TC0);
@@ -23,11 +23,11 @@ void ppm_clock_init(){
                     AT91C_TC_BCPC_NONE |
                     AT91C_TC_BEEVT_NONE|
                     AT91C_TC_BSWTRG_NONE |
-                    AT91C_TC_CLKS_TIMER_DIV1_CLOCK |								
+                    AT91C_TC_CLKS_TIMER_DIV3_CLOCK |								
                     AT91C_TC_EEVT_TIOB;								
 	*AT91C_TC0_IER=AT91C_TC_CPCS;
 	#if ORIGINAL_FREQ
-	*AT91C_TC0_RC=23962;//T=(2/MCK)*RC, where T=0.001s, MCK=18.432e6*(26/5)/2=47923200Hz
+	*AT91C_TC0_RC=47923;//23962;//T=(2/MCK)*RC, where T=0.001s, MCK=18.432e6*(26/5)/2=47923200Hz
 	#elif DOUBLED_FREQ
 	*AT91C_TC0_RC=47924;
 	#endif
@@ -49,7 +49,7 @@ __irq void ppm_ms_clock_int_handler(void){
 long ppm_get_time(void)//in unit of 1us
 {
 	#if ORIGINAL_FREQ
-	return (ppm_ms_clock*1000+(*AT91C_TC0_CV)/24);
+	return (ppm_ms_clock*1000+(*AT91C_TC0_CV)*320/479);
 	#elif DOUBLED_FREQ
 	return (ppm_ms_clock*1000+(*AT91C_TC0_CV)/48);
 	#endif
@@ -63,7 +63,7 @@ void ppm_reset_clock(void)
 void timer_init(){
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;
 	*AT91C_PMC_PCER |=(1<<AT91C_ID_TC2);
-	pAIC->AIC_SMR[AT91C_ID_TC2] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 4;
+	pAIC->AIC_SMR[AT91C_ID_TC2] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 6;
 	pAIC->AIC_SVR[AT91C_ID_TC2] = (unsigned long) timer_int_handler;
 	pAIC->AIC_ICCR |= (1 << AT91C_ID_TC2); 
 	pAIC->AIC_IECR |= (1 << AT91C_ID_TC2);
