@@ -70,7 +70,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendCMD};
+					0,SonarOFF,sendROS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};

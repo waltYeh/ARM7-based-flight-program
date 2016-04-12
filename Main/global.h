@@ -206,6 +206,7 @@ struct _cmd {
 	#define sendCMD 6
 	#define sendOUT 7
 	#define sendUSB 8
+	#define sendROS 9
 	#define KILL 11
 };
 extern struct _cmd cmd;

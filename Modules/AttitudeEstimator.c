@@ -388,9 +388,9 @@ void marg_update(void) //(1<<14)rad
 			for(i=0;i<3;i++)
 				fm[i] = att.R[1][i] - m_bdy_est[i];
 		}
-		data2[0] = fm[0];
-		data2[1] = fm[1];
-		data2[2] = fm[2];
+//		data2[0] = fm[0];
+//		data2[1] = fm[1];
+//		data2[2] = fm[2];
 		Jcb_m[0][0] =  qi3<<1;
 		Jcb_m[0][1] =  qi2<<1;
 		Jcb_m[0][2] =  qi1<<1;

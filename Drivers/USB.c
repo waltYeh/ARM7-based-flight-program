@@ -44,7 +44,7 @@ typedef unsigned int   uint;
 // Poll the status of flags in a register
 #define ISSET(register, flags)      (((register) & (flags)) == (flags))
 #define ISCLEARED(register, flags)  (((register) & (flags)) == 0)
-unsigned char data_from_Raspberry[32];
+unsigned char data_from_Raspberry[64];
 void USB_written_Callback(void);
 void USB_read_Callback(void);
 
@@ -1077,7 +1077,7 @@ void USB_read_Raspberry(void)
 	int status;
 	status = pUdp->UDP_ISR;
 	status = status;
-	UDP_Read(AT91C_EP_OUT,data_from_Raspberry,31);
+	UDP_Read(AT91C_EP_OUT,data_from_Raspberry,64);
 	//must give up the last byte
 }
 void USB_read_Callback(void)
@@ -1093,6 +1093,7 @@ void USB_read_Process(void)
 	unsigned char descriptor_out = '?';
 	unsigned short check_sum_out = 0;
 	unsigned short check_sum_self_cal = 0;
+	short data4log[9];
 	memcpy(out_head, data_from_Raspberry, 3);
 	if(out_head[0] == '<' && out_head[1] == '#' && out_head[2] == '<' ){
 		memcpy(&descriptor_out, data_from_Raspberry + 3, 1);
@@ -1161,5 +1162,9 @@ void USB_read_Process(void)
 		default:
 			break;		
 		}//end of switch
+		memcpy(data4log, data_from_Raspberry + 32, 18);
+		if(cmd.data2send == sendROS){
+			memcpy(data2, data4log, 18);
+		}
 	}//end of if check sum okay
 }

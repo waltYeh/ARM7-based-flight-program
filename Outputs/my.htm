@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Outputs\my.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Outputs\my.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Sun Apr 10 13:51:14 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Tue Apr 12 15:33:41 2016
 <BR><P>
 <H3>Maximum Stack Usage =        704 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -665,7 +665,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT91F_CDC_Enumerate
 </UL>
 
-<P><STRONG><a name="[9f]"></a>AT91F_CDC_Open</STRONG> (ARM, 92 bytes, Stack size 0 bytes, usb.o(.text))
+<P><STRONG><a name="[9f]"></a>AT91F_CDC_Open</STRONG> (ARM, 88 bytes, Stack size 0 bytes, usb.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_init
 </UL>
 
@@ -740,10 +740,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[76]"></a>USB_read_Process</STRONG> (ARM, 752 bytes, Stack size 56 bytes, usb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = USB_read_Process &rArr; __aeabi_idivmod
+<P><STRONG><a name="[76]"></a>USB_read_Process</STRONG> (ARM, 800 bytes, Stack size 72 bytes, usb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = USB_read_Process &rArr; __aeabi_idivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -827,7 +828,7 @@ Global Symbols
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;marg_update
 </UL>
 
-<P><STRONG><a name="[af]"></a>marg_update</STRONG> (ARM, 4088 bytes, Stack size 296 bytes, attitudeestimator.o(.text))
+<P><STRONG><a name="[af]"></a>marg_update</STRONG> (ARM, 4032 bytes, Stack size 296 bytes, attitudeestimator.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 568<LI>Call Chain = marg_update &rArr; glob2body &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;glob2body
@@ -879,7 +880,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;quarternion_init
 </UL>
 
-<P><STRONG><a name="[74]"></a>quarternion_init</STRONG> (ARM, 3432 bytes, Stack size 176 bytes, attitudeestimator.o(.text))
+<P><STRONG><a name="[74]"></a>quarternion_init</STRONG> (ARM, 3428 bytes, Stack size 176 bytes, attitudeestimator.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = quarternion_init &rArr; data_2_angle &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;continue_cps_read
@@ -1387,6 +1388,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pos_predict
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_write_Raspberry
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_read_Process
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
 </UL>
 

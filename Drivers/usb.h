@@ -18,7 +18,7 @@
 #include "../Library/lib_AT91SAM7S256.h"
 
 #define AT91C_EP_OUT 1
-#define AT91C_EP_OUT_SIZE 0x20
+#define AT91C_EP_OUT_SIZE 0x40
 #define AT91C_EP_IN  2
 #define AT91C_EP_IN_SIZE 0x40
 #define MSG_SIZE 				1000
