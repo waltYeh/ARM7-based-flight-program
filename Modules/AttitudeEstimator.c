@@ -438,7 +438,7 @@ void marg_update(void) //(1<<14)rad
 */
 		int m_err_glb[3], m_err_bdy[3];
 		int m_bdy[3], m_glb[3];
-		#define Kp_MAG 1.0f
+		#define Kp_MAG 2.0f
 		
 		sens.mag_updated = 0;
 		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
@@ -466,9 +466,9 @@ void marg_update(void) //(1<<14)rad
 	//	gyr_bias[1] += constrain_f(mag_corr[1] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 		gyr_bias[2] -= constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 		
-		data2[0] = mag_corr[0];
-		data2[1] = mag_corr[1];
-		data2[2] = mag_corr[2];	
+//		data2[0] = mag_corr[0];
+//		data2[1] = mag_corr[1];
+//		data2[2] = mag_corr[2];	
 	}
 	
 	norm = inv_sqrt((float)Df[0] * Df[0] + (float)Df[1] * Df[1] + (float)Df[2] * Df[2] + (float)Df[3] * Df[3]);

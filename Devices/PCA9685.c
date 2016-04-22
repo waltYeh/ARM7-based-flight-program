@@ -4,47 +4,40 @@
 #include "../Main/global.h"
 void pca_init(void)
 {
-	int freq = 500;
-
-	// To set pwm frequency we have to set the prescale register. The formula is:
-	// prescale = round(osc_clock / (4096 * frequency))) - 1 where osc_clock = 25 MHz
-	// Further info here: http://www.nxp.com/documents/data_sheet/PCA9685.pdf Page 24
+	int freq = 400;
 	int prescale = 25000000 / (4096 * freq) - 1;
 	unsigned char presc = prescale;
 	// Get settings and calc bytes for the different states.
-	char settings = 0;//wiringPiI2CReadReg8(fd, PCA9685_MODE1) & 0x7F;	// Set restart bit to 0
+	char settings = 0x00;
 	unsigned char sleep	= 0x10;//settings | 0x10;									// Set sleep bit to 1
 	unsigned char wake 	= 0x00;//settings & 0xEF;									// Set sleep bit to 0
-	unsigned char restart = 0x80;										// Set restart bit to 1
-	i2creadbyte(PAC9685_ADDRESS, MODE_1_REG, &settings);
-//	sleep = settings;
-//	sleep |= (1<<4);
+	unsigned char restart = 0x80;
+	unsigned char output = 0x04;
+	i2cwtritebyte(PAC9685_ADDRESS, MODE_2_REG, &output);
+	settings = 0x00;
+	sleep = settings;
+	sleep = (sleep & 0x7F)|0x10;
+	wake = settings;
+	wake = (wake & 0x7F)&0xEF;
+	restart = wake | 0x80;
 	i2cwtritebyte(PAC9685_ADDRESS, MODE_1_REG, &sleep);
-	delay_ms(2);
-	i2cwtritebyte(PAC9685_ADDRESS, MODE_1_REG, &presc);
-	i2creadbyte(PAC9685_ADDRESS, MODE_1_REG, &settings);
-//	wake = settings;
-//	wake &= ~(1<<4);
-//	restart = wake | 0x80;
+	i2cwtritebyte(PAC9685_ADDRESS, PRE_SCALE_REG, &presc);
 	i2cwtritebyte(PAC9685_ADDRESS, MODE_1_REG, &wake);
-	delay_ms(2);
+	delay_ms(5);
 	i2cwtritebyte(PAC9685_ADDRESS, MODE_1_REG, &restart);
-	delay_ms(2);
-//	sleep = settings | 
-	// Go to sleep, set prescale and wake up again.
-//	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, sleep);
-//	wiringPiI2CWriteReg8(fd, PCA9685_PRESCALE, prescale);
-//	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, wake);
-
-	// Now wait a millisecond until oscillator finished stabilizing and restart PWM.
-//	delay(1);
-//	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, restart)
 }
 void pca_write(void)
 {
-	short duty = 1000;
-	unsigned char duty_l = duty;
-	unsigned char duty_h = duty>>8;
-	i2cwtritebyte(PAC9685_ADDRESS, PWM1_OFF_L, &duty_l);
-	i2cwtritebyte(PAC9685_ADDRESS, PWM1_OFF_H, &duty_h);
+	short pca_duty = 1720;
+	unsigned char duty_l = pca_duty;
+	unsigned char duty_h = pca_duty>>8;
+	i2cwtritebyte(PAC9685_ADDRESS, PWM0_OFF_L, &duty_l);
+	i2cwtritebyte(PAC9685_ADDRESS, PWM0_OFF_H, &duty_h);
+}
+void pca_duty(unsigned int channel, unsigned short duty)
+{
+//2400~4800 --  1720~3440
+	unsigned short pca_duty = (int)duty*1720/2400;
+    pca_duty = pca_duty;
+	//TODO: put this into a fifo, then send via i2c
 }

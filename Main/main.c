@@ -114,9 +114,9 @@ void data_select(void)
 	#endif	
 		break;
 	case sendATT://3
-	//	data2[0] = 0;
-	//	data2[1] = 0;//att.pitch*573>>DSCRT;		
-	//	data2[2] = 0;//att.yaw*573>>DSCRT;				
+		data2[0] = pos.Acc_x;
+		data2[1] = pos.Acc_y;//att.pitch*573>>DSCRT;		
+		data2[2] = pos.Acc_z;//att.yaw*573>>DSCRT;				
 		data2[3] = att.roll*573>>DSCRT;
 		data2[4] = att.pitch*573>>DSCRT;
 		data2[5] = att.yaw*573>>DSCRT;
@@ -191,7 +191,11 @@ int main (void)
 //	delay_ms(100);
 	twi_init();
 	hmc5883_config();
-//	pca_init();
+	
+	#if PWM16
+	pca_init();
+	#endif
+	
 	twi_fast_init();
 
 	spi_init();
@@ -466,7 +470,10 @@ void Process250Hz_B(void)//baro, mag,
 		return;
 	}
 	if(cps2read){
+	#if PWM16
+	#else
 		continue_cps_read();
+	#endif
 		cps2read = 0;
 	}
 #if OUTDOOR
@@ -582,7 +589,9 @@ void Process50Hz(void)
 			refill_tx(data2,18);
 		}
 	}
-//	pca_write();
+	#if PWM16
+	pca_write();
+	#endif
 	if(cmd.SonarEnable)
 		sonar_pos_corr(RADIO_PERIOD);
 }
