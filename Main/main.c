@@ -54,7 +54,6 @@ struct _vicon vicon = {0,0,0,0,0,0,0};
 struct _smpl smpl = {0,0,1,0,0};
 struct _att att = {0,0,0,
 				0,0,0,
-				{0,0,0},
 				{{DSCRT_I,0,0},
 				 {0,DSCRT_I,0},
 				 {0,0,DSCRT_I}},
@@ -121,9 +120,9 @@ void data_select(void)
 		data2[3] = att.roll*573>>DSCRT;
 		data2[4] = att.pitch*573>>DSCRT;
 		data2[5] = att.yaw*573>>DSCRT;
-		data2[6] = pos.Acc_x;//att.rollspeed*573>>DSCRT;//pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
-		data2[7] = pos.Acc_y;//att.pitchspeed*573>>DSCRT;	//pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;	
-		data2[8] = pos.Acc_z;//att.yawspeed*573>>DSCRT;//cmd.yaw_sp*573>>DSCRT;
+		data2[6] = att.rollspeed*573>>DSCRT;//pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
+		data2[7] = att.pitchspeed*573>>DSCRT;	//pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;	
+		data2[8] = att.yawspeed*573>>DSCRT;//cmd.yaw_sp*573>>DSCRT;
 		break;
 	case sendPOS://4
 		data2[0] = pos.x_est[0] / 1000;
@@ -200,7 +199,7 @@ int main (void)
 	mpu6000_config();
 	
 	imu_IIR_init();
-	rate_IIR_init();
+	rate_IIR_init(100);
 	
 	spi_fast_init();
 	smpl.sens_rdy =1;

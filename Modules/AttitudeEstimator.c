@@ -14,16 +14,16 @@ IIRFilter iir_wy={0.0,0.0,0.0,
 IIRFilter iir_wz={0.0,0.0,0.0,
 				0.0,0.0,0.0,
 				0.0,0.0};
-void rate_IIR_init(void)
+void rate_IIR_init(float cutoff_freq)
 {	
-	float cutoff_freq = 250.0;
+//	float cutoff_freq = 250.0;
 	float smpl_freq = 500.0;
 	IIR_set_cutoff_freq(&iir_wx, cutoff_freq, smpl_freq);
 	IIR_set_cutoff_freq(&iir_wy, cutoff_freq, smpl_freq);
 	IIR_set_cutoff_freq(&iir_wz, cutoff_freq, smpl_freq);
-	att.rate[0] = IIR_reset(&iir_wx, 0);
-	att.rate[1] = IIR_reset(&iir_wy, 0);
-	att.rate[2] = IIR_reset(&iir_wz, 0);
+	att.rollspeed = IIR_reset(&iir_wx, 0);
+	att.pitchspeed = IIR_reset(&iir_wy, 0);
+	att.yawspeed = IIR_reset(&iir_wz, 0);
 
 }
 #if NEW_ATT
@@ -461,10 +461,10 @@ void marg_update(void) //(1<<14)rad
 		mag_corr[2] *= Kp_MAG;
 //		corr_x += mag_corr[0];
 //		corr_y += mag_corr[1];
-//		corr_z += mag_corr[2];
+		corr_z += mag_corr[2];
 	//	gyr_bias[0] += constrain_f(mag_corr[0] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 	//	gyr_bias[1] += constrain_f(mag_corr[1] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
-		gyr_bias[2] -= constrain_f(mag_corr[2] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+		gyr_bias[2] -= constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 		
 		data2[0] = mag_corr[0];
 		data2[1] = mag_corr[1];
@@ -493,7 +493,7 @@ void marg_update(void) //(1<<14)rad
 	
 	gyr_bias[0] += constrain_f(corr_x * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 	gyr_bias[1] += constrain_f(corr_y * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
-	gyr_bias[2] += constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+//	gyr_bias[2] += constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 
 /*	
 	att.rollspeed=((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
@@ -509,24 +509,26 @@ void marg_update(void) //(1<<14)rad
 	att.rate[1] = IIR_apply(&iir_wx, att.pitchspeed);
 	att.rate[2] = IIR_apply(&iir_wx, att.yawspeed);
 */
-	wx = ((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
-	wy = ((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1];
-	wz = ((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2];
-	att.rollspeed = IIR_apply(&iir_wx, wx);
-	att.pitchspeed = IIR_apply(&iir_wx, wy);
-	att.yawspeed = IIR_apply(&iir_wx, wz);
+	wx = ((int)sens.gx<<(DSCRT-1))/scale_gyr - gyr_bias[0];
+	wy = ((int)sens.gy<<(DSCRT-1))/scale_gyr - gyr_bias[1];
+	wz = ((int)sens.gz<<(DSCRT-1))/scale_gyr - gyr_bias[2];
+	att.rollspeed = IIR_apply(&iir_wx, wx)*2;
+	att.pitchspeed = IIR_apply(&iir_wy, wy)*2;
+	att.yawspeed = IIR_apply(&iir_wz, wz)*2;
+//	att.rollspeed = wx*2;
+//	att.pitchspeed = wy*2;
+//	att.yawspeed = wz*2;
+	
+//	#define ZOOM 2
+	wx = (wx + mag_corr[0])>>1;
+	wy = (wy + mag_corr[1])>>1;
+	wz = (wz + mag_corr[2])>>1;
 	
 	
-	#define ZOOM 2
-	wx = (wx + mag_corr[0])>>ZOOM;
-	wy = (wy + mag_corr[1])>>ZOOM;
-	wz = (wz + mag_corr[2])>>ZOOM;
-	
-	
-	wq0 = (-qi1*wx - qi2*wy - qi3*wz)>>(DSCRT-ZOOM+1);
-	wq1 = (qi0*wx + qi2*wz - qi3*wy)>>(DSCRT-ZOOM+1);
-	wq2 = (qi0*wy - qi1*wz + qi3*wx)>>(DSCRT-ZOOM+1);
-	wq3 = (qi0*wz + qi1*wy - qi2*wx)>>(DSCRT-ZOOM+1);
+	wq0 = (-qi1*wx - qi2*wy - qi3*wz)>>(DSCRT-1);
+	wq1 = (qi0*wx + qi2*wz - qi3*wy)>>(DSCRT-1);
+	wq2 = (qi0*wy - qi1*wz + qi3*wx)>>(DSCRT-1);
+	wq3 = (qi0*wz + qi1*wy - qi2*wx)>>(DSCRT-1);
 
 	q0 += (wq0 - beta*Df[0])*dt_gyr/1000.0f;
 	q1 += (wq1 - beta*Df[1])*dt_gyr/1000.0f;

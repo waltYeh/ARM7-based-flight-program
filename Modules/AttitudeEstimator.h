@@ -1,6 +1,6 @@
 #ifndef ATTITUDE_H
 #define ATTITUDE_H
-void rate_IIR_init(void);
+void rate_IIR_init(float cutoff_freq);
 #if OLD_ATT
 void marg_update(void);
 void attitude_compute(void);

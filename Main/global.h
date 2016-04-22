@@ -94,7 +94,6 @@ struct _att {
 	int pitchspeed;
 	int rollspeed;
 	int yawspeed;
-	int rate[3];
 	int R[3][3];//glob=R*body//1 ~ 2^14 ~ 16384
 	int q[4];
 	#define DSCRT_14 0
