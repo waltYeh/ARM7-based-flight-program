@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\ms5611_spi.o" --omf_browse ".\Outputs\ms5611_spi.crf" --depend ".\Outputs\ms5611_spi.d" "Devices\MS5611_SPI.c"

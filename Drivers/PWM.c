@@ -59,10 +59,10 @@ void pwm_init(void){
 	pwm_configure_channel(1, AT91C_PWMC_CPRE_MCKA, 0, 1);
 	pwm_configure_channel(2, AT91C_PWMC_CPRE_MCKA, 0, 1);	
 	pwm_configure_channel(3, AT91C_PWMC_CPRE_MCKA, 0, 1);
-	pwm_set_period(0, 4800);
-	pwm_set_period(1, 4800);
-	pwm_set_period(2, 4800);
-	pwm_set_period(3, 4800);
+	pwm_set_period(0, 6000);
+	pwm_set_period(1, 6000);
+	pwm_set_period(2, 6000);
+	pwm_set_period(3, 6000);
 	pwm_set_duty_cycle(0, 0);
 	pwm_set_duty_cycle(1, 0);
 	pwm_set_duty_cycle(2, 0);

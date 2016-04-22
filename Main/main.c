@@ -23,6 +23,7 @@
 #include "../Devices/HMC5883.h"
 #include "../Devices/MPU6000_SPI.h"
 #include "../Devices/EEPROM.h"
+#include "../Devices/PCA9685.h"
 
 #include "../Modules/IMU.h"
 #include "../Modules/AttitudeEstimator.h"
@@ -53,6 +54,7 @@ struct _vicon vicon = {0,0,0,0,0,0,0};
 struct _smpl smpl = {0,0,1,0,0};
 struct _att att = {0,0,0,
 				0,0,0,
+				{0,0,0},
 				{{DSCRT_I,0,0},
 				 {0,DSCRT_I,0},
 				 {0,0,DSCRT_I}},
@@ -70,7 +72,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendROS};
+					0,SonarOFF,sendATT};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -92,8 +94,8 @@ void data_select(void)
 		data2[0]=sens.ax;
 		data2[1]=sens.ay;		
 		data2[2]=sens.az;		
-		data2[3]=sens.gx;
-		data2[4]=sens.gy;
+		data2[3]=baro.alt;
+		data2[4]=sens.gx;
 		data2[5]=sens.gz;
 		data2[6]=sens.mx;
 		data2[7]=sens.my;
@@ -113,15 +115,15 @@ void data_select(void)
 	#endif	
 		break;
 	case sendATT://3
-//		data2[0] = att.roll*573>>DSCRT;
-//		data2[1] = att.pitch*573>>DSCRT;		
-//		data2[2] = att.q[0];//att.yaw*573>>DSCRT;				
+	//	data2[0] = 0;
+	//	data2[1] = 0;//att.pitch*573>>DSCRT;		
+	//	data2[2] = 0;//att.yaw*573>>DSCRT;				
 		data2[3] = att.roll*573>>DSCRT;
 		data2[4] = att.pitch*573>>DSCRT;
 		data2[5] = att.yaw*573>>DSCRT;
-		data2[6] = pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
-		data2[7] = pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;att.pitchspeed*573>>DSCRT;		
-		data2[8] = pos.Acc_z;//cmd.yaw_sp*573>>DSCRT;att.yawspeed*573>>DSCRT;
+		data2[6] = pos.Acc_x;//att.rollspeed*573>>DSCRT;//pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
+		data2[7] = pos.Acc_y;//att.pitchspeed*573>>DSCRT;	//pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;	
+		data2[8] = pos.Acc_z;//att.yawspeed*573>>DSCRT;//cmd.yaw_sp*573>>DSCRT;
 		break;
 	case sendPOS://4
 		data2[0] = pos.x_est[0] / 1000;
@@ -190,12 +192,16 @@ int main (void)
 //	delay_ms(100);
 	twi_init();
 	hmc5883_config();
+//	pca_init();
 	twi_fast_init();
 
 	spi_init();
 	MS5611_init();
 	mpu6000_config();
+	
 	imu_IIR_init();
+	rate_IIR_init();
+	
 	spi_fast_init();
 	smpl.sens_rdy =1;
 //	USB_init();
@@ -221,7 +227,7 @@ int main (void)
 #if ON_FLIGHT
 #if USB_TEST
 #else
-//		while(self_check());
+		while(self_check());
 #endif
 #endif
 		led_ctrl(LED1, OFF);
@@ -556,7 +562,9 @@ void Process50Hz(void)
 	if(adc_count>=50){//1Hz
 		adc_count = 0;
 		adc.battery = adc_get_converted();
-		if(adc.battery < BAT_WARNING) beep(ON);
+		if(adc.battery < BAT_WARNING){
+			beep(ON);
+		}
 		else beep(OFF);
 		adc_start_conversion();	
 	//	led_ctrl(LED3,OFF);
@@ -575,7 +583,7 @@ void Process50Hz(void)
 			refill_tx(data2,18);
 		}
 	}
-	
+//	pca_write();
 	if(cmd.SonarEnable)
 		sonar_pos_corr(RADIO_PERIOD);
 }

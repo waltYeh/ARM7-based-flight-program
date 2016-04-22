@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\pio.o" --omf_browse ".\Outputs\pio.crf" --depend ".\Outputs\pio.d" "Drivers\PIO.c"

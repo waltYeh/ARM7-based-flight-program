@@ -65,8 +65,8 @@ void put_motors(void)
 		motorForce[3] = (output.thrustForce>>2) + (output.pitchMmt + output.rollMmt) / D2_SQRT2 - output.yawMmt / (FORCE_TORQUE_RATIO<<2);
 	#endif		
 		force2output(motorForce, motorDuty, adc.battery);
-	}	
-	//channel-PWMlinesign order- 1324
+	}
+	
 	pwm_set_duty_cycle(0, constrain(motorDuty[0],2400,4790));
 	pwm_set_duty_cycle(1, constrain(motorDuty[1],2400,4790));
 	pwm_set_duty_cycle(2, constrain(motorDuty[2],2400,4790));

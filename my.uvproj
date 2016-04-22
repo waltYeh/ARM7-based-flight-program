@@ -525,6 +525,11 @@
               <FileType>1</FileType>
               <FilePath>.\Devices\MS5611_SPI.c</FilePath>
             </File>
+            <File>
+              <FileName>PCA9685.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Devices\PCA9685.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

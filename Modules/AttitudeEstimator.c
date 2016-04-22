@@ -4,9 +4,31 @@
 #include "IMU.h"
 #include "../Main/timer.h"
 #include "../Main/commons.h"
+#include "Filter.h"
+IIRFilter iir_wx={0.0,0.0,0.0,
+				0.0,0.0,0.0,
+				0.0,0.0};
+IIRFilter iir_wy={0.0,0.0,0.0,
+				0.0,0.0,0.0,
+				0.0,0.0};
+IIRFilter iir_wz={0.0,0.0,0.0,
+				0.0,0.0,0.0,
+				0.0,0.0};
+void rate_IIR_init(void)
+{	
+	float cutoff_freq = 250.0;
+	float smpl_freq = 500.0;
+	IIR_set_cutoff_freq(&iir_wx, cutoff_freq, smpl_freq);
+	IIR_set_cutoff_freq(&iir_wy, cutoff_freq, smpl_freq);
+	IIR_set_cutoff_freq(&iir_wz, cutoff_freq, smpl_freq);
+	att.rate[0] = IIR_reset(&iir_wx, 0);
+	att.rate[1] = IIR_reset(&iir_wy, 0);
+	att.rate[2] = IIR_reset(&iir_wz, 0);
+
+}
 #if NEW_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
-#define Kp_ACC 0.4f//0.5f //too much noise if  large, too slow to recover the drift if small
+#define Kp_ACC 0.2f//0.5f //too much noise if  large, too slow to recover the drift if small
 #define Kp_MAG 1.2f//1.2f
 #define gyro_bias_weight 0.1f
 #define scale_gyr 7506 //correspond to 1 rad/s
@@ -304,7 +326,273 @@ void attitude_compute(void)
 #elif MADGWICK_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
 #define beta 0.020f//0.025f//0.06f
-#define gyro_bias_weight 0.002f
+#define gyro_bias_weight 0.02f//0.02f
+#define scale_gyr 7506 //correspond to 1 rad/s
+float gyr_bias[3]={0,0,0};//change to float??
+void marg_update(void) //(1<<14)rad
+{
+	float norm;
+	int a_bdy[3];
+//	int m_bdy_est[3];
+	int mag_corr[3] = {0,0,0};
+	#if DSCRT_15
+//	static int m_ENU[3]={0,16626,-28169};
+	#elif DSCRT_14
+//	static int m_ENU[3]={0,8313,-14084};
+	#endif
+	short dt_gyr = 2;//, dt_acc = 2, dt_mag = 2;
+	int corr_x = 0, corr_y = 0, corr_z = 0;
+	int qi0,qi1,qi2,qi3;
+	int Df[4] = {0,0,0,0};
+	int fa[3];//, fm[3]={0,0,0};
+	int wx,wy,wz;
+	int wq0,wq1,wq2,wq3;
+	int i,j;
+	int Jcb_a[3][4];
+//	int Jcb_m[3][4];
+	qi0=q0;
+	qi1=q1;
+	qi2=q2;
+	qi3=q3;
+	if(1){
+		norm = inv_sqrt((int)sens.ax*sens.ax + (int)sens.ay*sens.ay + (int)sens.az*sens.az);
+		if(isfinite(norm)){     
+			a_bdy[0] = ((int)sens.ax<<DSCRT)*norm;
+			a_bdy[1] = ((int)sens.ay<<DSCRT)*norm;
+			a_bdy[2] = ((int)sens.az<<DSCRT)*norm;
+		}
+		else{
+			a_bdy[0] = att.R[2][0];
+			a_bdy[1] = att.R[2][1];
+			a_bdy[2] = att.R[2][2];
+		}
+		for(i=0;i<3;i++)
+			fa[i] = att.R[2][i] - a_bdy[i];//obj func
+		Jcb_a[0][0] = -qi2<<1;
+		Jcb_a[0][1] = qi3<<1;
+		Jcb_a[0][2] = -qi0<<1;
+		Jcb_a[0][3] = qi1<<1;
+		Jcb_a[1][0] = qi1<<1;
+		Jcb_a[1][1] = qi0<<1;
+		Jcb_a[1][2] = qi3<<1;
+		Jcb_a[1][3] = qi2<<1;
+		Jcb_a[2][0] = 0;
+		Jcb_a[2][1] = -qi1<<2;
+		Jcb_a[2][2] = -qi2<<2;
+		Jcb_a[2][3] = 0;
+		for(i=0;i<4;i++){
+			for(j=0;j<3;j++){
+				Df[i] += Jcb_a[j][i] * fa[j]>>DSCRT;
+			}
+		}
+	}
+	if(1){//sens.mag_updated){
+		
+/*		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
+		if(isfinite(norm)){
+			m_bdy[0]=((int)sens.mx<<DSCRT)*norm;
+			m_bdy[1]=((int)sens.my<<DSCRT)*norm;
+			m_bdy[2]=((int)sens.mz<<DSCRT)*norm;
+		}
+		else{
+			m_bdy[0]=att.R[1][0];
+			m_bdy[1]=att.R[1][1];
+			m_bdy[2]=att.R[1][2];
+		}
+		body2glob(m_bdy, m_glb, 3);
+		norm = inv_sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+		if(isfinite(norm)){
+			m_glb[0]=(m_glb[0]<<DSCRT)*norm;
+			m_glb[1]=(m_glb[1]<<DSCRT)*norm;
+			m_glb[2]=0;
+			
+			glob2body(m_bdy_est, m_glb, 3);
+
+			for(i=0;i<3;i++)
+				fm[i] = att.R[1][i] - m_bdy_est[i];
+		}
+		else{
+			q0 = q0;
+		}
+		data2[0] = fm[0];
+		data2[1] = fm[1];
+		data2[2] = fm[2];
+		Jcb_m[0][0] =  qi3<<1;
+		Jcb_m[0][1] =  qi2<<1;
+		Jcb_m[0][2] =  qi1<<1;
+		Jcb_m[0][3] =  qi0<<1;
+		Jcb_m[1][0] =  0;
+		Jcb_m[1][1] = -qi1<<2;
+		Jcb_m[1][2] =  0;
+		Jcb_m[1][3] = -qi3<<2;
+		Jcb_m[2][0] = -qi1<<1;
+		Jcb_m[2][1] = -qi0<<1;
+		Jcb_m[2][2] =  qi3<<1;
+		Jcb_m[2][3] =  qi2<<1;
+		
+		for(i=0;i<4;i++){
+			for(j=0;j<3;j++){
+				Df[i] += (Jcb_m[j][i] * fm[j]>>DSCRT)*8;
+			}
+		}
+*/
+		int m_err_glb[3], m_err_bdy[3];
+		int m_bdy[3], m_glb[3];
+		#define Kp_MAG 1.0f
+		
+		sens.mag_updated = 0;
+		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
+		m_bdy[0]=((int)sens.mx<<DSCRT)*norm;
+		m_bdy[1]=((int)sens.my<<DSCRT)*norm;
+		m_bdy[2]=((int)sens.mz<<DSCRT)*norm;
+		body2glob(m_bdy, m_glb, 3);
+		
+
+		m_err_glb[2] = atan2(m_glb[0],m_glb[1]) * DSCRT_F;
+		m_err_glb[0] = 0;
+		m_err_glb[1] = 0;
+		glob2body(m_err_bdy, m_err_glb, 3);
+		mag_corr[0] = m_err_bdy[0];
+		mag_corr[1] = m_err_bdy[1];
+		mag_corr[2] = m_err_bdy[2];
+
+		mag_corr[0] *= Kp_MAG;
+		mag_corr[1] *= Kp_MAG;
+		mag_corr[2] *= Kp_MAG;
+//		corr_x += mag_corr[0];
+//		corr_y += mag_corr[1];
+//		corr_z += mag_corr[2];
+	//	gyr_bias[0] += constrain_f(mag_corr[0] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+	//	gyr_bias[1] += constrain_f(mag_corr[1] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+		gyr_bias[2] -= constrain_f(mag_corr[2] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+		
+		data2[0] = mag_corr[0];
+		data2[1] = mag_corr[1];
+		data2[2] = mag_corr[2];	
+	}
+	
+	norm = inv_sqrt((float)Df[0] * Df[0] + (float)Df[1] * Df[1] + (float)Df[2] * Df[2] + (float)Df[3] * Df[3]);
+	if(isfinite(norm)){
+		Df[0] =(Df[0]<<DSCRT)*norm;
+		Df[1] =(Df[1]<<DSCRT)*norm;
+		Df[2] =(Df[2]<<DSCRT)*norm;
+		Df[3] =(Df[3]<<DSCRT)*norm;
+	}
+	else{
+		Df[0] =0;
+		Df[1] =0;
+		Df[2] =0;
+		Df[3] =0;
+		
+	}
+	corr_x += (qi0*Df[1] - qi1*Df[0] - qi2*Df[3] + qi3*Df[2])>>(DSCRT-1);
+	corr_y += (qi0*Df[2] + qi1*Df[3] - qi2*Df[0] - qi3*Df[1])>>(DSCRT-1);
+//	corr_z += (qi0*Df[3] - qi1*Df[2] + qi2*Df[1] - qi3*Df[0])>>(DSCRT-1);
+	
+	
+	
+	gyr_bias[0] += constrain_f(corr_x * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+	gyr_bias[1] += constrain_f(corr_y * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+	gyr_bias[2] += constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+
+/*	
+	att.rollspeed=((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
+	att.pitchspeed=((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1];   
+	att.yawspeed=((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2];
+	#define ZOOM 2
+	wx = (att.rollspeed + mag_corr[0])>>ZOOM;
+	wy = (att.pitchspeed + mag_corr[1])>>ZOOM;
+	wz = (att.yawspeed + mag_corr[2])>>ZOOM;
+
+
+	att.rate[0] = IIR_apply(&iir_wx, att.rollspeed);
+	att.rate[1] = IIR_apply(&iir_wx, att.pitchspeed);
+	att.rate[2] = IIR_apply(&iir_wx, att.yawspeed);
+*/
+	wx = ((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
+	wy = ((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1];
+	wz = ((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2];
+	att.rollspeed = IIR_apply(&iir_wx, wx);
+	att.pitchspeed = IIR_apply(&iir_wx, wy);
+	att.yawspeed = IIR_apply(&iir_wx, wz);
+	
+	
+	#define ZOOM 2
+	wx = (wx + mag_corr[0])>>ZOOM;
+	wy = (wy + mag_corr[1])>>ZOOM;
+	wz = (wz + mag_corr[2])>>ZOOM;
+	
+	
+	wq0 = (-qi1*wx - qi2*wy - qi3*wz)>>(DSCRT-ZOOM+1);
+	wq1 = (qi0*wx + qi2*wz - qi3*wy)>>(DSCRT-ZOOM+1);
+	wq2 = (qi0*wy - qi1*wz + qi3*wx)>>(DSCRT-ZOOM+1);
+	wq3 = (qi0*wz + qi1*wy - qi2*wx)>>(DSCRT-ZOOM+1);
+
+	q0 += (wq0 - beta*Df[0])*dt_gyr/1000.0f;
+	q1 += (wq1 - beta*Df[1])*dt_gyr/1000.0f;
+	q2 += (wq2 - beta*Df[2])*dt_gyr/1000.0f;
+	q3 += (wq3 - beta*Df[3])*dt_gyr/1000.0f;
+	// quarternion normalization
+	norm = inv_sqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
+	if(isfinite(norm)){
+		q0 =(q0*DSCRT_F)*norm;
+		q1 =(q1*DSCRT_F)*norm;
+		q2 =(q2*DSCRT_F)*norm;
+		q3 =(q3*DSCRT_F)*norm;
+	}
+	else{
+		q0 = q0;
+	}
+	qi0=q0;
+	qi1=q1;
+	qi2=q2;
+	qi3=q3;
+	//obtain the rotation matrix that can be applied elsewhere
+	att.R[0][0]=(1<<DSCRT) - ((qi2 * qi2 + qi3 * qi3)>>(DSCRT-1));
+	att.R[0][1]=(qi1 * qi2 - qi0 * qi3)>>(DSCRT-1);
+	att.R[0][2]=(qi1 * qi3 + qi0 * qi2)>>(DSCRT-1);
+	att.R[1][0]=(qi1 * qi2 + qi0 * qi3)>>(DSCRT-1);
+	att.R[1][1]=(1<<DSCRT) - ((qi1 * qi1 + qi3 * qi3)>>(DSCRT-1));
+	att.R[1][2]=(qi2 * qi3 - qi0 * qi1)>>(DSCRT-1);
+	att.R[2][0]=(qi1 * qi3 - qi0 * qi2)>>(DSCRT-1);
+	att.R[2][1]=(qi2 * qi3 + qi0 * qi1)>>(DSCRT-1);
+	att.R[2][2]=(1<<DSCRT) - ((qi1 * qi1 + qi2 * qi2)>>(DSCRT-1));
+	att.q[0] = qi0;
+	att.q[1] = qi1;
+	att.q[2] = qi2;
+	att.q[3] = qi3;
+//	if(sens.mag_updated){
+//		sens.mag_updated = 0;
+//		body2glob(m_bdy, m_glb, 3);
+//		m_ENU[0]=0;
+//		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+//	    m_ENU[2]=m_glb[2];
+//	}
+}
+
+void attitude_compute(void)
+{
+	static short turn=0;
+	static int l_yaw=0;
+	int pitch,roll,yaw;  //in (1<<14)rad
+	marg_update();
+	pitch = -asin(att.R[2][0]/DSCRT_F)*DSCRT_F;
+	roll  = atan2(att.R[2][1], att.R[2][2])*DSCRT_F;
+	yaw = -atan2(att.R[0][1], att.R[1][1])*DSCRT_F;
+	//yaw changes continuously without jumping from -180 to 180
+	if(yaw < (-(DSCRT_I*19/20)*PI) && l_yaw>((DSCRT_I*19/20)*PI))turn++;//0.95*16384=15565
+	if(yaw > ((DSCRT_I*19/20)*PI) && l_yaw<(-(DSCRT_I*19/20)*PI))turn--;	
+	l_yaw = yaw;
+	yaw += turn*((DSCRT_I*2)*PI);	
+	att.pitch=pitch;
+	att.roll=roll;
+	att.yaw=yaw;
+}
+
+#elif ORIGINAL_MAD
+volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
+#define beta 0.020f//0.025f//0.06f
+#define gyro_bias_weight 0.001f
 #define scale_gyr 7506 //correspond to 1 rad/s
 float gyr_bias[3]={0,0,0};//change to float??
 void marg_update(void) //(1<<14)rad
@@ -313,9 +601,9 @@ void marg_update(void) //(1<<14)rad
 	int m_bdy[3],a_bdy[3],m_glb[3];
 	int m_bdy_est[3];
 	#if DSCRT_15
-//	static int m_ENU[3]={0,16626,-28169};
+	static int m_ENU[3]={0,16626,-28169};
 	#elif DSCRT_14
-//	static int m_ENU[3]={0,8313,-14084};
+	static int m_ENU[3]={0,8313,-14084};
 	#endif
 	short dt_gyr = 2;//, dt_acc = 2, dt_mag = 2;
 	int corr_x = 0, corr_y = 0, corr_z = 0;
@@ -364,7 +652,9 @@ void marg_update(void) //(1<<14)rad
 		}
 	}
 	if(sens.mag_updated){
-		sens.mag_updated = 0;
+		
+//		sens.mag_updated = 0;
+		glob2body(m_bdy_est, m_ENU, 3);
 		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
 		if(isfinite(norm)){
 			m_bdy[0]=((int)sens.mx<<DSCRT)*norm;
@@ -372,44 +662,36 @@ void marg_update(void) //(1<<14)rad
 			m_bdy[2]=((int)sens.mz<<DSCRT)*norm;
 		}
 		else{
-			m_bdy[0]=att.R[1][0];
-			m_bdy[1]=att.R[1][1];
-			m_bdy[2]=att.R[1][2];
+			m_bdy[0]=m_bdy_est[0];
+			m_bdy[1]=m_bdy_est[1];
+			m_bdy[2]=m_bdy_est[2];
 		}
-		body2glob(m_bdy, m_glb, 3);
-		norm = inv_sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
-		if(isfinite(norm)){
-			m_glb[0]=(m_glb[0]<<DSCRT)*norm;
-			m_glb[1]=(m_glb[1]<<DSCRT)*norm;
-			m_glb[2]=0;
-			
-			glob2body(m_bdy_est, m_glb, 3);
+		
+		for(i=0;i<3;i++)
+			fm[i] = m_bdy_est[i] - m_bdy[i];
 
-			for(i=0;i<3;i++)
-				fm[i] = att.R[1][i] - m_bdy_est[i];
-		}
-//		data2[0] = fm[0];
-//		data2[1] = fm[1];
-//		data2[2] = fm[2];
-		Jcb_m[0][0] =  qi3<<1;
-		Jcb_m[0][1] =  qi2<<1;
-		Jcb_m[0][2] =  qi1<<1;
-		Jcb_m[0][3] =  qi0<<1;
-		Jcb_m[1][0] =  0;
-		Jcb_m[1][1] = -qi1<<2;
-		Jcb_m[1][2] =  0;
-		Jcb_m[1][3] = -qi3<<2;
-		Jcb_m[2][0] = -qi1<<1;
-		Jcb_m[2][1] = -qi0<<1;
-		Jcb_m[2][2] =  qi3<<1;
-		Jcb_m[2][3] =  qi2<<1;
+		Jcb_m[0][0] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][1] =  (qi2*m_ENU[1] >> (DSCRT-1)) + (qi3*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][2] =  (qi1*m_ENU[1] >> (DSCRT-1)) - (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[0][3] =  (qi0*m_ENU[1] >> (DSCRT-1)) + (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][0] =  (qi1*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][1] = -(qi1*m_ENU[1] >> (DSCRT-2)) + (qi0*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][2] =  (qi3*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[1][3] = -(qi3*m_ENU[1] >> (DSCRT-2)) + (qi2*m_ENU[2] >> (DSCRT-1));
+		Jcb_m[2][0] = -(qi1*m_ENU[1] >> (DSCRT-1));
+		Jcb_m[2][1] = -(qi0*m_ENU[1] >> (DSCRT-1)) - (qi1*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][2] =  (qi3*m_ENU[1] >> (DSCRT-1)) - (qi2*m_ENU[2] >> (DSCRT-2));
+		Jcb_m[2][3] =   qi2*m_ENU[1] >> (DSCRT-1);
+		
+		data2[0] = fa[0];
+		data2[1] = fa[1];
+		data2[2] = fa[2];
 		
 		for(i=0;i<4;i++){
 			for(j=0;j<3;j++){
-				Df[i] += (Jcb_m[j][i] * fm[j]>>DSCRT)*8;
+			//	Df[i] += (Jcb_m[j][i] * fm[j]>>DSCRT)*10;
 			}
 		}
-		
 	}
 	
 	norm = inv_sqrt(Df[0] * Df[0] + Df[1] * Df[1] + Df[2] * Df[2] + Df[3] * Df[3]);
@@ -429,21 +711,26 @@ void marg_update(void) //(1<<14)rad
 	corr_x = (qi0*Df[1] - qi1*Df[0] - qi2*Df[3] + qi3*Df[2])>>(DSCRT-1);
 	corr_y = (qi0*Df[2] + qi1*Df[3] - qi2*Df[0] - qi3*Df[1])>>(DSCRT-1);
 	corr_z = (qi0*Df[3] - qi1*Df[2] + qi2*Df[1] - qi3*Df[0])>>(DSCRT-1);
-	
-	
-	
+
 	gyr_bias[0] += constrain_f(corr_x * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 	gyr_bias[1] += constrain_f(corr_y * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 	gyr_bias[2] += constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 
+	wx = ((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
+	wy = ((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1];   
+	wz = ((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2];
+
+//	att.rollspeed=wx;
+//	att.pitchspeed=wy;   
+//	att.yawspeed=wz;
+	att.rollspeed  = IIR_apply(&iir_wx, wx);//used for control loop
+	att.pitchspeed = IIR_apply(&iir_wy, wy);
+	att.yawspeed   = IIR_apply(&iir_wz, wz);
 	
-	att.rollspeed=((int)sens.gx<<DSCRT)/scale_gyr - gyr_bias[0];
-	att.pitchspeed=((int)sens.gy<<DSCRT)/scale_gyr - gyr_bias[1];   
-	att.yawspeed=((int)sens.gz<<DSCRT)/scale_gyr - gyr_bias[2];
 	#define ZOOM 2
-	wx = att.rollspeed>>ZOOM;
-	wy = att.pitchspeed>>ZOOM;
-	wz = att.yawspeed>>ZOOM;
+	wx = wx>>ZOOM;
+	wy = wy>>ZOOM;
+	wz = wz>>ZOOM;
 
 	wq0 = (-qi1*wx - qi2*wy - qi3*wz)>>(DSCRT-ZOOM+1);
 	wq1 = (qi0*wx + qi2*wz - qi3*wy)>>(DSCRT-ZOOM+1);
@@ -480,13 +767,13 @@ void marg_update(void) //(1<<14)rad
 	att.q[1] = qi1;
 	att.q[2] = qi2;
 	att.q[3] = qi3;
-//	if(sens.mag_updated){
-//		sens.mag_updated = 0;
-//		body2glob(m_bdy, m_glb, 3);
-//		m_ENU[0]=0;
-//		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
-//	    m_ENU[2]=m_glb[2];
-//	}
+	if(sens.mag_updated){
+		sens.mag_updated = 0;
+		body2glob(m_bdy, m_glb, 3);
+		m_ENU[0]=0;
+		m_ENU[1]=sqrt(m_glb[0]*m_glb[0] + m_glb[1]*m_glb[1]);
+	    m_ENU[2]=m_glb[2];
+	}
 }
 
 void attitude_compute(void)
@@ -507,7 +794,10 @@ void attitude_compute(void)
 	att.roll=roll;
 	att.yaw=yaw;
 }
+
 #endif
+
+
 float data_2_angle(float x, float y, float z)	 //in rad
 {
 	float res;

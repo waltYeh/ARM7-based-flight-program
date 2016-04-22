@@ -3,36 +3,42 @@
 
 #define BOARD_V5 1
 #define BOARD_V4 0
-#define F450 1
+#define F450 0
 #define XINSONG 0
 #define F330 0
-#define F240 0
+#define F240 1
 #if F240
 	#define PLUS 1
+	#define M8N_GPS 0
+	#define LEA6H_GPS 1
 #else
 	#define CROSS 1
+	#define M8N_GPS 1
+	#define LEA6H_GPS 0
 #endif
 #define INDOOR 0
 #define OUTDOOR 1
 
-#define M8N_GPS 1
-#define LEA6H_GPS 0
+
 #define HMC_COMPASS 1
 #define MPU_COMPASS 0
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
 #define WAIT_GPS 0
+
 #define OLD_ATT 0
 #define NEW_ATT 0
 #define MADGWICK_ATT 1
-#define MAG_PITCH_ROLL 1
+#define ORIGINAL_MAD 0
+#define MAG_PITCH_ROLL 0
+
 #define ORIGINAL_FREQ 1
 #define DOUBLED_FREQ 0
 #define USB_TEST 0
 #define I2C_CONTI 0
 #define PPM_STORE 1
-#define OFFBOARD_AVAIL 1
+#define OFFBOARD_AVAIL 0
 
 #if OUTDOOR
 struct _gps{
@@ -88,6 +94,7 @@ struct _att {
 	int pitchspeed;
 	int rollspeed;
 	int yawspeed;
+	int rate[3];
 	int R[3][3];//glob=R*body//1 ~ 2^14 ~ 16384
 	int q[4];
 	#define DSCRT_14 0
@@ -289,7 +296,7 @@ extern PID pos_yPID;
 #elif F330
 	#define thrCmndRatio 1
 #elif F240
-	#define thrCmndRatio 1
+	#define thrCmndRatio 2
 #endif
 #if DSCRT_15
 	#define MAX_ATT_MANUEL 28874//11437 40deg,0.698rad
@@ -323,7 +330,7 @@ extern PID pos_yPID;
 	#define D2_SQRT2 467//(2*D)/SQRT2_2D
 	#define FORCE_TORQUE_RATIO 15
 #elif F240
-	#define VEHICLE_MASS 448
+	#define VEHICLE_MASS 720
 	#define ROTOR_DIST 240//mm
 	#define D2_SQRT2 339//(2*D)/SQRT2_2D
 	#define FORCE_TORQUE_RATIO 15

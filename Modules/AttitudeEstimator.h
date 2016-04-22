@@ -1,5 +1,6 @@
 #ifndef ATTITUDE_H
 #define ATTITUDE_H
+void rate_IIR_init(void);
 #if OLD_ATT
 void marg_update(void);
 void attitude_compute(void);
@@ -8,6 +9,9 @@ void attitude_compute(void);
 void MARG_update(void);
 void AR_predict(void);
 #elif MADGWICK_ATT
+void marg_update(void);
+void attitude_compute(void);
+#elif ORIGINAL_MAD
 void marg_update(void);
 void attitude_compute(void);
 #endif

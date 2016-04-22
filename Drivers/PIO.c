@@ -99,7 +99,7 @@ __irq void PIO_handler(void){
 	if(status & USB_VBUS){
 		if (*AT91C_PIOA_PDSR & USB_VBUS){
 			myusb.connect_flag = PLUG_IN;
-		//	*AT91C_PIOA_IDR = USB_VBUS;
+			*AT91C_PIOA_IDR = USB_VBUS;
 			usb_pullup(ON);
 		}
 		else{

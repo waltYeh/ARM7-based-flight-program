@@ -52,7 +52,14 @@ short ax,ay,az;
 	short mag_x_bias=-20;
 	short mag_y_bias=30;
 	short mag_z_bias=-160;
-
+	
+	#elif F240
+	short acc_x_bias=0;
+	short acc_y_bias=0;
+	short acc_z_bias=0;
+	short mag_x_bias=-170;
+	short mag_y_bias=-100;
+	short mag_z_bias=130;
 	#endif
 #endif
 

@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\filter.o" --omf_browse ".\Outputs\filter.crf" --depend ".\Outputs\filter.d" "Modules\Filter.c"
