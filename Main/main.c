@@ -95,9 +95,9 @@ void data_select(void)
 		data2[2]=sens.az;		
 		data2[3]=sens.gx;
 		data2[4]=sens.gy;
-		data2[5]=sens.gz;
-		data2[6]=baro.alt;
-		data2[7]=baro.temp;
+		data2[5]=baro.alt;
+		data2[6]=pos.z_est[0] / 1000;
+		data2[7]=pos.z_est[1] / 1000;
 		data2[8]=sens.mz;
 		break;
 	case sendGPS://2
@@ -152,13 +152,13 @@ void data_select(void)
 
 		break;
 	case sendOUT://7
-		data2[0]=0;
+		data2[0]=att.pitchspeed*573>>DSCRT;
 		data2[1]=output.pitchMmt/10;//cmd.pitch_sp*573>>DSCRT;		
-		data2[2]=output.rollMmt/10;				
-		data2[3]=output.thrustForce/10;//cmd.roll_sp*573>>DSCRT;
-		data2[4]=0;
-		data2[5]=cmd.rc[4];
-		data2[6]=0;//cmd.Thrust;
+		data2[2]=att.rollspeed*573>>DSCRT;				
+		data2[3]=output.rollMmt/10;
+		data2[4]=att.yawspeed*573>>DSCRT;
+		data2[5]=output.yawMmt/10;
+		data2[6]=output.thrustForce/10;;//cmd.Thrust;
 		data2[7]=0;
 		data2[8]=0;
 		break;

@@ -3,10 +3,10 @@
 
 #define BOARD_V5 1
 #define BOARD_V4 0
-#define F450 0
+#define F450 1
 #define XINSONG 0
 #define F330 0
-#define F240 1
+#define F240 0
 #if F240
 	#define PLUS 1
 	#define M8N_GPS 0
