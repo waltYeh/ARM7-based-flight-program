@@ -120,11 +120,22 @@ void data_conclude(char switcher)
 		break;
 	}
 }
-void acc_lowpass_biascorr(short ax, short ay, short az)
+void acc_lowpass_biascorr(short ax, short ay, short az, unsigned char store)
 {
-	sens.ax = IIR_apply(&iir_ax, ax)+acc_x_bias;
-	sens.ay = IIR_apply(&iir_ay, ay)+acc_y_bias;
-	sens.az = IIR_apply(&iir_az, az)+acc_z_bias;
+	static short sx=0,sy=0,sz=8192;
+	if(store){
+		sx = ax;
+		sy = ay;
+		sz = az;
+	}
+	else{
+//		sens.ax = (ax+sx)/2;
+//		sens.ay = (ay+sy)/2;
+//		sens.az = (az+sz)/2;
+		sens.ax = IIR_apply(&iir_ax, (ax+sx)/2)+acc_x_bias;
+		sens.ay = IIR_apply(&iir_ay, (ay+sy)/2)+acc_y_bias;
+		sens.az = IIR_apply(&iir_az, (az+sz)/2)+acc_z_bias;
+	}
 }
 void gyro_lowpass_biascorr(short gx, short gy, short gz, unsigned char store)
 {

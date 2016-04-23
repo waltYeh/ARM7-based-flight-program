@@ -4,17 +4,18 @@
 #include "../Modules/IMU.h"
 #include "PIO.h"
 const unsigned int spibuf_ga_tx[15] = //enough for only giving the first reg address
-	{0x000B00BB,0x000B00BC,0x000B00BD,0x000B00BE,
-	0x000B00BF,0x000B00C0,
+	{0x000B00BB,0x000B00BC,0x000B00BD,0x000B00BE,0x000B00BF,0x000B00C0,
 	0x000B00C1,0x000B00C2,
-	0x000B00C3,0x000B00C4,0x000B00C5,0x000B00C6,
-	0x000B00C7,0x000B00C8,
+	0x000B00C3,0x000B00C4,0x000B00C5,0x000B00C6,0x000B00C7,0x000B00C8,
 	0x010B0000};
 unsigned int spibuf_ga_rx[15];
-unsigned int spibuf_gb_tx[11] = {0x000B00C3,0x000B00C4,0x000B00C5,0x000B00C6,
-								0x000B00C7,0x000B00C8,0x010B0000,
-								0,0,0,0};
-unsigned int spibuf_gb_rx[11];
+unsigned int spibuf_gb_tx[19] = {
+	0x000B00BB,0x000B00BC,0x000B00BD,0x000B00BE,0x000B00BF,0x000B00C0,
+	0x000B00C1,0x000B00C2,
+	0x000B00C3,0x000B00C4,0x000B00C5,0x000B00C6,0x000B00C7,0x000B00C8,
+	0x010B0000,
+	0,0,0,0};
+unsigned int spibuf_gb_rx[19];
 unsigned char spi_status=0;
 unsigned char baro2get=0;
 unsigned char spi_fast_ready = 0;
@@ -137,35 +138,35 @@ void spi_dma_refill(unsigned char switcher)
 		break;
 	case GYRO:
 		*AT91C_SPI_RPR=(unsigned int)spibuf_gb_rx;
-		*AT91C_SPI_RCR=7;
+		*AT91C_SPI_RCR=15;
 		*AT91C_SPI_TPR=(unsigned int)spibuf_gb_tx;
-		*AT91C_SPI_TCR=7;
+		*AT91C_SPI_TCR=15;
 		break;
 	case GYRO_PTRIG:
-		spibuf_gb_tx[7] = 0x010E0048;//D1
+		spibuf_gb_tx[15] = 0x010E0048;//D1
 		*AT91C_SPI_RPR=(unsigned int)spibuf_gb_rx;
-		*AT91C_SPI_RCR=8;
+		*AT91C_SPI_RCR=16;
 		*AT91C_SPI_TPR=(unsigned int)spibuf_gb_tx;
-		*AT91C_SPI_TCR=8;
+		*AT91C_SPI_TCR=16;
 		baro2get = P2GET;		
 		break;
 	case GYRO_TTRIG:
-		spibuf_gb_tx[7] = 0x010E0058;//D2
+		spibuf_gb_tx[15] = 0x010E0058;//D2
 		*AT91C_SPI_RPR=(unsigned int)spibuf_gb_rx;
-		*AT91C_SPI_RCR=8;
+		*AT91C_SPI_RCR=16;
 		*AT91C_SPI_TPR=(unsigned int)spibuf_gb_tx;
-		*AT91C_SPI_TCR=8;
+		*AT91C_SPI_TCR=16;
 		baro2get = T2GET;
 		break;
 	case GYRO_TPGET:
-		for(i=7;i<10;i++){
+		for(i=15;i<18;i++){
 			spibuf_gb_tx[i] = 0x000E0000;
 		}
-		spibuf_gb_tx[10] = 0x010E0000;
+		spibuf_gb_tx[18] = 0x010E0000;
 		*AT91C_SPI_RPR=(unsigned int)spibuf_gb_rx;
-		*AT91C_SPI_RCR=11;
+		*AT91C_SPI_RCR=19;
 		*AT91C_SPI_TPR=(unsigned int)spibuf_gb_tx;
-		*AT91C_SPI_TCR=11;
+		*AT91C_SPI_TCR=19;
 		break;
 	default:
 		break;
@@ -193,63 +194,91 @@ void spi_dma_decode(unsigned char switcher)
 		yL = spibuf_ga_rx[4];
 		zH = spibuf_ga_rx[5];
 		zL = spibuf_ga_rx[6];
-		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL);
+		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 0);
 		smpl.Flag500Hz = 1;
 		break;
 	case GYRO:
-		xH = spibuf_gb_rx[1];
-		xL = spibuf_gb_rx[2];
-		yH = spibuf_gb_rx[3];
-		yL = spibuf_gb_rx[4];
-		zH = spibuf_gb_rx[5];
-		zL = spibuf_gb_rx[6];
+		xH = spibuf_gb_rx[9];
+		xL = spibuf_gb_rx[10];
+		yH = spibuf_gb_rx[11];
+		yL = spibuf_gb_rx[12];
+		zH = spibuf_gb_rx[13];
+		zL = spibuf_gb_rx[14];
 		gyro_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
+		xH = spibuf_ga_rx[1];
+		xL = spibuf_ga_rx[2];
+		yH = spibuf_ga_rx[3];
+		yL = spibuf_ga_rx[4];
+		zH = spibuf_ga_rx[5];
+		zL = spibuf_ga_rx[6];
+		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
 		break;
 	case GYRO_PTRIG:
-		xH = spibuf_gb_rx[1];
-		xL = spibuf_gb_rx[2];
-		yH = spibuf_gb_rx[3];
-		yL = spibuf_gb_rx[4];
-		zH = spibuf_gb_rx[5];
-		zL = spibuf_gb_rx[6];
+		xH = spibuf_gb_rx[9];
+		xL = spibuf_gb_rx[10];
+		yH = spibuf_gb_rx[11];
+		yL = spibuf_gb_rx[12];
+		zH = spibuf_gb_rx[13];
+		zL = spibuf_gb_rx[14];
 		gyro_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
+		xH = spibuf_ga_rx[1];
+		xL = spibuf_ga_rx[2];
+		yH = spibuf_ga_rx[3];
+		yL = spibuf_ga_rx[4];
+		zH = spibuf_ga_rx[5];
+		zL = spibuf_ga_rx[6];
+		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
 		break;
 	case GYRO_TPGET:
 	{
-		xH = spibuf_gb_rx[1];
-		xL = spibuf_gb_rx[2];
-		yH = spibuf_gb_rx[3];
-		yL = spibuf_gb_rx[4];
-		zH = spibuf_gb_rx[5];
-		zL = spibuf_gb_rx[6];
+		xH = spibuf_gb_rx[9];
+		xL = spibuf_gb_rx[10];
+		yH = spibuf_gb_rx[11];
+		yL = spibuf_gb_rx[12];
+		zH = spibuf_gb_rx[13];
+		zL = spibuf_gb_rx[14];
 		gyro_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
+		xH = spibuf_ga_rx[1];
+		xL = spibuf_ga_rx[2];
+		yH = spibuf_ga_rx[3];
+		yL = spibuf_ga_rx[4];
+		zH = spibuf_ga_rx[5];
+		zL = spibuf_ga_rx[6];
+		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
 		if(baro2get==P2GET){
-		unsigned char PH,PM,PL;
-		PH = spibuf_gb_rx[8];
-		PM = spibuf_gb_rx[9];
-		PL = spibuf_gb_rx[10];
-		baro.D1=(((unsigned long)PH)<<16) | (((unsigned long)PM)<<8) | ((unsigned long)PL);
-		baro.updated = D1_UPDATED;
+			unsigned char PH,PM,PL;
+			PH = spibuf_gb_rx[16];
+			PM = spibuf_gb_rx[17];
+			PL = spibuf_gb_rx[18];
+			baro.D1=(((unsigned long)PH)<<16) | (((unsigned long)PM)<<8) | ((unsigned long)PL);
+			baro.updated = D1_UPDATED;
 		}
 		else if(baro2get==T2GET){
-		unsigned char TH,TM,TL;
-			TH = spibuf_gb_rx[8];
-		TM = spibuf_gb_rx[9];
-		TL = spibuf_gb_rx[10];
-			baro.D2=(((unsigned long)TH)<<16) | (((unsigned long)TM)<<8) | ((unsigned long)TL);
-			baro.updated = D2_UPDATED;
+			unsigned char TH,TM,TL;
+			TH = spibuf_gb_rx[16];
+			TM = spibuf_gb_rx[17];
+			TL = spibuf_gb_rx[18];
+				baro.D2=(((unsigned long)TH)<<16) | (((unsigned long)TM)<<8) | ((unsigned long)TL);
+				baro.updated = D2_UPDATED;
 		}
 		baro2get = 0;
 		break;
 	}
 	case GYRO_TTRIG:
-		xH = spibuf_gb_rx[1];
-		xL = spibuf_gb_rx[2];
-		yH = spibuf_gb_rx[3];
-		yL = spibuf_gb_rx[4];
-		zH = spibuf_gb_rx[5];
-		zL = spibuf_gb_rx[6];
+		xH = spibuf_gb_rx[9];
+		xL = spibuf_gb_rx[10];
+		yH = spibuf_gb_rx[11];
+		yL = spibuf_gb_rx[12];
+		zH = spibuf_gb_rx[13];
+		zL = spibuf_gb_rx[14];
 		gyro_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
+		xH = spibuf_ga_rx[1];
+		xL = spibuf_ga_rx[2];
+		yH = spibuf_ga_rx[3];
+		yL = spibuf_ga_rx[4];
+		zH = spibuf_ga_rx[5];
+		zL = spibuf_ga_rx[6];
+		acc_lowpass_biascorr(((short)xH<<8)|(short)xL, ((short)yH<<8)|(short)yL, ((short)zH<<8)|(short)zL, 1);
 		break;
 	
 	default:

@@ -71,7 +71,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendATT};
+					0,SonarOFF,sendSENS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -93,11 +93,11 @@ void data_select(void)
 		data2[0]=sens.ax;
 		data2[1]=sens.ay;		
 		data2[2]=sens.az;		
-		data2[3]=baro.alt;
-		data2[4]=sens.gx;
+		data2[3]=sens.gx;
+		data2[4]=sens.gy;
 		data2[5]=sens.gz;
-		data2[6]=sens.mx;
-		data2[7]=sens.my;
+		data2[6]=baro.alt;
+		data2[7]=baro.temp;
 		data2[8]=sens.mz;
 		break;
 	case sendGPS://2
@@ -385,8 +385,8 @@ int self_check(void)
 	and if they are reasonable. Returns 1 if good*/
 	if(sens.az < 5000)
 		return 1;
-	else if(cmd.rc[2] > -850 || cmd.rc[2] < -1200)
-		return 2;
+//	else if(cmd.rc[2] > -850 || cmd.rc[2] < -1200)
+//		return 2;
 	else if(baro.refPressure > 120000 || baro.refPressure < 80000)
 		return 3;
 //	else if(pos.x_est[0] / 1000 > 3000||pos.x_est[0] / 1000< -3000
@@ -404,6 +404,16 @@ void ground_work_once(void)
 void Process500Hz(void)
 {
  //	beep(ON);
+//	static short g_store[20],a_store[20];
+//	static int ptr=0;
+//	if(ptr==19){
+//		ptr = 0;
+//	}else{
+//		ptr++;
+//	}
+//	g_store[ptr] = sens.gx;
+//	a_store[ptr] = sens.az;
+	
 	attitude_compute();
 	pos_predict(ATT_PERIOD,process_count);
 	attitude_control(ATT_PERIOD);

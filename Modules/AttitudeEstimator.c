@@ -512,12 +512,12 @@ void marg_update(void) //(1<<14)rad
 	wx = ((int)sens.gx<<(DSCRT-1))/scale_gyr - gyr_bias[0];
 	wy = ((int)sens.gy<<(DSCRT-1))/scale_gyr - gyr_bias[1];
 	wz = ((int)sens.gz<<(DSCRT-1))/scale_gyr - gyr_bias[2];
-	att.rollspeed = IIR_apply(&iir_wx, wx)*2;
-	att.pitchspeed = IIR_apply(&iir_wy, wy)*2;
-	att.yawspeed = IIR_apply(&iir_wz, wz)*2;
-//	att.rollspeed = wx*2;
-//	att.pitchspeed = wy*2;
-//	att.yawspeed = wz*2;
+//	att.rollspeed = IIR_apply(&iir_wx, wx)*2;
+//	att.pitchspeed = IIR_apply(&iir_wy, wy)*2;
+//	att.yawspeed = IIR_apply(&iir_wz, wz)*2;
+	att.rollspeed = wx*2;
+	att.pitchspeed = wy*2;
+	att.yawspeed = wz*2;
 	
 //	#define ZOOM 2
 	wx = (wx + mag_corr[0])>>1;
