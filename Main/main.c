@@ -177,12 +177,12 @@ int main (void)
 	pit_init();		
 	ppm_clock_init();
 	timer_init();
-	
+
 	USB_init();
-	if(USB_armed()){
-		myusb.connect_flag = PLUG_IN;
-	}
-	USB_check();
+//	if(USB_armed()){
+//		myusb.connect_flag = PLUG_IN;
+//	}
+//	USB_check();
 	
 	xbee_init();
 #if OUTDOOR
@@ -215,7 +215,12 @@ int main (void)
 //	}
 //	USB_check();
 	beep(ON);
-	delay_ms(1000);
+	delay_ms(500);
+//	delay_ms(5000);
+//	if(USB_armed()){
+//		myusb.connect_flag = PLUG_IN;
+//	}
+//	USB_check();
 	beep(OFF);
 	led_ctrl(LED2,OFF);
 	led_ctrl(LED1,ON);
@@ -228,17 +233,20 @@ int main (void)
 		gyro_calibration();		
 		quarternion_init();		
 		init_loop();
+		
 #if ON_FLIGHT
 #if USB_TEST
 #else
 		while(self_check());
 #endif
 #endif
+		
 		led_ctrl(LED1, OFF);
 		beep(OFF);
-//		if(USB_armed()){
-//			myusb.connect_flag = 1;
-//		}	  
+		if(USB_armed()){
+			myusb.connect_flag = 1;
+		}
+		USB_check();
 		while(1){//flight loop		
 		/*deal with attitude (and position prediction), xbee send, gps (and xy position correction),
 		radio control (and motor output), baro (and altitude correction)*/												
@@ -348,6 +356,7 @@ void init_loop(void)
 			default:
 				break;
 			}
+			USB_check();
 			process_count++;
 			if(process_count==10)
 				process_count=0;
