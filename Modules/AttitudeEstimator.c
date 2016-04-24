@@ -325,8 +325,8 @@ void attitude_compute(void)
 }
 #elif MADGWICK_ATT
 volatile float q0=DSCRT_I,q1=0,q2=0,q3=0;//<<14
-#define beta 0.020f//0.025f//0.06f
-#define gyro_bias_weight 0.02f//0.02f
+#define beta 0.013f//0.025f//0.06f
+#define gyro_bias_weight 0.005f//0.02f
 #define scale_gyr 7506 //correspond to 1 rad/s
 float gyr_bias[3]={0,0,0};//change to float??
 void marg_update(void) //(1<<14)rad
@@ -386,7 +386,7 @@ void marg_update(void) //(1<<14)rad
 			}
 		}
 	}
-	if(1){//sens.mag_updated){
+	if(sens.mag_updated){
 		
 /*		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
 		if(isfinite(norm)){
@@ -438,7 +438,7 @@ void marg_update(void) //(1<<14)rad
 */
 		int m_err_glb[3], m_err_bdy[3];
 		int m_bdy[3], m_glb[3];
-		#define Kp_MAG 2.0f
+		#define Kp_MAG 4.50f
 		
 		sens.mag_updated = 0;
 		norm = inv_sqrt((int)sens.mx*sens.mx + (int)sens.my*sens.my + (int)sens.mz*sens.mz);
@@ -464,7 +464,7 @@ void marg_update(void) //(1<<14)rad
 		corr_z += mag_corr[2];
 	//	gyr_bias[0] += constrain_f(mag_corr[0] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 	//	gyr_bias[1] += constrain_f(mag_corr[1] * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
-		gyr_bias[2] -= constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
+	//	gyr_bias[2] -= constrain_f(corr_z * gyro_bias_weight * dt_gyr/1000.0f,-100.0f,100.0f);
 		
 //		data2[0] = mag_corr[0];
 //		data2[1] = mag_corr[1];

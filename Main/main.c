@@ -71,7 +71,7 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendSENS};
+					0,SonarOFF,sendPOS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -95,9 +95,9 @@ void data_select(void)
 		data2[2]=sens.az;		
 		data2[3]=sens.gx;
 		data2[4]=sens.gy;
-		data2[5]=baro.alt;
-		data2[6]=pos.z_est[0] / 1000;
-		data2[7]=pos.z_est[1] / 1000;
+		data2[5]=sens.gz;
+		data2[6]=sens.mx;
+		data2[7]=sens.my;
 		data2[8]=sens.mz;
 		break;
 	case sendGPS://2
@@ -119,9 +119,9 @@ void data_select(void)
 		data2[2] = pos.Acc_z;//att.yaw*573>>DSCRT;				
 		data2[3] = att.roll*573>>DSCRT;
 		data2[4] = att.pitch*573>>DSCRT;
-		data2[5] = att.yaw*573>>DSCRT;
-		data2[6] = att.rollspeed*573>>DSCRT;//pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
-		data2[7] = att.pitchspeed*573>>DSCRT;	//pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;	
+		data2[5] = 0;
+		data2[6] = cmd.yaw_sp*573>>DSCRT;//pos.Acc_x;//cmd.roll_sp*573>>DSCRT;att.rollspeed*573>>DSCRT;
+		data2[7] = att.yaw*573>>DSCRT;	//pos.Acc_y;//cmd.pitch_sp*573>>DSCRT;	
 		data2[8] = att.yawspeed*573>>DSCRT;//cmd.yaw_sp*573>>DSCRT;
 		break;
 	case sendPOS://4
@@ -214,8 +214,9 @@ int main (void)
 //		myusb.connect_flag = PLUG_IN;
 //	}
 //	USB_check();
-	delay_ms(1000);
 	beep(ON);
+	delay_ms(1000);
+	beep(OFF);
 	led_ctrl(LED2,OFF);
 	led_ctrl(LED1,ON);
 	/*wait until the vehicle is stablized for calibration*/		
@@ -385,8 +386,8 @@ int self_check(void)
 	and if they are reasonable. Returns 1 if good*/
 	if(sens.az < 5000)
 		return 1;
-//	else if(cmd.rc[2] > -850 || cmd.rc[2] < -1200)
-//		return 2;
+	else if(cmd.rc[2] > -850 || cmd.rc[2] < -1200)
+		return 2;
 	else if(baro.refPressure > 120000 || baro.refPressure < 80000)
 		return 3;
 //	else if(pos.x_est[0] / 1000 > 3000||pos.x_est[0] / 1000< -3000

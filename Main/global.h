@@ -25,7 +25,7 @@
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
-#define WAIT_GPS 0
+#define WAIT_GPS 1
 
 #define OLD_ATT 0
 #define NEW_ATT 0
@@ -38,7 +38,7 @@
 #define USB_TEST 0
 #define I2C_CONTI 0
 #define PPM_STORE 1
-#define OFFBOARD_AVAIL 0
+#define OFFBOARD_AVAIL 1
 #define PWM16 0
 #if OUTDOOR
 struct _gps{

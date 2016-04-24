@@ -7,7 +7,7 @@
 
 #if WAIT_GPS
 	#define acc_bais_corr_weight 0.00005f
-	#define acc_offset 0.0f//0.15f//0.15f
+	#define acc_offset 0.1f//0.15f//0.15f
 #else
 	#define acc_bais_corr_weight 0.0f//0.00005f
 	#define acc_offset 0.0f//0.15f//0.15f
@@ -17,7 +17,7 @@
 	#define gps_xy_weight 1.0f
 	#define gps_vxy_weight 1.3f
 	#define gps_z_weight 0.0f
-	#define baro_weight 0.95f
+	#define baro_weight 0.75f
 	#define sonar_weight 1.0f
 #elif INDOOR
 	#define vicon_xy_weight 4.0f

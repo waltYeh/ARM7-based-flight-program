@@ -38,12 +38,12 @@ short ax,ay,az;
 	short mag_z_bias=-35;
 
 	#elif F450
-	short acc_x_bias=90;
-	short acc_y_bias=56;
-	short acc_z_bias=145;
-	short mag_x_bias=-50;
-	short mag_y_bias=30;
-	short mag_z_bias=-30;
+	short acc_x_bias=0;
+	short acc_y_bias=0;
+	short acc_z_bias=0;
+	short mag_x_bias=-130;
+	short mag_y_bias=-20;
+	short mag_z_bias=-10;
 
 	#elif XINSONG
 	short acc_x_bias=-50;

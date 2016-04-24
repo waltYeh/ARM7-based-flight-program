@@ -44,7 +44,7 @@ void get_rc(short dt)
 	#else
 	mode.offboard = 0;
 	if (cmd.rc[4] > 307){//switch upward	
-		mode.FlightMode = ALT_CTRL;	
+		mode.FlightMode = POS_CTRL;	
 	}
 	else if(cmd.rc[4] > -307){		//in the middle
 		mode.FlightMode = ALT_CTRL;
@@ -92,8 +92,8 @@ void get_rc(short dt)
 *
 */	
 	
-//	pos_xPID.Prate = 1.5 + (cmd.rc[5]/1024.0)*1.0;
-//	pos_xPID.P = 0.2 + (cmd.rc[6]/1024.0)*0.10;
+//	pos_xPID.Prate = 2.5 + (cmd.rc[5]/1024.0)*1.0;
+//	pos_xPID.P = 0.3 + (cmd.rc[6]/1024.0)*0.15;
 //	pos_xPID.Drate = 0.1 + (cmd.rc[7]/1024.0)*0.1;
 	
 //	pos_yPID.P = pos_xPID.P;
