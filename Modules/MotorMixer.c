@@ -13,7 +13,7 @@ void force2output(int force[4], unsigned short duty[4], unsigned int battery)
 	#elif F330
 		#define C 300
 	#elif F240
-		#define C 200	
+		#define C 120	
 	#endif
 	int k,i;
 	if(battery == 0){

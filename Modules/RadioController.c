@@ -20,7 +20,7 @@ void get_rc(short dt)
 	if (cmd.rc[5] > -307 || myusb.rcv_timeout == 0){//on board
 		mode.offboard = 0;
 		if (cmd.rc[4] > 307){//switch upward	
-			mode.FlightMode = ALT_CTRL;	
+			mode.FlightMode = POS_CTRL;	
 		}
 		else if(cmd.rc[4] > -307){		//in the middle
 			mode.FlightMode = ALT_CTRL;

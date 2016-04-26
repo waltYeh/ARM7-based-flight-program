@@ -234,6 +234,10 @@ struct _ctrl {
 	int vel_y_ff;
 	int vel_z_ff;
 */	
+	
+	int rasp_vel_sp[3];
+	int rasp_pos_sp[3];
+	int rasp_vel_ff[3];
 	int rasp_q_sp[4];
 	int rasp_thrust;
 };
@@ -295,7 +299,7 @@ extern PID pos_yPID;
 #elif F330
 	#define thrCmndRatio 1
 #elif F240
-	#define thrCmndRatio 2
+	#define thrCmndRatio 1
 #endif
 #if DSCRT_15
 	#define MAX_ATT_MANUEL 28874//11437 40deg,0.698rad

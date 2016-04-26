@@ -71,8 +71,8 @@ struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendPOS};
-struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
+					0,SonarOFF,sendROS};
+struct _ctrl ctrl = {{0,0,0},{0,0,0},{0,0,0},{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
 struct _AT91S_CDC 	pCDC;
@@ -93,7 +93,7 @@ void data_select(void)
 		data2[0]=sens.ax;
 		data2[1]=sens.ay;		
 		data2[2]=sens.az;		
-		data2[3]=sens.gx;
+		data2[3]=baro.alt;
 		data2[4]=sens.gy;
 		data2[5]=sens.gz;
 		data2[6]=sens.mx;
@@ -131,9 +131,9 @@ void data_select(void)
 		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
 		data2[4] = pos.y_est[1] / 1000;
 		data2[5] = pos.z_est[1] / 1000;
-		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
-		data2[7] = pos.Acc_y;
-		data2[8] = pos.Acc_z;
+		data2[6] = cmd.pos_x_sp;//pos.Acc_x;//cmd.pos_x_sp;
+		data2[7] = cmd.pos_y_sp;//pos.Acc_y;
+		data2[8] = cmd.pos_z_sp;//pos.Acc_z;
 
 		break;
 	case sendPID://5
@@ -145,9 +145,9 @@ void data_select(void)
 		data2[3]=cmd.rc[3];
 		data2[4]=cmd.rc[4];
 		data2[5]=cmd.rc[5];
-		data2[6]=idle_time;
-		data2[7]=l_uart_time;
-		data2[8]=uart_dt;;
+		data2[6]=cmd.rc[6];
+		data2[7]=cmd.rc[7];
+		data2[8]=cmd.rc[8];
 		
 
 		break;
@@ -161,6 +161,17 @@ void data_select(void)
 		data2[6]=output.thrustForce/10;;//cmd.Thrust;
 		data2[7]=0;
 		data2[8]=0;
+		break;
+	case sendROS:
+		data2[0]=ctrl.rasp_pos_sp[0];
+		data2[1]=ctrl.rasp_pos_sp[1];		
+		data2[2]=ctrl.rasp_pos_sp[2];				
+		data2[3]=ctrl.rasp_vel_sp[0];
+		data2[4]=ctrl.rasp_vel_sp[1];
+		data2[5]=ctrl.rasp_vel_sp[2];
+		data2[6]=ctrl.rasp_q_sp[1];//cmd.Thrust;
+		data2[7]=ctrl.rasp_q_sp[2];
+		data2[8]=ctrl.rasp_thrust;
 		break;
 	default:
 		break;

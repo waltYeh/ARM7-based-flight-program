@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Outputs\my.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Outputs\my.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Sun Apr 24 16:20:48 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 481]: Last Updated: Mon Apr 25 17:52:23 2016
 <BR><P>
 <H3>Maximum Stack Usage =        672 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -257,7 +257,7 @@ Global Symbols
 
 <P><STRONG><a name="[134]"></a>timer_reset</STRONG> (ARM, 36 bytes, Stack size 0 bytes, timer.o(.text), UNUSED)
 
-<P><STRONG><a name="[30]"></a>data_select</STRONG> (ARM, 1288 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[30]"></a>data_select</STRONG> (ARM, 1488 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = data_select &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -335,7 +335,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[56]"></a>init_loop</STRONG> (ARM, 732 bytes, Stack size 80 bytes, main.o(.text))
+<P><STRONG><a name="[56]"></a>init_loop</STRONG> (ARM, 848 bytes, Stack size 80 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 672<LI>Call Chain = init_loop &rArr; attitude_compute &rArr; marg_update &rArr; glob2body &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gps_pos_init
@@ -358,7 +358,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[16]"></a>main</STRONG> (ARM, 716 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[16]"></a>main</STRONG> (ARM, 592 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 672<LI>Call Chain = main &rArr; init_loop &rArr; attitude_compute &rArr; marg_update &rArr; glob2body &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xbee_init
@@ -746,11 +746,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[78]"></a>USB_read_Process</STRONG> (ARM, 800 bytes, Stack size 72 bytes, usb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = USB_read_Process &rArr; __aeabi_idivmod
+<P><STRONG><a name="[78]"></a>USB_read_Process</STRONG> (ARM, 796 bytes, Stack size 56 bytes, usb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = USB_read_Process &rArr; __aeabi_idivmod
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1420,7 +1419,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pos_predict
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_write_Raspberry
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_read_Process
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
 </UL>
 

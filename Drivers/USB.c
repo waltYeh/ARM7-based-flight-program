@@ -1093,7 +1093,7 @@ void USB_read_Process(void)
 	unsigned char descriptor_out = '?';
 	unsigned short check_sum_out = 0;
 	unsigned short check_sum_self_cal = 0;
-	short data4log[9];
+//	short data4log[9];
 	memcpy(out_head, data_from_Raspberry, 3);
 	if(out_head[0] == '<' && out_head[1] == '#' && out_head[2] == '<' ){
 		memcpy(&descriptor_out, data_from_Raspberry + 3, 1);
@@ -1162,9 +1162,9 @@ void USB_read_Process(void)
 		default:
 			break;		
 		}//end of switch
-		memcpy(data4log, data_from_Raspberry + 32, 18);
-		if(cmd.data2send == sendROS){
-			memcpy(data2, data4log, 18);
-		}
+		memcpy(ctrl.rasp_pos_sp, data_from_Raspberry + 32, 12);
+		memcpy(ctrl.rasp_vel_ff, data_from_Raspberry + 44, 12);
+	//vel_sp is a local given and used variable in controller node
+	//so the linker node gets vel_sp always as 0
 	}//end of if check sum okay
 }
