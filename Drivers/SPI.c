@@ -87,7 +87,8 @@ unsigned char spi_write_reg(unsigned char cs, unsigned char reg, unsigned char d
 
 void spi_fast_init(void)
 {
-	int baudrate_div = 3;
+//	int baudrate_div = 3;
+	int baudrate_div = 18;
 	int dlybs = 3;
 	AT91S_AIC * pAIC = AT91C_BASE_AIC;
 	pAIC->AIC_SMR[AT91C_ID_SPI] = AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL | 6;

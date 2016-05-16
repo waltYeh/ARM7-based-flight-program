@@ -3,9 +3,9 @@
 
 #define BOARD_V5 1
 #define BOARD_V4 0
-#define F450 1
+#define F450 0
 #define XINSONG 0
-#define F330 0
+#define F330 1
 #define F240 0
 #if F240
 	#define PLUS 1
@@ -25,7 +25,7 @@
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
-#define WAIT_GPS 0
+#define WAIT_GPS 1
 
 #define OLD_ATT 0
 #define NEW_ATT 0
@@ -75,7 +75,7 @@ struct _vicon{
 extern struct _vicon vicon;
 #endif
 struct _smpl{
-#define PIT_FREQ 5000
+#define PIT_FREQ 500
 #define ATT_PERIOD 2
 #define POS_CTRL_PERIOD 4
 #define RADIO_PERIOD 20
@@ -146,8 +146,9 @@ struct _mode {
 	#define RASP_MANUEL 5
 	#define RASP_ALT 6
 	#define RASP_POS 7
-	#define RASP_NURBS 8
-	#define MOTOR_CUT 9
+	#define RASP_NURBS_SEMI 8
+	#define RASP_NURBS_AUTO 9
+	#define MOTOR_CUT 10
 };
 extern struct _mode mode;
 
@@ -169,9 +170,9 @@ struct _baro {
 extern struct _baro baro;
 
 struct _pos {	 //unit mm
-	int x_est[2];
-	int y_est[2];
-	int z_est[2];
+	float x_est[2];
+	float y_est[2];
+	float z_est[2];
 	int Acc_x;
 	int Acc_y;
 	int Acc_z;
@@ -238,6 +239,7 @@ struct _ctrl {
 	int rasp_vel_sp[3];
 	int rasp_pos_sp[3];
 	int rasp_vel_ff[3];
+	int rasp_acc_ff[3];
 	int rasp_q_sp[4];
 	int rasp_thrust;
 };
@@ -262,10 +264,12 @@ struct _myusb {
 	#define TIMEOUT_MS 500
 	char connect_flag;
 	char connected;
-	short data_got[3];
 	char out_coming;
 	char out_read_flag;
 	short rcv_timeout;
+	unsigned int in_timestamp;
+	unsigned int out_timestamp;
+	char sync;
 };
 extern struct _myusb myusb;
 

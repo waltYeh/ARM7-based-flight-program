@@ -1,1 +1,0 @@
--c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\attitudeestimator.o" --omf_browse ".\Outputs\attitudeestimator.crf" --depend ".\Outputs\attitudeestimator.d" "Modules\AttitudeEstimator.c"

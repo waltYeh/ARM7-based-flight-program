@@ -1032,20 +1032,29 @@ void USB_write_Raspberry(unsigned int time_stamp, unsigned char descriptor)
 	usb_in_pin(OFF);
 	switch(descriptor){
 	case 's'://states
+	{
+		int x_est[2],y_est[2],z_est[2];
+		x_est[0] = pos.x_est[0]*1000;
+		x_est[1] = pos.x_est[1]*1000;
+		y_est[0] = pos.y_est[0]*1000;
+		y_est[1] = pos.y_est[1]*1000;
+		z_est[0] = pos.z_est[0]*1000;
+		z_est[1] = pos.z_est[1]*1000;
 		check_length = 62;
 		memcpy(usb_data2send, in_head, 3);//uchar
 		memcpy(usb_data2send + 3, &descriptor, 1);//uchar
 		memcpy(usb_data2send + 4, &time_stamp, 4);//uint
 		memcpy(usb_data2send + 8, &check_length, 1);//uchar
 		memcpy(usb_data2send + 9, &flight_mode, 1);//uchar
-		memcpy(usb_data2send + 10, pos.x_est, 8);//int*2
-		memcpy(usb_data2send + 18, pos.y_est, 8);
-		memcpy(usb_data2send + 26, pos.z_est, 8);
+		memcpy(usb_data2send + 10, x_est, 8);//int*2
+		memcpy(usb_data2send + 18, y_est, 8);
+		memcpy(usb_data2send + 26, z_est, 8);
 		memcpy(usb_data2send + 34, cmd.rc, 8);//short the sticks, 0,1,2,3
 		memcpy(usb_data2send + 42, cmd.rc + 5, 4);//short the tunings, 5,6
 		memcpy(usb_data2send + 46, att.q, 16);//int*4
 		
 		break;
+	}
 	case 'r'://rc commands
 		check_length = 28;
 		memcpy(usb_data2send, in_head, 3);//uchar
@@ -1102,6 +1111,14 @@ void USB_read_Process(void)
 		memcpy(&timestamp_out, data_from_Raspberry + 4, 4);
 		memcpy(&check_length_out, data_from_Raspberry + 8, 1);
 		memcpy(&check_sum_out, data_from_Raspberry + 29, 2);
+	}
+	myusb.out_timestamp = timestamp_out;
+	if(myusb.in_timestamp - myusb.out_timestamp > 1000){
+	//ros time isn't comming up with autopilot for 1s
+		myusb.sync = 0;
+	}
+	else{
+		myusb.sync = 1;
 	}
 	for(i=0; i < check_length_out; i++){
 		check_sum_self_cal += data_from_Raspberry[i];
@@ -1162,9 +1179,16 @@ void USB_read_Process(void)
 		default:
 			break;		
 		}//end of switch
-		memcpy(ctrl.rasp_pos_sp, data_from_Raspberry + 32, 12);
-		memcpy(ctrl.rasp_vel_ff, data_from_Raspberry + 44, 12);
-	//vel_sp is a local given and used variable in controller node
-	//so the linker node gets vel_sp always as 0
+		if(1){
+			short pos_sp_s[3], vel_ff_s[3], acc_ff_s[3];
+			memcpy(pos_sp_s, data_from_Raspberry + 32, 6);
+			memcpy(vel_ff_s, data_from_Raspberry + 38, 6);
+			memcpy(acc_ff_s, data_from_Raspberry + 44, 6);
+			for(i=0;i<3;i++){
+				ctrl.rasp_pos_sp[i] = pos_sp_s[i];
+				ctrl.rasp_vel_ff[i] = vel_ff_s[i];
+				ctrl.rasp_acc_ff[i] = acc_ff_s[i];
+			}
+		}
 	}//end of if check sum okay
 }

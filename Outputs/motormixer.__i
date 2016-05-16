@@ -1,1 +1,0 @@
--c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\motormixer.o" --omf_browse ".\Outputs\motormixer.crf" --depend ".\Outputs\motormixer.d" "Modules\MotorMixer.c"

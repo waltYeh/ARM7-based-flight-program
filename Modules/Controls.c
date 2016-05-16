@@ -10,10 +10,10 @@
 	#if INDOOR
 	PID pitchPID={0,0,0,0,
 			2.1,
-			16.5,1.8,0.005};
+			14.0,1.8,0.005};
 	PID rollPID={0,0,0,0,
 			2.1,
-			16.5,1.8,0.005};
+			14.0,1.8,0.005};
 	PID yawPID={0,0,0,0,
 			1.7,
 			13.0,0,0};
@@ -28,23 +28,23 @@
 			2.05,0.4,0};
 	#elif OUTDOOR
 	PID pitchPID={0,0,0,0,
-			2.1,
-			16.5,1.8,0.005};
+			1.5,
+			12.5,1.8,0.0};
 	PID rollPID={0,0,0,0,
-			2.1,
-			16.5,1.8,0.005};
+			1.5,
+			12.5,1.8,0.0};
 	PID yawPID={0,0,0,0,
-			1.7,
-			13.0,0,0};
+			1.3,
+			10.0,0.5,0};
 	PID altPID={0,0,0,0,
-			1.42,
-			1.48,0.07,0.0};
+			2.2,
+			2.38,0.07,0.0};
 	PID pos_xPID={0,0,0,0,
-			0.22,
-			2.0,0.2,0.1};
+			0.42,
+			3.3,0.2,0.1};
 	PID pos_yPID={0,0,0,0,
-			0.22,
-			2.0,0.2,0.1};
+			0.42,
+			3.3,0.2,0.1};
 	#endif		
 			
 #elif F450
@@ -69,23 +69,23 @@
 			2.05,0.0,0};
 	#elif OUTDOOR
 	PID pitchPID={0,0,0,0,
-			1.8,
-			18.5,0.8,0.001};
+			1.6,
+			16.0,0.8,0.0};
 	PID rollPID={0,0,0,0,
-			1.8,
-			18.5,0.8,0.001};
+			1.6,
+			16.0,0.8,0.0};
 	PID yawPID={0,0,0,0,
 			0.75,
-			15.0,0.0,0};
+			10.0,0.0,0.0};
 	PID altPID={0,0,0,0,
-			2.6,
-			2.5,0.02,0.2};
+			2.0,
+			1.9,0.02,0.0};
 	PID pos_xPID={0,0,0,0,
 			0.37,
-			2.5,0.03,0.1};
+			2.5,0.05,0.0};
 	PID pos_yPID={0,0,0,0,
 			0.37,
-			2.5,0.03,0.1};
+			2.5,0.05,0.0};
 	#endif
 #elif XINSONG
 	#if INDOOR
@@ -157,17 +157,17 @@ void position_control(short dt)
 	float norm;
 	short i;	
 	//get acc sp from position setpoint
-	cmd.vel_x_sp = constrain(external_err_pid(&pos_xPID, cmd.pos_x_sp - pos.x_est[0] / 1000, dt), -MAX_XY_VEL, MAX_XY_VEL);
-	cmd.vel_y_sp = constrain(external_err_pid(&pos_yPID, cmd.pos_y_sp - pos.y_est[0] / 1000, dt), -MAX_XY_VEL, MAX_XY_VEL);
-	cmd.vel_z_sp = constrain(external_err_pid(&altPID, cmd.pos_z_sp - pos.z_est[0] / 1000, dt), -MAX_ALT_VEL, MAX_ALT_VEL);
+	cmd.vel_x_sp = constrain(external_err_pid(&pos_xPID, cmd.pos_x_sp - pos.x_est[0], dt), -MAX_XY_VEL, MAX_XY_VEL);
+	cmd.vel_y_sp = constrain(external_err_pid(&pos_yPID, cmd.pos_y_sp - pos.y_est[0], dt), -MAX_XY_VEL, MAX_XY_VEL);
+	cmd.vel_z_sp = constrain(external_err_pid(&altPID, cmd.pos_z_sp - pos.z_est[0], dt), -MAX_ALT_VEL, MAX_ALT_VEL);
 	cmd.vel_x_sp +=  VEL_FF_XY_P * cmd.vel_x_ff;
 	cmd.vel_y_sp +=  VEL_FF_XY_P * cmd.vel_y_ff;
 	cmd.vel_z_sp +=  VEL_FF_Z_P * cmd.vel_z_ff;
 //	data2[4] = globVel_sp[0];
 //	data2[6] = globVel_sp[1];
-	globAcc_sp[0] = internal_err_pid(&pos_xPID, cmd.vel_x_sp - pos.x_est[1] / 1000, dt);
-	globAcc_sp[1] = internal_err_pid(&pos_yPID, cmd.vel_y_sp - pos.y_est[1] / 1000, dt);
-	globAcc_sp[2] = GRAVITY + internal_err_pid(&altPID, cmd.vel_z_sp - pos.z_est[1] / 1000, dt);
+	globAcc_sp[0] = internal_err_pid(&pos_xPID, cmd.vel_x_sp - pos.x_est[1], dt);
+	globAcc_sp[1] = internal_err_pid(&pos_yPID, cmd.vel_y_sp - pos.y_est[1], dt);
+	globAcc_sp[2] = GRAVITY + internal_err_pid(&altPID, cmd.vel_z_sp - pos.z_est[1], dt);
 	//dot product of setpoint and current z axis of body
 	for(i=0;i<3;i++)
 		Z_b[i]=att.R[i][2];
@@ -214,9 +214,9 @@ void altitude_control(short dt)
 		output.thrustForce = cmd.throttle * GRAVITY/1000 * VEHICLE_MASS>>9;//0~1024 -> 0~20,000 mN, put 1000 forward or overflows	
 	}
 	else if(mode.FlightMode==ALT_CTRL||mode.FlightMode==POS_CTRL){	
-		cmd.vel_z_sp = constrain(external_err_pid(&altPID, cmd.pos_z_sp - pos.z_est[0] / 1000, dt), -MAX_ALT_VEL, MAX_ALT_VEL);
+		cmd.vel_z_sp = constrain(external_err_pid(&altPID, cmd.pos_z_sp - pos.z_est[0], dt), -MAX_ALT_VEL, MAX_ALT_VEL);
 		cmd.vel_z_sp +=  VEL_FF_Z_P * cmd.vel_z_ff;
-		altAcc_sp = GRAVITY + internal_err_pid(&altPID, cmd.vel_z_sp - pos.z_est[1] / 1000, dt);
+		altAcc_sp = GRAVITY + internal_err_pid(&altPID, cmd.vel_z_sp - pos.z_est[1], dt);
 		output.thrustForce = ((altAcc_sp<<DSCRT) / att.R[2][2]) * VEHICLE_MASS/1000;
 	}
 }

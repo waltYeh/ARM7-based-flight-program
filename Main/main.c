@@ -66,17 +66,17 @@ struct _baro baro = {0,0,0,0,0};
 struct _pos pos = {{0,0},{0,0},{0,0},
 					0,0,0,
 					0};
-struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
+struct _cmd cmd = {{0,0,-1024,0,-1024,-1024,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
 					0,0,0,
 					0,SonarOFF,sendROS};
-struct _ctrl ctrl = {{0,0,0},{0,0,0},{0,0,0},{DSCRT_I,0,0,0},0};
+struct _ctrl ctrl = {{0,0,0},{0,0,0},{0,0,0},{0,0,0},{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
 struct _AT91S_CDC 	pCDC;
-struct _myusb myusb = {0,0,{0,0,0},0,0,0};
+struct _myusb myusb = {0,0,0,0,0,0,0,0};
 short data2[9]={0,0,0,0,0,0,0,0,0};
 unsigned int process_count=0;
 unsigned int l_uart_time=0;
@@ -125,15 +125,15 @@ void data_select(void)
 		data2[8] = att.yawspeed*573>>DSCRT;//cmd.yaw_sp*573>>DSCRT;
 		break;
 	case sendPOS://4
-		data2[0] = pos.x_est[0] / 1000;
-		data2[1] = pos.y_est[0] / 1000;//pos.y_est[0] / 1000;
-		data2[2] = pos.z_est[0] / 1000;//cmd.pitch_sp*573>>DSCRT;			
-		data2[3] = pos.x_est[1] / 1000;//cmd.pos_y_sp
-		data2[4] = pos.y_est[1] / 1000;
-		data2[5] = pos.z_est[1] / 1000;
-		data2[6] = cmd.pos_x_sp;//pos.Acc_x;//cmd.pos_x_sp;
-		data2[7] = cmd.pos_y_sp;//pos.Acc_y;
-		data2[8] = cmd.pos_z_sp;//pos.Acc_z;
+		data2[0] = pos.x_est[0];
+		data2[1] = baro.alt;
+		data2[2] = pos.z_est[0];//cmd.pitch_sp*573>>DSCRT;			
+		data2[3] = pos.x_est[1];//cmd.pos_y_sp
+		data2[4] = pos.y_est[1];
+		data2[5] = pos.z_est[1];
+		data2[6] = pos.Acc_x;//cmd.pos_x_sp;
+		data2[7] = pos.Acc_y;
+		data2[8] = pos.Acc_z;
 
 		break;
 	case sendPID://5
@@ -166,12 +166,12 @@ void data_select(void)
 		data2[0]=ctrl.rasp_pos_sp[0];
 		data2[1]=ctrl.rasp_pos_sp[1];		
 		data2[2]=ctrl.rasp_pos_sp[2];				
-		data2[3]=ctrl.rasp_vel_sp[0];
-		data2[4]=ctrl.rasp_vel_sp[1];
-		data2[5]=ctrl.rasp_vel_sp[2];
-		data2[6]=ctrl.rasp_q_sp[1];//cmd.Thrust;
-		data2[7]=ctrl.rasp_q_sp[2];
-		data2[8]=ctrl.rasp_thrust;
+		data2[3]=pos.x_est[0];
+		data2[4]=pos.y_est[0];
+		data2[5]=pos.z_est[0];
+		data2[6]=ctrl.rasp_acc_ff[0];
+		data2[7]=ctrl.rasp_acc_ff[1];
+		data2[8]=ctrl.rasp_acc_ff[2];//myusb.out_timestamp/100;//0.1s
 		break;
 	default:
 		break;
@@ -214,7 +214,7 @@ int main (void)
 	mpu6000_config();
 	
 	imu_IIR_init();
-	rate_IIR_init(100);
+	rate_IIR_init(150);
 	
 	spi_fast_init();
 	smpl.sens_rdy =1;
@@ -456,7 +456,8 @@ void Process250Hz_A(void)
 		altitude_control(POS_CTRL_PERIOD);
 	}
 	else if(mode.FlightMode == RASP_MANUEL || mode.FlightMode == RASP_ALT 
-		|| mode.FlightMode == RASP_POS || mode.FlightMode == RASP_NURBS)
+		|| mode.FlightMode == RASP_POS 
+		|| mode.FlightMode == RASP_NURBS_SEMI || mode.FlightMode == RASP_NURBS_AUTO)
 	{// in all raspPi modes, rasp gives q_sp and thrust force
 		Qsp2Rsp();
 		set_thrust_force();
@@ -464,7 +465,8 @@ void Process250Hz_A(void)
 	if(usb_count > 1){//125Hz
 		usb_count=0;
 		if(myusb.connected){
-			USB_write_Raspberry(1024,'s');
+			myusb.in_timestamp = timer_get()/1000;
+			USB_write_Raspberry(myusb.in_timestamp,'s');
 		}
 	}
 }
@@ -576,7 +578,8 @@ void Process50Hz(void)
 		if(led_count>=10){
 			led_count = 0;
 			if(mode.FlightMode == POS_CTRL || mode.FlightMode == RASP_POS
-				||mode.FlightMode == ALT_CTRL || mode.FlightMode == RASP_ALT) 
+				||mode.FlightMode == ALT_CTRL || mode.FlightMode == RASP_ALT
+				||mode.FlightMode == RASP_NURBS_SEMI || mode.FlightMode == RASP_NURBS_AUTO) 
 				led_ctrl(LED2,ON);
 			else led_ctrl(LED2,OFF);
 			if(myusb.rcv_timeout)//usb running
@@ -599,7 +602,7 @@ void Process50Hz(void)
 	if(adc_count>=50){//1Hz
 		adc_count = 0;
 		adc.battery = adc_get_converted();
-		if(adc.battery < BAT_WARNING){
+		if(adc.battery < BAT_WARNING||mode.offboard == 0){
 			beep(ON);
 		}
 		else beep(OFF);

@@ -4,9 +4,9 @@
 #include "../Main/commons.h"
 void command_init(void)
 {
-	cmd.pos_z_sp = pos.z_est[0] / 1000;	
-	cmd.pos_x_sp = pos.x_est[0] / 1000;
-	cmd.pos_y_sp = pos.y_est[0] / 1000;	
+	cmd.pos_z_sp = pos.z_est[0];	
+	cmd.pos_x_sp = pos.x_est[0];
+	cmd.pos_y_sp = pos.y_est[0];	
 }
 void get_rc(short dt)
 {
@@ -17,7 +17,7 @@ void get_rc(short dt)
 	mode.l_FlightMode = mode.FlightMode;
 	
 	#if OFFBOARD_AVAIL
-	if (cmd.rc[5] > -307 || myusb.rcv_timeout == 0){//on board
+	if (cmd.rc[5] < -307){//on board
 		mode.offboard = 0;
 		if (cmd.rc[4] > 307){//switch upward	
 			mode.FlightMode = POS_CTRL;	
@@ -29,18 +29,44 @@ void get_rc(short dt)
 			mode.FlightMode = MANUEL;
 		}
 	}
-	else{//rasp
-		mode.offboard = 1;
-		if (cmd.rc[4] > 307){//switch upward	
-			mode.FlightMode = RASP_POS;	
+	else{//either rasp_aid or rasp_nurbs
+		if(myusb.rcv_timeout == 0 || myusb.sync == 0){//when connection lost
+			mode.offboard = 0;
+			if (cmd.rc[4] > 307){//switch upward	
+				mode.FlightMode = POS_CTRL;	
+			}
+			else if(cmd.rc[4] > -307){		//in the middle
+				mode.FlightMode = ALT_CTRL;
+			}
+			else{		//downward
+				mode.FlightMode = MANUEL;
+			}
 		}
-		else if(cmd.rc[4] > -307){		//in the middle
-			mode.FlightMode = RASP_ALT;
-		}
-		else{		//downward
-			mode.FlightMode = RASP_MANUEL;
-		}
-	}
+		else{//connection okay
+			if(cmd.rc[5] < 307){//rasp_aid
+				mode.offboard = 1;
+				if (cmd.rc[4] > 307){//switch upward	
+					mode.FlightMode = RASP_POS;	
+				}
+				else if(cmd.rc[4] > -307){		//in the middle
+					mode.FlightMode = RASP_ALT;
+				}
+				else{		//downward
+					mode.FlightMode = RASP_MANUEL;
+				}
+			}
+			else{//rasp_nurbs
+				if(cmd.rc[6] < 307)
+					mode.FlightMode = RASP_NURBS_SEMI;	
+				else
+					mode.FlightMode = RASP_NURBS_AUTO;
+			}//end rasp_nurbs
+		}//end connection okay
+	}//end either rasp_aid or rasp_nurbs
+	
+		
+	
+	
 	#else
 	mode.offboard = 0;
 	if (cmd.rc[4] > 307){//switch upward	
@@ -91,8 +117,9 @@ void get_rc(short dt)
 *channel 5 no more usable for tuning in usb mode!
 *
 */	
-	
-//	pos_xPID.Prate = 2.5 + (cmd.rc[5]/1024.0)*1.0;
+#if OFFBOARD_AVAIL
+#else
+//	pos_xPID.Prate = 2.5 + (cmd.rc[5]/1024.0)*1.5;
 //	pos_xPID.P = 0.3 + (cmd.rc[6]/1024.0)*0.15;
 //	pos_xPID.Drate = 0.1 + (cmd.rc[7]/1024.0)*0.1;
 	
@@ -100,13 +127,12 @@ void get_rc(short dt)
 //	pos_yPID.Prate = pos_xPID.Prate;	
 //	pos_yPID.Irate = pos_xPID.Irate;
 //	pos_yPID.Drate = pos_xPID.Drate;	
-//	altPID.Prate = 1.8 + (cmd.rc[5]/1024.0)*0.7;
-//	altPID.P = 1.9 + (cmd.rc[6]/1024.0)*0.7;
-//	altPID.Irate = 0.05 + (cmd.rc[7]/1024.0)*0.05;
+	altPID.Prate = 2.5 + (cmd.rc[5]/1024.0)*1.0;
+	altPID.P = 2.5 + (cmd.rc[6]/1024.0)*1.0;//	altPID.Irate = 0.05 + (cmd.rc[7]/1024.0)*0.05;
 	
-//	pitchPID.Prate = 22.5 + (cmd.rc[5]/1024.0)*8.0;
+//	pitchPID.Prate = 18.5 + (cmd.rc[5]/1024.0)*8.0;
 //	pitchPID.Drate = 0.03 + (cmd.rc[6]/1024.0)*0.03;
-//	pitchPID.P = 2.1 + (cmd.rc[6]/1024.0)*1.0;
+//	pitchPID.P = 1.8 + (cmd.rc[6]/1024.0)*1.0;
 //	pitchPID.Irate = 1.8 + (cmd.rc[7]/1024.0)*1.8;
 //	rollPID.Prate = 11.0 + (cmd.rc[5]/1024.0)*9.0;
 //	rollPID.Drate = 0.03 + (cmd.rc[7]/1024.0)*0.03;
@@ -115,4 +141,5 @@ void get_rc(short dt)
 //	rollPID.Irate = pitchPID.Irate;
 //	yawPID.Prate = 10.0 + (cmd.rc[5]/1024.0)*8.0;
 //	yawPID.P = 1.2 + (cmd.rc[6]/1024.0)*0.9;
+#endif
 }

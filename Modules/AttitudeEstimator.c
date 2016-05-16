@@ -297,8 +297,10 @@ void attitude_compute(void)
 	roll  = atan2(att.R[2][1], att.R[2][2])*DSCRT_F;
 	yaw = -atan2(att.R[0][1], att.R[1][1])*DSCRT_F;
 	//yaw changes continuously without jumping from -180 to 180
-	if(yaw < (-(DSCRT_I*19/20)*PI) && l_yaw>((DSCRT_I*19/20)*PI))turn++;//0.95*16384=15565
-	if(yaw > ((DSCRT_I*19/20)*PI) && l_yaw<(-(DSCRT_I*19/20)*PI))turn--;	
+	if(yaw < (-(DSCRT_I*19/20)*PI) && l_yaw>((DSCRT_I*19/20)*PI))
+		turn++;//0.95*16384=15565
+	if(yaw > ((DSCRT_I*19/20)*PI) && l_yaw<(-(DSCRT_I*19/20)*PI))
+		turn--;	
 	l_yaw = yaw;
 	yaw += turn*((DSCRT_I*2)*PI);
 		
@@ -512,12 +514,12 @@ void marg_update(void) //(1<<14)rad
 	wx = ((int)sens.gx<<(DSCRT-1))/scale_gyr - gyr_bias[0];
 	wy = ((int)sens.gy<<(DSCRT-1))/scale_gyr - gyr_bias[1];
 	wz = ((int)sens.gz<<(DSCRT-1))/scale_gyr - gyr_bias[2];
-//	att.rollspeed = IIR_apply(&iir_wx, wx)*2;
-//	att.pitchspeed = IIR_apply(&iir_wy, wy)*2;
-//	att.yawspeed = IIR_apply(&iir_wz, wz)*2;
-	att.rollspeed = wx*2;
-	att.pitchspeed = wy*2;
-	att.yawspeed = wz*2;
+	att.rollspeed = IIR_apply(&iir_wx, wx)*2;
+	att.pitchspeed = IIR_apply(&iir_wy, wy)*2;
+	att.yawspeed = IIR_apply(&iir_wz, wz)*2;
+//	att.rollspeed = wx*2;
+//	att.pitchspeed = wy*2;
+//	att.yawspeed = wz*2;
 	
 //	#define ZOOM 2
 	wx = (wx + mag_corr[0])>>1;

@@ -6,7 +6,7 @@ void mpu6000_config(void)
 	A1 = A1;
 	spi_write_reg(CS_MPU, RA_PWR_MGMENT_1, 0x1);
 	spi_write_reg(CS_MPU, RA_SMPLRT_DIV, 0x0);
-	spi_write_reg(CS_MPU, RA_CONFIG, 0x3);//42Hz lps, same in px4
+	spi_write_reg(CS_MPU, RA_CONFIG, 0x4);//42Hz lps, same in px4
 	spi_write_reg(CS_MPU, RA_GYRO_CONFIG, 0x0);//+-250deg/s
 	spi_write_reg(CS_MPU, RA_ACCEL_CONFIG, 0x8);//+-4g
 	spi_write_reg(CS_MPU, RA_USER_CTRL, 0x0);

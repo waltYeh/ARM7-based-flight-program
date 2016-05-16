@@ -1,8 +1,8 @@
 #ifndef FILTER_H
 #define FILTER_H
 //float alt_kalman_filter(int Z_k[4],float Q[3],float R[4],short dt,int x_out[3]);
-void inertial_filter_predict(short dt, int x[2], int acc);
-void inertial_filter_correct(int e, short dt, int x[2], char i, float w);
+void inertial_filter_predict(short dt, float x[2], int acc);
+void inertial_filter_correct(int e, short dt, float x[2], char i, float w);
 #if OUTDOOR
 void gps_pos_init(void);
 void gps2xyz(short dt);
