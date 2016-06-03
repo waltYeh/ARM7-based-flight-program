@@ -25,7 +25,7 @@
 
 #define ON_FLIGHT 1
 #define OFF_FLIGHT 0
-#define WAIT_GPS 1
+#define WAIT_GPS 0
 
 #define OLD_ATT 0
 #define NEW_ATT 0

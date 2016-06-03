@@ -22,7 +22,6 @@ Section Cross References
     main.o(.text) refers to ms5611_spi.o(.text) for data2pressure
     main.o(.text) refers to positionestimator.o(.text) for baro_pos_corr
     main.o(.text) refers to imu.o(.text) for continue_cps_read
-    main.o(.text) refers to gps.o(.text) for get_gps_data
     main.o(.text) refers to radiocontroller.o(.text) for get_rc
     main.o(.text) refers to pwm.o(.text) for motor_cut
     main.o(.text) refers to pio.o(.text) for led_ctrl
@@ -32,6 +31,7 @@ Section Cross References
     main.o(.text) refers to motormixer.o(.text) for put_motors
     main.o(.text) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
     main.o(.text) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    main.o(.text) refers to gps.o(.text) for get_gps_data
     main.o(.text) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
     main.o(.text) refers to main.o(.data) for cmd
     main.o(.text) refers to main.o(.bss) for sens
@@ -1631,52 +1631,52 @@ Image Symbol Table
     ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  lib_rtti_impl.o ABSOLUTE
     ../../../edgfe/lib_src/typeinfo.c        0x00000000   Number         0  type_info_dtor.o ABSOLUTE
     ../../angel/boardlib.s                   0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../../angel/boardlib.s                   0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../../angel/boardlib.s                   0x00000000   Number         0  boardshut.o ABSOLUTE
     ../../angel/boardlib.s                   0x00000000   Number         0  boardinit2.o ABSOLUTE
-    ../../angel/boardlib.s                   0x00000000   Number         0  boardinit1.o ABSOLUTE
     ../../angel/dczerorl2.s                  0x00000000   Number         0  __dczerorl2.o ABSOLUTE
     ../../angel/handlers.s                   0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../../angel/kernel.s                     0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../../angel/kernel.s                     0x00000000   Number         0  rtexit.o ABSOLUTE
     ../../angel/kernel.s                     0x00000000   Number         0  rtentry.o ABSOLUTE
-    ../../angel/kernel.s                     0x00000000   Number         0  rtentry2.o ABSOLUTE
     ../../angel/kernel.s                     0x00000000   Number         0  rtentry4.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  aeabi_ldiv0_sigfpe.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr_intlibspace.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_raise.o ABSOLUTE
+    ../../angel/kernel.s                     0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../../angel/kernel.s                     0x00000000   Number         0  rtentry2.o ABSOLUTE
+    ../../angel/kernel.s                     0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../../angel/rt.s                         0x00000000   Number         0  aeabi_ldiv0.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_div0.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr_intlibspace.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
-    ../../angel/rt.s                         0x00000000   Number         0  rt_heap_descriptor_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  aeabi_ldiv0_sigfpe.o ABSOLUTE
     ../../angel/rt.s                         0x00000000   Number         0  rt_heap_descriptor.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_heap_descriptor_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_fp_status_addr_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_ddtor_pointer_addr_intlibspace.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_raise.o ABSOLUTE
+    ../../angel/rt.s                         0x00000000   Number         0  rt_div0.o ABSOLUTE
     ../../angel/scatter.s                    0x00000000   Number         0  __scatter.o ABSOLUTE
     ../../angel/startup.s                    0x00000000   Number         0  __main.o ABSOLUTE
-    ../../angel/sys.s                        0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../../angel/sys.s                        0x00000000   Number         0  mutex_dummy.o ABSOLUTE
     ../../angel/sys.s                        0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  mutex_dummy.o ABSOLUTE
+    ../../angel/sys.s                        0x00000000   Number         0  use_no_semi.o ABSOLUTE
     ../../angel/sys.s                        0x00000000   Number         0  libspace.o ABSOLUTE
-    ../../angel/sysapp.c                     0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../../angel/sysapp.c                     0x00000000   Number         0  sys_command.o ABSOLUTE
     ../../angel/sysapp.c                     0x00000000   Number         0  sys_exit.o ABSOLUTE
+    ../../angel/sysapp.c                     0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  _get_argv.o ABSOLUTE
-    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  no_argv.o ABSOLUTE
     ../../armsys.c                           0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../../armsys.c                           0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../../asin.c                             0x00000000   Number         0  asin_x.o ABSOLUTE
     ../../asin.c                             0x00000000   Number         0  asin.o ABSOLUTE
     ../../atan.c                             0x00000000   Number         0  atan.o ABSOLUTE
     ../../atan.c                             0x00000000   Number         0  atan_x.o ABSOLUTE
     ../../atan2.c                            0x00000000   Number         0  atan2_x.o ABSOLUTE
     ../../atan2.c                            0x00000000   Number         0  atan2.o ABSOLUTE
-    ../../cos.c                              0x00000000   Number         0  cos.o ABSOLUTE
     ../../cos.c                              0x00000000   Number         0  cos_x.o ABSOLUTE
+    ../../cos.c                              0x00000000   Number         0  cos.o ABSOLUTE
     ../../cos_i.c                            0x00000000   Number         0  cos_i.o ABSOLUTE
     ../../d2f.s                              0x00000000   Number         0  d2f.o ABSOLUTE
     ../../daddsub.s                          0x00000000   Number         0  daddsub_noclz.o ABSOLUTE
@@ -1685,10 +1685,10 @@ Image Symbol Table
     ../../ddiv.s                             0x00000000   Number         0  ddiv.o ABSOLUTE
     ../../dfix.s                             0x00000000   Number         0  dfix.o ABSOLUTE
     ../../dflt.s                             0x00000000   Number         0  dflt_noclz.o ABSOLUTE
-    ../../division.s                         0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
     ../../division.s                         0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
-    ../../divrt.s                            0x00000000   Number         0  divrt_7tdmi_div0.o ABSOLUTE
+    ../../division.s                         0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
     ../../divrt.s                            0x00000000   Number         0  divrt_7tdmi.o ABSOLUTE
+    ../../divrt.s                            0x00000000   Number         0  divrt_7tdmi_div0.o ABSOLUTE
     ../../dleqf.s                            0x00000000   Number         0  dleqf.o ABSOLUTE
     ../../dmul.s                             0x00000000   Number         0  dmul.o ABSOLUTE
     ../../dnaninf.s                          0x00000000   Number         0  dnaninf.o ABSOLUTE
@@ -1712,76 +1712,76 @@ Image Symbol Table
     ../../fretinf.s                          0x00000000   Number         0  fretinf.o ABSOLUTE
     ../../frleqf.s                           0x00000000   Number         0  frleqf.o ABSOLUTE
     ../../heap1.c                            0x00000000   Number         0  h1_final.o ABSOLUTE
-    ../../heap1.c                            0x00000000   Number         0  h1_init.o ABSOLUTE
     ../../heap1.c                            0x00000000   Number         0  h1_free_mt.o ABSOLUTE
     ../../heap1.c                            0x00000000   Number         0  h1_init_mt.o ABSOLUTE
-    ../../heap1.c                            0x00000000   Number         0  h1_extend_mt.o ABSOLUTE
-    ../../heap1.c                            0x00000000   Number         0  h1_extend.o ABSOLUTE
-    ../../heap1.c                            0x00000000   Number         0  h1_free.o ABSOLUTE
-    ../../heap1.c                            0x00000000   Number         0  h1_alloc_mt.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_init.o ABSOLUTE
     ../../heap1.c                            0x00000000   Number         0  h1_final_mt.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_free.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_extend_mt.o ABSOLUTE
     ../../heap1.c                            0x00000000   Number         0  h1_alloc.o ABSOLUTE
-    ../../heap2.c                            0x00000000   Number         0  fdtree.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_extend.o ABSOLUTE
+    ../../heap1.c                            0x00000000   Number         0  h1_alloc_mt.o ABSOLUTE
     ../../heap2.c                            0x00000000   Number         0  heap2.o ABSOLUTE
     ../../heap2.c                            0x00000000   Number         0  heap2mt.o ABSOLUTE
+    ../../heap2.c                            0x00000000   Number         0  fdtree.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  hguard.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  init_alloc.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  malloc.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  free.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  malloc.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  heapstubs.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  hguard.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  term_alloc.o ABSOLUTE
+    ../../heapalloc.c                        0x00000000   Number         0  init_alloc.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  hrguard.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  term_alloc.o ABSOLUTE
-    ../../heapalloc.c                        0x00000000   Number         0  heapstubs.o ABSOLUTE
     ../../heapalloc.c                        0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
-    ../../heapaux.c                          0x00000000   Number         0  heapauxi.o ABSOLUTE
     ../../heapaux.c                          0x00000000   Number         0  heapauxa.o ABSOLUTE
-    ../../libinit.s                          0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../../libinit.s                          0x00000000   Number         0  libshutdown.o ABSOLUTE
-    ../../libinit.s                          0x00000000   Number         0  libinit.o ABSOLUTE
+    ../../heapaux.c                          0x00000000   Number         0  heapauxi.o ABSOLUTE
     ../../libinit.s                          0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../../longlong.s                         0x00000000   Number         0  llsdiv.o ABSOLUTE
+    ../../libinit.s                          0x00000000   Number         0  libshutdown2.o ABSOLUTE
+    ../../libinit.s                          0x00000000   Number         0  libinit.o ABSOLUTE
+    ../../libinit.s                          0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../../longlong.s                         0x00000000   Number         0  lludiv.o ABSOLUTE
-    ../../memcpset.s                         0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
+    ../../longlong.s                         0x00000000   Number         0  llsdiv.o ABSOLUTE
     ../../memcpset.s                         0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
+    ../../memcpset.s                         0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
     ../../memcpset.s                         0x00000000   Number         0  rt_memcpy.o ABSOLUTE
     ../../poly.c                             0x00000000   Number         0  poly.o ABSOLUTE
-    ../../pow.c                              0x00000000   Number         0  pow_x.o ABSOLUTE
     ../../pow.c                              0x00000000   Number         0  pow.o ABSOLUTE
+    ../../pow.c                              0x00000000   Number         0  pow_x.o ABSOLUTE
     ../../qnan.c                             0x00000000   Number         0  qnan.o ABSOLUTE
     ../../retnan.s                           0x00000000   Number         0  retnan.o ABSOLUTE
     ../../rred.c                             0x00000000   Number         0  rred.o ABSOLUTE
     ../../scalbn.s                           0x00000000   Number         0  scalbn.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  __raise.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  __raise.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
     ../../signal.c                           0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../../signal.c                           0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../../signal.c                           0x00000000   Number         0  defsig_other.o ABSOLUTE
     ../../signal.s                           0x00000000   Number         0  defsig.o ABSOLUTE
     ../../sin.c                              0x00000000   Number         0  sin.o ABSOLUTE
     ../../sin.c                              0x00000000   Number         0  sin_x.o ABSOLUTE
-    ../../sin_i.c                            0x00000000   Number         0  sin_i_x.o ABSOLUTE
     ../../sin_i.c                            0x00000000   Number         0  sin_i.o ABSOLUTE
+    ../../sin_i.c                            0x00000000   Number         0  sin_i_x.o ABSOLUTE
     ../../sqrt.c                             0x00000000   Number         0  sqrt.o ABSOLUTE
     ../../sqrt.c                             0x00000000   Number         0  sqrt_x.o ABSOLUTE
-    ../../stdlib.c                           0x00000000   Number         0  atexit_cpp.o ABSOLUTE
     ../../stdlib.c                           0x00000000   Number         0  exit.o ABSOLUTE
+    ../../stdlib.c                           0x00000000   Number         0  atexit_cpp.o ABSOLUTE
     ../../tan.c                              0x00000000   Number         0  tan_x.o ABSOLUTE
     ../../tan.c                              0x00000000   Number         0  tan.o ABSOLUTE
-    ../../tan_i.c                            0x00000000   Number         0  tan_i_x.o ABSOLUTE
     ../../tan_i.c                            0x00000000   Number         0  tan_i.o ABSOLUTE
+    ../../tan_i.c                            0x00000000   Number         0  tan_i_x.o ABSOLUTE
     ../../trapv.s                            0x00000000   Number         0  trapv.o ABSOLUTE
     ../../usenofp.s                          0x00000000   Number         0  usenofp.o ABSOLUTE
     Devices\EEPROM.c                         0x00000000   Number         0  eeprom.o ABSOLUTE
@@ -1872,186 +1872,185 @@ Image Symbol Table
     .text                                    0x00100294   Section        0  commons.o(.text)
     .text                                    0x00100374   Section        0  timer.o(.text)
     .text                                    0x00100738   Section        0  main.o(.text)
-    .text                                    0x001019c4   Section        0  adc.o(.text)
-    .text                                    0x00101a7c   Section        0  gps.o(.text)
-    .text                                    0x001023b8   Section        0  pio.o(.text)
-    .text                                    0x0010289c   Section        0  pit.o(.text)
-    .text                                    0x0010290c   Section        0  pwm.o(.text)
-    .text                                    0x00102bcc   Section        0  spi.o(.text)
-    .text                                    0x001036d0   Section        0  twi.o(.text)
-    .text                                    0x00103bb4   Section        0  usb.o(.text)
-    AT91F_USB_SendData                       0x00103c2c   ARM Code     216  usb.o(.text)
-    AT91F_CDC_Enumerate                      0x00103d04   ARM Code    1272  usb.o(.text)
-    AT91F_UDP_IsConfigured                   0x001041fc   ARM Code     104  usb.o(.text)
-    UDP_ClearRXFlag                          0x001042bc   ARM Code     116  usb.o(.text)
-    UDP_WritePayload                         0x00104330   ARM Code     200  usb.o(.text)
-    UDP_GetPayload                           0x001043f8   ARM Code     232  usb.o(.text)
-    UDP_EndpointHandler                      0x00104504   ARM Code     864  usb.o(.text)
-    .text                                    0x001052e4   Section        0  xbee.o(.text)
-    .text                                    0x001055cc   Section       32  sam7.o(.text)
-    .text                                    0x001055ec   Section        0  attitudeestimator.o(.text)
-    .text                                    0x00107b2c   Section        0  controls.o(.text)
-    .text                                    0x0010901c   Section        0  filter.o(.text)
-    .text                                    0x00109364   Section        0  imu.o(.text)
-    .text                                    0x001098c8   Section        0  motormixer.o(.text)
-    .text                                    0x00109ba4   Section        0  positionestimator.o(.text)
-    .text                                    0x0010a858   Section        0  radiocontroller.o(.text)
-    .text                                    0x0010acb4   Section        0  hmc5883.o(.text)
-    .text                                    0x0010ada0   Section        0  mpu6000_spi.o(.text)
-    .text                                    0x0010aea4   Section        0  ms5611_spi.o(.text)
-    .text                                    0x0010b3a8   Section       84  llsdiv.o(.text)
-    .text                                    0x0010b3fc   Section      212  rt_memcpy.o(.text)
-    .text                                    0x0010b4d0   Section      100  rt_memcpy_w.o(.text)
-    .text                                    0x0010b534   Section      384  aeabi_sdiv.o(.text)
-    __arm_div8                               0x0010b560   ARM Code       0  aeabi_sdiv.o(.text)
-    __arm_div5                               0x0010b584   ARM Code       0  aeabi_sdiv.o(.text)
-    __arm_div2                               0x0010b5a8   ARM Code       0  aeabi_sdiv.o(.text)
-    __arm_div_large                          0x0010b5e4   ARM Code       0  aeabi_sdiv.o(.text)
-    .text                                    0x0010b6b4   Section        0  heapauxi.o(.text)
-    .text                                    0x0010b6bc   Section      720  lludiv.o(.text)
-    .text                                    0x0010b994   Section        0  _rserrno.o(.text)
-    .text                                    0x0010b9b0   Section       12  libspace.o(.text)
-    .text                                    0x0010b9c0   Section       16  rt_errno_addr_intlibspace.o(.text)
-    .text                                    0x0010b9d0   Section       96  sys_stackheap_outer.o(.text)
-    .text                                    0x0010ba30   Section        0  exit.o(.text)
-    .text                                    0x0010ba3c   Section        4  use_no_semi.o(.text)
-    .text                                    0x0010ba48   Section        0  sys_exit.o(.text)
-    .text                                    0x0010ba54   Section       16  rt_fp_status_addr_intlibspace.o(.text)
-    .text_udiv                               0x0010ba64   Section       36  aeabi_sdiv.o(.text_udiv)
-    i.__ARM_fpclassify                       0x0010ba88   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i.__ARM_isfinitef                        0x0010bab8   Section        0  attitudeestimator.o(i.__ARM_isfinitef)
-    i.__ieee754_rem_pio2                     0x0010badc   Section        0  rred.o(i.__ieee754_rem_pio2)
-    i.__kernel_cos                           0x0010bfdc   Section        0  cos_i.o(i.__kernel_cos)
-    i.__kernel_poly                          0x0010c178   Section        0  poly.o(i.__kernel_poly)
-    i.__kernel_sin                           0x0010c278   Section        0  sin_i.o(i.__kernel_sin)
-    i.__kernel_tan                           0x0010c3f8   Section        0  tan_i.o(i.__kernel_tan)
-    i.__mathlib_dbl_underflow                0x0010c7f4   Section        0  dunder.o(i.__mathlib_dbl_underflow)
-    i.asin                                   0x0010c808   Section        0  asin.o(i.asin)
-    i.atan                                   0x0010cbe0   Section        0  atan.o(i.atan)
-    i.atan2                                  0x0010cf38   Section        0  atan2.o(i.atan2)
-    i.cos                                    0x0010d190   Section        0  cos.o(i.cos)
-    i.pow                                    0x0010d290   Section        0  pow.o(i.pow)
-    i.sin                                    0x0010e188   Section        0  sin.o(i.sin)
-    i.sqrt                                   0x0010e290   Section        0  sqrt.o(i.sqrt)
-    i.tan                                    0x0010e2fc   Section        0  tan.o(i.tan)
-    x$fpl$d2f                                0x0010e3ac   Section      108  d2f.o(x$fpl$d2f)
-    x$fpl$dadd                               0x0010e418   Section      336  daddsub_noclz.o(x$fpl$dadd)
-    _dadd1                                   0x0010e428   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
-    x$fpl$dcheck1                            0x0010e568   Section       16  dcheck1.o(x$fpl$dcheck1)
-    x$fpl$dcmpinf                            0x0010e578   Section       28  dcmpi.o(x$fpl$dcmpinf)
-    x$fpl$ddiv                               0x0010e594   Section      736  ddiv.o(x$fpl$ddiv)
-    ddiv_entry                               0x0010e59c   ARM Code       0  ddiv.o(x$fpl$ddiv)
-    x$fpl$dfix                               0x0010e874   Section      112  dfix.o(x$fpl$dfix)
-    x$fpl$dflt                               0x0010e8e4   Section       88  dflt_noclz.o(x$fpl$dflt)
-    x$fpl$dfltu                              0x0010e93c   Section       12  dflt_noclz.o(x$fpl$dfltu)
-    x$fpl$dleqf                              0x0010e948   Section      148  dleqf.o(x$fpl$dleqf)
-    x$fpl$dmul                               0x0010e9dc   Section      384  dmul.o(x$fpl$dmul)
-    x$fpl$dnaninf                            0x0010eb5c   Section      192  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dretinf                            0x0010ec1c   Section       16  dretinf.o(x$fpl$dretinf)
-    x$fpl$drleqf                             0x0010ec2c   Section      140  drleqf.o(x$fpl$drleqf)
-    x$fpl$drsb                               0x0010ecb8   Section       24  daddsub_noclz.o(x$fpl$drsb)
-    x$fpl$dsqrt                              0x0010ecd0   Section      520  dsqrt_noumaal.o(x$fpl$dsqrt)
-    x$fpl$dsub                               0x0010eed8   Section      580  daddsub_noclz.o(x$fpl$dsub)
-    _dsub1                                   0x0010eee8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
-    x$fpl$f2d                                0x0010f11c   Section      100  f2d.o(x$fpl$f2d)
-    x$fpl$fadd                               0x0010f180   Section      196  faddsub_noclz.o(x$fpl$fadd)
-    _fadd1                                   0x0010f18c   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
-    x$fpl$fcmpinf                            0x0010f244   Section       28  fcmpi.o(x$fpl$fcmpinf)
-    x$fpl$fdiv                               0x0010f260   Section      400  fdiv.o(x$fpl$fdiv)
-    _fdiv1                                   0x0010f260   ARM Code       0  fdiv.o(x$fpl$fdiv)
-    x$fpl$feqf                               0x0010f3f0   Section      132  feqf.o(x$fpl$feqf)
-    x$fpl$ffix                               0x0010f474   Section       68  ffix.o(x$fpl$ffix)
-    x$fpl$fflt                               0x0010f4b8   Section       92  fflt_noclz.o(x$fpl$fflt)
-    x$fpl$fleqf                              0x0010f514   Section      132  fleqf.o(x$fpl$fleqf)
-    x$fpl$fmul                               0x0010f598   Section      256  fmul.o(x$fpl$fmul)
-    x$fpl$fnaninf                            0x0010f698   Section      168  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fpinit                             0x0010f744   Section       24  fpinit.o(x$fpl$fpinit)
-    x$fpl$fretinf                            0x0010f75c   Section       16  fretinf.o(x$fpl$fretinf)
-    x$fpl$frleqf                             0x0010f76c   Section      124  frleqf.o(x$fpl$frleqf)
-    x$fpl$frsb                               0x0010f7e8   Section       20  faddsub_noclz.o(x$fpl$frsb)
-    x$fpl$fsub                               0x0010f7fc   Section      304  faddsub_noclz.o(x$fpl$fsub)
-    _fsub1                                   0x0010f808   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
-    x$fpl$retnan                             0x0010f92c   Section      116  retnan.o(x$fpl$retnan)
-    x$fpl$scalbn                             0x0010f9a0   Section      108  scalbn.o(x$fpl$scalbn)
-    x$fpl$trapveneer                         0x0010fa0c   Section       60  trapv.o(x$fpl$trapveneer)
-    .constdata                               0x0010fa48   Section       60  spi.o(.constdata)
-    x$fpl$usenofp                            0x0010fa48   Section        0  usenofp.o(x$fpl$usenofp)
-    .constdata                               0x0010fa84   Section       85  usb.o(.constdata)
-    .constdata                               0x0010fadc   Section        8  motormixer.o(.constdata)
-    .constdata                               0x0010fae8   Section       80  asin.o(.constdata)
-    pS                                       0x0010fae8   Data          48  asin.o(.constdata)
-    qS                                       0x0010fb18   Data          32  asin.o(.constdata)
-    .constdata                               0x0010fb38   Section      136  pow.o(.constdata)
-    bp                                       0x0010fb38   Data          16  pow.o(.constdata)
-    dp_h                                     0x0010fb48   Data          16  pow.o(.constdata)
-    dp_l                                     0x0010fb58   Data          16  pow.o(.constdata)
-    L                                        0x0010fb68   Data          48  pow.o(.constdata)
-    P                                        0x0010fb98   Data          40  pow.o(.constdata)
-    .constdata                               0x0010fbc0   Section      152  atan.o(.constdata)
-    atanhi                                   0x0010fbc0   Data          32  atan.o(.constdata)
-    atanlo                                   0x0010fbe0   Data          32  atan.o(.constdata)
-    aTodd                                    0x0010fc00   Data          40  atan.o(.constdata)
-    aTeven                                   0x0010fc28   Data          48  atan.o(.constdata)
-    .constdata                               0x0010fc58   Section       48  cos_i.o(.constdata)
-    C                                        0x0010fc58   Data          48  cos_i.o(.constdata)
-    .constdata                               0x0010fc88   Section        8  qnan.o(.constdata)
-    .constdata                               0x0010fc90   Section      200  rred.o(.constdata)
-    pio2s                                    0x0010fc90   Data          48  rred.o(.constdata)
-    twooverpi                                0x0010fcc0   Data         152  rred.o(.constdata)
-    .constdata                               0x0010fd58   Section       40  sin_i.o(.constdata)
-    S                                        0x0010fd58   Data          40  sin_i.o(.constdata)
-    .constdata                               0x0010fd80   Section       96  tan_i.o(.constdata)
-    Todd                                     0x0010fd80   Data          48  tan_i.o(.constdata)
-    Teven                                    0x0010fdb0   Data          48  tan_i.o(.constdata)
+    .text                                    0x001018b8   Section        0  adc.o(.text)
+    .text                                    0x00101970   Section        0  gps.o(.text)
+    .text                                    0x001022ac   Section        0  pio.o(.text)
+    .text                                    0x00102790   Section        0  pit.o(.text)
+    .text                                    0x00102800   Section        0  pwm.o(.text)
+    .text                                    0x00102ac0   Section        0  spi.o(.text)
+    .text                                    0x001035c4   Section        0  twi.o(.text)
+    .text                                    0x00103aa8   Section        0  usb.o(.text)
+    AT91F_USB_SendData                       0x00103b20   ARM Code     216  usb.o(.text)
+    AT91F_CDC_Enumerate                      0x00103bf8   ARM Code    1272  usb.o(.text)
+    AT91F_UDP_IsConfigured                   0x001040f0   ARM Code     104  usb.o(.text)
+    UDP_ClearRXFlag                          0x001041b0   ARM Code     116  usb.o(.text)
+    UDP_WritePayload                         0x00104224   ARM Code     200  usb.o(.text)
+    UDP_GetPayload                           0x001042ec   ARM Code     232  usb.o(.text)
+    UDP_EndpointHandler                      0x001043f8   ARM Code     864  usb.o(.text)
+    .text                                    0x001051d8   Section        0  xbee.o(.text)
+    .text                                    0x001054c0   Section       32  sam7.o(.text)
+    .text                                    0x001054e0   Section        0  attitudeestimator.o(.text)
+    .text                                    0x00107a20   Section        0  controls.o(.text)
+    .text                                    0x00108f10   Section        0  filter.o(.text)
+    .text                                    0x00109258   Section        0  imu.o(.text)
+    .text                                    0x001097bc   Section        0  motormixer.o(.text)
+    .text                                    0x00109a98   Section        0  positionestimator.o(.text)
+    .text                                    0x0010a748   Section        0  radiocontroller.o(.text)
+    .text                                    0x0010aba4   Section        0  hmc5883.o(.text)
+    .text                                    0x0010ac90   Section        0  mpu6000_spi.o(.text)
+    .text                                    0x0010ad94   Section        0  ms5611_spi.o(.text)
+    .text                                    0x0010b298   Section       84  llsdiv.o(.text)
+    .text                                    0x0010b2ec   Section      212  rt_memcpy.o(.text)
+    .text                                    0x0010b3c0   Section      100  rt_memcpy_w.o(.text)
+    .text                                    0x0010b424   Section      384  aeabi_sdiv.o(.text)
+    __arm_div8                               0x0010b450   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div5                               0x0010b474   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div2                               0x0010b498   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div_large                          0x0010b4d4   ARM Code       0  aeabi_sdiv.o(.text)
+    .text                                    0x0010b5a4   Section        0  heapauxi.o(.text)
+    .text                                    0x0010b5ac   Section      720  lludiv.o(.text)
+    .text                                    0x0010b884   Section        0  _rserrno.o(.text)
+    .text                                    0x0010b8a0   Section       12  libspace.o(.text)
+    .text                                    0x0010b8b0   Section       16  rt_errno_addr_intlibspace.o(.text)
+    .text                                    0x0010b8c0   Section       96  sys_stackheap_outer.o(.text)
+    .text                                    0x0010b920   Section        0  exit.o(.text)
+    .text                                    0x0010b92c   Section        4  use_no_semi.o(.text)
+    .text                                    0x0010b938   Section        0  sys_exit.o(.text)
+    .text                                    0x0010b944   Section       16  rt_fp_status_addr_intlibspace.o(.text)
+    .text_udiv                               0x0010b954   Section       36  aeabi_sdiv.o(.text_udiv)
+    i.__ARM_fpclassify                       0x0010b978   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i.__ARM_isfinitef                        0x0010b9a8   Section        0  attitudeestimator.o(i.__ARM_isfinitef)
+    i.__ieee754_rem_pio2                     0x0010b9cc   Section        0  rred.o(i.__ieee754_rem_pio2)
+    i.__kernel_cos                           0x0010becc   Section        0  cos_i.o(i.__kernel_cos)
+    i.__kernel_poly                          0x0010c068   Section        0  poly.o(i.__kernel_poly)
+    i.__kernel_sin                           0x0010c168   Section        0  sin_i.o(i.__kernel_sin)
+    i.__kernel_tan                           0x0010c2e8   Section        0  tan_i.o(i.__kernel_tan)
+    i.__mathlib_dbl_underflow                0x0010c6e4   Section        0  dunder.o(i.__mathlib_dbl_underflow)
+    i.asin                                   0x0010c6f8   Section        0  asin.o(i.asin)
+    i.atan                                   0x0010cad0   Section        0  atan.o(i.atan)
+    i.atan2                                  0x0010ce28   Section        0  atan2.o(i.atan2)
+    i.cos                                    0x0010d080   Section        0  cos.o(i.cos)
+    i.pow                                    0x0010d180   Section        0  pow.o(i.pow)
+    i.sin                                    0x0010e078   Section        0  sin.o(i.sin)
+    i.sqrt                                   0x0010e180   Section        0  sqrt.o(i.sqrt)
+    i.tan                                    0x0010e1ec   Section        0  tan.o(i.tan)
+    x$fpl$d2f                                0x0010e29c   Section      108  d2f.o(x$fpl$d2f)
+    x$fpl$dadd                               0x0010e308   Section      336  daddsub_noclz.o(x$fpl$dadd)
+    _dadd1                                   0x0010e318   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    x$fpl$dcheck1                            0x0010e458   Section       16  dcheck1.o(x$fpl$dcheck1)
+    x$fpl$dcmpinf                            0x0010e468   Section       28  dcmpi.o(x$fpl$dcmpinf)
+    x$fpl$ddiv                               0x0010e484   Section      736  ddiv.o(x$fpl$ddiv)
+    ddiv_entry                               0x0010e48c   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    x$fpl$dfix                               0x0010e764   Section      112  dfix.o(x$fpl$dfix)
+    x$fpl$dflt                               0x0010e7d4   Section       88  dflt_noclz.o(x$fpl$dflt)
+    x$fpl$dfltu                              0x0010e82c   Section       12  dflt_noclz.o(x$fpl$dfltu)
+    x$fpl$dleqf                              0x0010e838   Section      148  dleqf.o(x$fpl$dleqf)
+    x$fpl$dmul                               0x0010e8cc   Section      384  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x0010ea4c   Section      192  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x0010eb0c   Section       16  dretinf.o(x$fpl$dretinf)
+    x$fpl$drleqf                             0x0010eb1c   Section      140  drleqf.o(x$fpl$drleqf)
+    x$fpl$drsb                               0x0010eba8   Section       24  daddsub_noclz.o(x$fpl$drsb)
+    x$fpl$dsqrt                              0x0010ebc0   Section      520  dsqrt_noumaal.o(x$fpl$dsqrt)
+    x$fpl$dsub                               0x0010edc8   Section      580  daddsub_noclz.o(x$fpl$dsub)
+    _dsub1                                   0x0010edd8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    x$fpl$f2d                                0x0010f00c   Section      100  f2d.o(x$fpl$f2d)
+    x$fpl$fadd                               0x0010f070   Section      196  faddsub_noclz.o(x$fpl$fadd)
+    _fadd1                                   0x0010f07c   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    x$fpl$fcmpinf                            0x0010f134   Section       28  fcmpi.o(x$fpl$fcmpinf)
+    x$fpl$fdiv                               0x0010f150   Section      400  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x0010f150   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    x$fpl$feqf                               0x0010f2e0   Section      132  feqf.o(x$fpl$feqf)
+    x$fpl$ffix                               0x0010f364   Section       68  ffix.o(x$fpl$ffix)
+    x$fpl$fflt                               0x0010f3a8   Section       92  fflt_noclz.o(x$fpl$fflt)
+    x$fpl$fleqf                              0x0010f404   Section      132  fleqf.o(x$fpl$fleqf)
+    x$fpl$fmul                               0x0010f488   Section      256  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x0010f588   Section      168  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fpinit                             0x0010f634   Section       24  fpinit.o(x$fpl$fpinit)
+    x$fpl$fretinf                            0x0010f64c   Section       16  fretinf.o(x$fpl$fretinf)
+    x$fpl$frleqf                             0x0010f65c   Section      124  frleqf.o(x$fpl$frleqf)
+    x$fpl$frsb                               0x0010f6d8   Section       20  faddsub_noclz.o(x$fpl$frsb)
+    x$fpl$fsub                               0x0010f6ec   Section      304  faddsub_noclz.o(x$fpl$fsub)
+    _fsub1                                   0x0010f6f8   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    x$fpl$retnan                             0x0010f81c   Section      116  retnan.o(x$fpl$retnan)
+    x$fpl$scalbn                             0x0010f890   Section      108  scalbn.o(x$fpl$scalbn)
+    x$fpl$trapveneer                         0x0010f8fc   Section       60  trapv.o(x$fpl$trapveneer)
+    .constdata                               0x0010f938   Section       60  spi.o(.constdata)
+    x$fpl$usenofp                            0x0010f938   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x0010f974   Section       85  usb.o(.constdata)
+    .constdata                               0x0010f9cc   Section        8  motormixer.o(.constdata)
+    .constdata                               0x0010f9d8   Section       80  asin.o(.constdata)
+    pS                                       0x0010f9d8   Data          48  asin.o(.constdata)
+    qS                                       0x0010fa08   Data          32  asin.o(.constdata)
+    .constdata                               0x0010fa28   Section      136  pow.o(.constdata)
+    bp                                       0x0010fa28   Data          16  pow.o(.constdata)
+    dp_h                                     0x0010fa38   Data          16  pow.o(.constdata)
+    dp_l                                     0x0010fa48   Data          16  pow.o(.constdata)
+    L                                        0x0010fa58   Data          48  pow.o(.constdata)
+    P                                        0x0010fa88   Data          40  pow.o(.constdata)
+    .constdata                               0x0010fab0   Section      152  atan.o(.constdata)
+    atanhi                                   0x0010fab0   Data          32  atan.o(.constdata)
+    atanlo                                   0x0010fad0   Data          32  atan.o(.constdata)
+    aTodd                                    0x0010faf0   Data          40  atan.o(.constdata)
+    aTeven                                   0x0010fb18   Data          48  atan.o(.constdata)
+    .constdata                               0x0010fb48   Section       48  cos_i.o(.constdata)
+    C                                        0x0010fb48   Data          48  cos_i.o(.constdata)
+    .constdata                               0x0010fb78   Section        8  qnan.o(.constdata)
+    .constdata                               0x0010fb80   Section      200  rred.o(.constdata)
+    pio2s                                    0x0010fb80   Data          48  rred.o(.constdata)
+    twooverpi                                0x0010fbb0   Data         152  rred.o(.constdata)
+    .constdata                               0x0010fc48   Section       40  sin_i.o(.constdata)
+    S                                        0x0010fc48   Data          40  sin_i.o(.constdata)
+    .constdata                               0x0010fc70   Section       96  tan_i.o(.constdata)
+    Todd                                     0x0010fc70   Data          48  tan_i.o(.constdata)
+    Teven                                    0x0010fca0   Data          48  tan_i.o(.constdata)
     .data                                    0x00200000   Section       14  timer.o(.data)
     delay_count                              0x00200000   Data           4  timer.o(.data)
     ppm_ms_clock                             0x00200004   Data           4  timer.o(.data)
     timer_ms                                 0x00200008   Data           4  timer.o(.data)
     sensor_cnt                               0x0020000c   Data           2  timer.o(.data)
-    .data                                    0x00200010   Section      286  main.o(.data)
+    .data                                    0x00200010   Section      282  main.o(.data)
     usb_count                                0x00200110   Data           4  main.o(.data)
     cps2read                                 0x00200114   Data           4  main.o(.data)
     baro_cnt                                 0x00200118   Data           4  main.o(.data)
-    pos2corr                                 0x0020011c   Data           4  main.o(.data)
-    adc_count                                0x00200120   Data           4  main.o(.data)
-    uart_count                               0x00200124   Data           4  main.o(.data)
-    led_count                                0x00200128   Data           4  main.o(.data)
-    .data                                    0x00200130   Section       21  gps.o(.data)
-    .data                                    0x00200148   Section       12  pio.o(.data)
-    channel                                  0x00200148   Data           2  pio.o(.data)
-    press_time                               0x0020014c   Data           4  pio.o(.data)
-    last_time                                0x00200150   Data           4  pio.o(.data)
-    .data                                    0x00200154   Section       79  spi.o(.data)
-    .data                                    0x002001a4   Section       39  twi.o(.data)
-    .data                                    0x002001cc   Section       12  usb.o(.data)
-    .data                                    0x002001d8   Section       24  attitudeestimator.o(.data)
-    turn                                     0x002001e8   Data           2  attitudeestimator.o(.data)
-    l_yaw                                    0x002001ec   Data           4  attitudeestimator.o(.data)
-    .data                                    0x002001f0   Section      192  controls.o(.data)
-    .data                                    0x002002b0   Section       42  imu.o(.data)
-    sx                                       0x002002c2   Data           2  imu.o(.data)
-    sy                                       0x002002c4   Data           2  imu.o(.data)
-    sz                                       0x002002c6   Data           2  imu.o(.data)
-    sx                                       0x002002c8   Data           2  imu.o(.data)
-    sy                                       0x002002ca   Data           2  imu.o(.data)
-    sz                                       0x002002cc   Data           2  imu.o(.data)
-    .data                                    0x002002dc   Section       32  positionestimator.o(.data)
-    .data                                    0x00200300   Section       88  ms5611_spi.o(.data)
-    .bss                                     0x00200358   Section      224  main.o(.bss)
-    .bss                                     0x00200438   Section      320  gps.o(.bss)
-    .bss                                     0x00200578   Section      136  spi.o(.bss)
-    .bss                                     0x00200600   Section      192  usb.o(.bss)
-    .bss                                     0x002006c0   Section       49  xbee.o(.bss)
-    .bss                                     0x002006f4   Section      108  attitudeestimator.o(.bss)
-    .bss                                     0x00200760   Section       36  controls.o(.bss)
-    .bss                                     0x00200784   Section       96  imu.o(.bss)
-    .bss                                     0x002007e4   Section     2412  positionestimator.o(.bss)
-    .bss                                     0x00201150   Section       96  libspace.o(.bss)
-    HEAP                                     0x002011b0   Section        0  sam7.o(HEAP)
-    STACK                                    0x002011b0   Section     7048  sam7.o(STACK)
-    Heap_Mem                                 0x002011b0   Data           0  sam7.o(HEAP)
-    Stack_Mem                                0x002011b0   Data        1536  sam7.o(STACK)
-    Stack_Top                                0x00202d38   Data           0  sam7.o(STACK)
+    adc_count                                0x0020011c   Data           4  main.o(.data)
+    uart_count                               0x00200120   Data           4  main.o(.data)
+    led_count                                0x00200124   Data           4  main.o(.data)
+    .data                                    0x0020012c   Section       21  gps.o(.data)
+    .data                                    0x00200144   Section       12  pio.o(.data)
+    channel                                  0x00200144   Data           2  pio.o(.data)
+    press_time                               0x00200148   Data           4  pio.o(.data)
+    last_time                                0x0020014c   Data           4  pio.o(.data)
+    .data                                    0x00200150   Section       79  spi.o(.data)
+    .data                                    0x002001a0   Section       39  twi.o(.data)
+    .data                                    0x002001c8   Section       12  usb.o(.data)
+    .data                                    0x002001d4   Section       24  attitudeestimator.o(.data)
+    turn                                     0x002001e4   Data           2  attitudeestimator.o(.data)
+    l_yaw                                    0x002001e8   Data           4  attitudeestimator.o(.data)
+    .data                                    0x002001ec   Section      192  controls.o(.data)
+    .data                                    0x002002ac   Section       42  imu.o(.data)
+    sx                                       0x002002be   Data           2  imu.o(.data)
+    sy                                       0x002002c0   Data           2  imu.o(.data)
+    sz                                       0x002002c2   Data           2  imu.o(.data)
+    sx                                       0x002002c4   Data           2  imu.o(.data)
+    sy                                       0x002002c6   Data           2  imu.o(.data)
+    sz                                       0x002002c8   Data           2  imu.o(.data)
+    .data                                    0x002002d8   Section       32  positionestimator.o(.data)
+    .data                                    0x002002f8   Section       88  ms5611_spi.o(.data)
+    .bss                                     0x00200350   Section      224  main.o(.bss)
+    .bss                                     0x00200430   Section      320  gps.o(.bss)
+    .bss                                     0x00200570   Section      136  spi.o(.bss)
+    .bss                                     0x002005f8   Section      192  usb.o(.bss)
+    .bss                                     0x002006b8   Section       49  xbee.o(.bss)
+    .bss                                     0x002006ec   Section      108  attitudeestimator.o(.bss)
+    .bss                                     0x00200758   Section       36  controls.o(.bss)
+    .bss                                     0x0020077c   Section       96  imu.o(.bss)
+    .bss                                     0x002007dc   Section     2412  positionestimator.o(.bss)
+    .bss                                     0x00201148   Section       96  libspace.o(.bss)
+    HEAP                                     0x002011a8   Section        0  sam7.o(HEAP)
+    STACK                                    0x002011a8   Section     7048  sam7.o(STACK)
+    Heap_Mem                                 0x002011a8   Data           0  sam7.o(HEAP)
+    Stack_Mem                                0x002011a8   Data        1536  sam7.o(STACK)
+    Stack_Top                                0x00202d30   Data           0  sam7.o(STACK)
 
     Global Symbols
 
@@ -2152,257 +2151,257 @@ Image Symbol Table
     timer_reset                              0x001006e0   ARM Code      36  timer.o(.text)
     data_select                              0x00100738   ARM Code    1480  main.o(.text)
     Process250Hz_A                           0x00100d00   ARM Code     276  main.o(.text)
-    Process250Hz_B                           0x00100e14   ARM Code     360  main.o(.text)
-    ground_work_once                         0x00100f7c   ARM Code       4  main.o(.text)
-    Process50Hz                              0x00100f80   ARM Code     796  main.o(.text)
-    Process500Hz                             0x0010129c   ARM Code      68  main.o(.text)
-    self_check                               0x001012e0   ARM Code     128  main.o(.text)
-    init_loop                                0x00101360   ARM Code    1040  main.o(.text)
-    main                                     0x00101770   ARM Code     592  main.o(.text)
-    adc_init                                 0x001019c4   ARM Code      76  adc.o(.text)
-    adc_start_conversion                     0x00101a10   ARM Code      16  adc.o(.text)
-    adc_get_converted                        0x00101a20   ARM Code      80  adc.o(.text)
-    gps_int_handler                          0x00101a7c   ARM Code     348  gps.o(.text)
-    gps_init                                 0x00101bd8   ARM Code     224  gps.o(.text)
-    char_to_float                            0x00101cb8   ARM Code     376  gps.o(.text)
-    get_gps_data                             0x00101e30   ARM Code    1300  gps.o(.text)
-    usb_pullup                               0x001023b8   ARM Code      64  pio.o(.text)
-    PIO_handler                              0x001023f8   ARM Code     512  pio.o(.text)
-    usb_in_pin                               0x001025f8   ARM Code      64  pio.o(.text)
-    pio_init                                 0x00102638   ARM Code     288  pio.o(.text)
-    led_ctrl                                 0x00102758   ARM Code     168  pio.o(.text)
-    beep                                     0x00102800   ARM Code      64  pio.o(.text)
-    USB_armed                                0x00102840   ARM Code      48  pio.o(.text)
-    pit_int_handler                          0x0010289c   ARM Code      44  pit.o(.text)
-    pit_init                                 0x001028c8   ARM Code      60  pit.o(.text)
-    pwm_configure_channel                    0x0010290c   ARM Code     100  pwm.o(.text)
-    pwm_configure_clock                      0x00102970   ARM Code      12  pwm.o(.text)
-    pwm_set_period                           0x0010297c   ARM Code      72  pwm.o(.text)
-    pwm_set_duty_cycle                       0x001029c4   ARM Code      72  pwm.o(.text)
-    pwm_disable_channel                      0x00102a0c   ARM Code      20  pwm.o(.text)
-    pwm_enable_channel                       0x00102a20   ARM Code      20  pwm.o(.text)
-    pwm_init                                 0x00102a34   ARM Code     336  pwm.o(.text)
-    motor_cut                                0x00102b84   ARM Code      60  pwm.o(.text)
-    spi_init                                 0x00102bcc   ARM Code     232  spi.o(.text)
-    spi_read_write                           0x00102cb4   ARM Code     100  spi.o(.text)
-    spi_write_1_read_2                       0x00102d18   ARM Code      84  spi.o(.text)
-    spi_read_reg                             0x00102d6c   ARM Code      60  spi.o(.text)
-    spi_write_reg                            0x00102da8   ARM Code      64  spi.o(.text)
-    spi_dma_decode                           0x00102de8   ARM Code    1456  spi.o(.text)
-    spi_int_handler                          0x00103398   ARM Code     120  spi.o(.text)
-    spi_fast_init                            0x00103410   ARM Code     176  spi.o(.text)
-    spi_dma_refill                           0x001034c0   ARM Code     468  spi.o(.text)
-    twi_init                                 0x001036d0   ARM Code     120  twi.o(.text)
-    i2cwtritebyte                            0x00103748   ARM Code      96  twi.o(.text)
-    i2cwrite                                 0x001037a8   ARM Code      72  twi.o(.text)
-    i2creadbyte                              0x001037f0   ARM Code      88  twi.o(.text)
-    i2cread                                  0x00103848   ARM Code      72  twi.o(.text)
-    i2c_eeprom_write_byte                    0x00103890   ARM Code      96  twi.o(.text)
-    i2c_eeprom_read_byte                     0x001038f0   ARM Code     108  twi.o(.text)
-    twi_int_handler                          0x0010395c   ARM Code     348  twi.o(.text)
-    twi_fast_init                            0x00103ab8   ARM Code      60  twi.o(.text)
-    twi_cps_read_start                       0x00103af4   ARM Code     104  twi.o(.text)
-    stop_twi_now                             0x00103b5c   ARM Code      36  twi.o(.text)
-    stop_twi_after_complete                  0x00103b80   ARM Code      16  twi.o(.text)
-    AT91F_USB_SendStall                      0x00103bb4   ARM Code      60  usb.o(.text)
-    AT91F_USB_SendZlp                        0x00103bf0   ARM Code      60  usb.o(.text)
-    AT91F_CDC_Open                           0x00104264   ARM Code      88  usb.o(.text)
-    USB_read_Callback                        0x001044e0   ARM Code      16  usb.o(.text)
-    USB_written_Callback                     0x001044f0   ARM Code      20  usb.o(.text)
-    usb_int_handler                          0x00104864   ARM Code     340  usb.o(.text)
-    UDP_Write                                0x001049b8   ARM Code     232  usb.o(.text)
-    UDP_Read                                 0x00104aa0   ARM Code     140  usb.o(.text)
-    USB_init                                 0x00104b2c   ARM Code     168  usb.o(.text)
-    USB_int_init                             0x00104bd4   ARM Code      52  usb.o(.text)
-    USB_wait_connect                         0x00104c08   ARM Code      56  usb.o(.text)
-    USB_check                                0x00104c40   ARM Code     128  usb.o(.text)
-    USB_write_Raspberry                      0x00104cc0   ARM Code     596  usb.o(.text)
-    USB_read_Raspberry                       0x00104f14   ARM Code      40  usb.o(.text)
-    USB_read_Process                         0x00104f3c   ARM Code     932  usb.o(.text)
-    usart_int_handler                        0x001052e4   ARM Code     128  xbee.o(.text)
-    xbee_init                                0x00105364   ARM Code     260  xbee.o(.text)
-    refill_tx                                0x00105468   ARM Code     116  xbee.o(.text)
-    crc_update                               0x001054dc   ARM Code      40  xbee.o(.text)
-    crc16                                    0x00105504   ARM Code      72  xbee.o(.text)
-    uart_write_char                          0x0010554c   ARM Code      32  xbee.o(.text)
-    uart_send_data                           0x0010556c   ARM Code      68  xbee.o(.text)
-    __user_initial_stackheap                 0x001055cc   ARM Code       0  sam7.o(.text)
-    rate_IIR_init                            0x001055ec   ARM Code     152  attitudeestimator.o(.text)
-    inv_sqrt                                 0x00105684   ARM Code     108  attitudeestimator.o(.text)
-    glob2body                                0x001056f0   ARM Code     616  attitudeestimator.o(.text)
-    body2glob                                0x00105958   ARM Code     612  attitudeestimator.o(.text)
-    marg_update                              0x00105bbc   ARM Code    3936  attitudeestimator.o(.text)
-    attitude_compute                         0x00106b1c   ARM Code     528  attitudeestimator.o(.text)
-    data_2_angle                             0x00106d2c   ARM Code     136  attitudeestimator.o(.text)
-    quarternion_init                         0x00106db4   ARM Code    3428  attitudeestimator.o(.text)
-    internal_err_pid                         0x00107b2c   ARM Code     212  controls.o(.text)
-    external_err_pid                         0x00107c00   ARM Code      64  controls.o(.text)
-    position_control                         0x00107c40   ARM Code    1720  controls.o(.text)
-    altitude_control                         0x001082f8   ARM Code     396  controls.o(.text)
-    manual_R_sp_generate                     0x00108484   ARM Code     836  controls.o(.text)
-    Qsp2Rsp                                  0x001087c8   ARM Code     788  controls.o(.text)
-    set_thrust_force                         0x00108adc   ARM Code      20  controls.o(.text)
-    reset_variables                          0x00108af0   ARM Code     112  controls.o(.text)
-    attitude_control                         0x00108b60   ARM Code    1200  controls.o(.text)
-    IIR_set_cutoff_freq                      0x0010901c   ARM Code     528  filter.o(.text)
-    IIR_apply                                0x0010922c   ARM Code     164  filter.o(.text)
-    IIR_reset                                0x001092d0   ARM Code      84  filter.o(.text)
-    FIR_set_cutoff_freq                      0x00109324   ARM Code       4  filter.o(.text)
-    FIR_apply                                0x00109328   ARM Code      12  filter.o(.text)
-    FIR_reset                                0x00109334   ARM Code      32  filter.o(.text)
-    gyro_calibration                         0x00109364   ARM Code     200  imu.o(.text)
-    continue_cps_read                        0x0010942c   ARM Code      20  imu.o(.text)
-    data_conclude                            0x00109440   ARM Code     376  imu.o(.text)
-    acc_lowpass_biascorr                     0x001095b8   ARM Code     340  imu.o(.text)
-    gyro_lowpass_biascorr                    0x0010970c   ARM Code     180  imu.o(.text)
-    imu_IIR_init                             0x001097c0   ARM Code     176  imu.o(.text)
-    force2output                             0x001098c8   ARM Code     132  motormixer.o(.text)
-    put_motors                               0x0010994c   ARM Code     568  motormixer.o(.text)
-    gps_pos_init                             0x00109ba4   ARM Code     372  positionestimator.o(.text)
-    gps2xyz                                  0x00109d18   ARM Code     456  positionestimator.o(.text)
-    inertial_filter_correct                  0x00109ee0   ARM Code     144  positionestimator.o(.text)
-    gps_pos_corr                             0x00109f70   ARM Code     784  positionestimator.o(.text)
-    baro_pos_corr                            0x0010a280   ARM Code     248  positionestimator.o(.text)
-    zero_pos_corr                            0x0010a378   ARM Code     128  positionestimator.o(.text)
-    sonar_pos_corr                           0x0010a3f8   ARM Code     124  positionestimator.o(.text)
-    corr_geo_acc                             0x0010a474   ARM Code      52  positionestimator.o(.text)
-    get_geo_acc                              0x0010a4a8   ARM Code     220  positionestimator.o(.text)
-    inertial_filter_predict                  0x0010a584   ARM Code     216  positionestimator.o(.text)
-    pos_predict                              0x0010a65c   ARM Code     392  positionestimator.o(.text)
-    command_init                             0x0010a858   ARM Code      72  radiocontroller.o(.text)
-    get_rc                                   0x0010a8a0   ARM Code    1000  radiocontroller.o(.text)
-    hmc5883_config                           0x0010acb4   ARM Code     120  hmc5883.o(.text)
-    hmc5883_read                             0x0010ad2c   ARM Code     116  hmc5883.o(.text)
-    mpu6000_config                           0x0010ada0   ARM Code     160  mpu6000_spi.o(.text)
-    mpu6000_read_all                         0x0010ae40   ARM Code     100  mpu6000_spi.o(.text)
-    data2tempeture                           0x0010aea4   ARM Code     760  ms5611_spi.o(.text)
-    data2pressure                            0x0010b19c   ARM Code      96  ms5611_spi.o(.text)
-    get_altitude                             0x0010b1fc   ARM Code     148  ms5611_spi.o(.text)
-    MS5611_RESET                             0x0010b290   ARM Code      28  ms5611_spi.o(.text)
-    MS5611_init                              0x0010b2ac   ARM Code     168  ms5611_spi.o(.text)
-    __aeabi_ldivmod                          0x0010b3a8   ARM Code       0  llsdiv.o(.text)
-    _ll_sdiv                                 0x0010b3a8   ARM Code      84  llsdiv.o(.text)
-    __aeabi_memcpy                           0x0010b3fc   ARM Code       0  rt_memcpy.o(.text)
-    __rt_memcpy                              0x0010b3fc   ARM Code     212  rt_memcpy.o(.text)
-    _memcpy_lastbytes                        0x0010b4b0   ARM Code       0  rt_memcpy.o(.text)
-    __aeabi_memcpy4                          0x0010b4d0   ARM Code       0  rt_memcpy_w.o(.text)
-    __aeabi_memcpy8                          0x0010b4d0   ARM Code       0  rt_memcpy_w.o(.text)
-    __rt_memcpy_w                            0x0010b4d0   ARM Code     100  rt_memcpy_w.o(.text)
-    _memcpy_lastbytes_aligned                0x0010b51c   ARM Code       0  rt_memcpy_w.o(.text)
-    __aeabi_idiv                             0x0010b534   ARM Code       0  aeabi_sdiv.o(.text)
-    __aeabi_idivmod                          0x0010b534   ARM Code     384  aeabi_sdiv.o(.text)
-    __use_two_region_memory                  0x0010b6b5   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow                         0x0010b6b7   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand                         0x0010b6b9   Thumb Code     2  heapauxi.o(.text)
-    __aeabi_uldivmod                         0x0010b6bc   ARM Code       0  lludiv.o(.text)
-    _ll_udiv                                 0x0010b6bc   ARM Code     720  lludiv.o(.text)
-    _ll_udiv_donemoving                      0x0010b6d0   ARM Code       0  lludiv.o(.text)
-    Inline ARM to Thumb Veneer to __set_errno 0x0010b98c   ARM Code       8  _rserrno.o(.text)
-    __read_errno                             0x0010b995   Thumb Code    14  _rserrno.o(.text)
-    __set_errno                              0x0010b9a3   Thumb Code    12  _rserrno.o(.text)
-    __user_libspace                          0x0010b9b0   ARM Code      12  libspace.o(.text)
-    __user_perproc_libspace                  0x0010b9b0   ARM Code       0  libspace.o(.text)
-    __user_perthread_libspace                0x0010b9b0   ARM Code       0  libspace.o(.text)
-    Inline Thumb to ARM Veneer to __aeabi_errno_addr 0x0010b9bd   Thumb Code     4  rt_errno_addr_intlibspace.o(.text)
-    __aeabi_errno_addr                       0x0010b9c0   ARM Code      16  rt_errno_addr_intlibspace.o(.text)
-    __errno$intlibspace                      0x0010b9c0   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
-    __rt_errno_addr$intlibspace              0x0010b9c0   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
-    __user_setup_stackheap                   0x0010b9d0   ARM Code      96  sys_stackheap_outer.o(.text)
-    exit                                     0x0010ba31   Thumb Code    12  exit.o(.text)
-    __I$use$semihosting                      0x0010ba3c   ARM Code       0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x0010ba3c   ARM Code       4  use_no_semi.o(.text)
-    Inline ARM to Thumb Veneer to _sys_exit  0x0010ba40   ARM Code       8  sys_exit.o(.text)
-    _sys_exit                                0x0010ba49   Thumb Code     8  sys_exit.o(.text)
-    __rt_fp_status_addr                      0x0010ba54   ARM Code      16  rt_fp_status_addr_intlibspace.o(.text)
-    __aeabi_uidiv                            0x0010ba64   ARM Code       0  aeabi_sdiv.o(.text_udiv)
-    __aeabi_uidivmod                         0x0010ba64   ARM Code      36  aeabi_sdiv.o(.text_udiv)
-    __ARM_fpclassify                         0x0010ba88   ARM Code      48  fpclassify.o(i.__ARM_fpclassify)
-    __ARM_isfinitef                          0x0010bab8   ARM Code      36  attitudeestimator.o(i.__ARM_isfinitef)
-    __ieee754_rem_pio2                       0x0010badc   ARM Code    1216  rred.o(i.__ieee754_rem_pio2)
-    __kernel_cos                             0x0010bfdc   ARM Code     404  cos_i.o(i.__kernel_cos)
-    __kernel_poly                            0x0010c178   ARM Code     256  poly.o(i.__kernel_poly)
-    __kernel_sin                             0x0010c278   ARM Code     372  sin_i.o(i.__kernel_sin)
-    __kernel_tan                             0x0010c3f8   ARM Code     984  tan_i.o(i.__kernel_tan)
-    __mathlib_dbl_underflow                  0x0010c7f4   ARM Code      20  dunder.o(i.__mathlib_dbl_underflow)
-    asin                                     0x0010c808   ARM Code     944  asin.o(i.asin)
-    atan                                     0x0010cbe0   ARM Code     828  atan.o(i.atan)
-    atan2                                    0x0010cf38   ARM Code     568  atan2.o(i.atan2)
-    cos                                      0x0010d190   ARM Code     252  cos.o(i.cos)
-    pow                                      0x0010d290   ARM Code    3832  pow.o(i.pow)
-    sin                                      0x0010e188   ARM Code     260  sin.o(i.sin)
-    sqrt                                     0x0010e290   ARM Code     108  sqrt.o(i.sqrt)
-    tan                                      0x0010e2fc   ARM Code     172  tan.o(i.tan)
-    __aeabi_d2f                              0x0010e3ac   ARM Code       0  d2f.o(x$fpl$d2f)
-    _d2f                                     0x0010e3ac   ARM Code     108  d2f.o(x$fpl$d2f)
-    __aeabi_dadd                             0x0010e418   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
-    _dadd                                    0x0010e418   ARM Code     332  daddsub_noclz.o(x$fpl$dadd)
-    __fpl_dcheck_NaN1                        0x0010e568   ARM Code      12  dcheck1.o(x$fpl$dcheck1)
-    __fpl_dcmp_Inf                           0x0010e578   ARM Code      28  dcmpi.o(x$fpl$dcmpinf)
-    __aeabi_ddiv                             0x0010e594   ARM Code       0  ddiv.o(x$fpl$ddiv)
-    _ddiv                                    0x0010e594   ARM Code     600  ddiv.o(x$fpl$ddiv)
-    __aeabi_d2iz                             0x0010e874   ARM Code       0  dfix.o(x$fpl$dfix)
-    _dfix                                    0x0010e874   ARM Code     112  dfix.o(x$fpl$dfix)
-    __aeabi_i2d                              0x0010e8e4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
-    _dflt                                    0x0010e8e4   ARM Code      88  dflt_noclz.o(x$fpl$dflt)
-    __dflt_normalise                         0x0010e8f4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
-    __aeabi_ui2d                             0x0010e93c   ARM Code       0  dflt_noclz.o(x$fpl$dfltu)
-    _dfltu                                   0x0010e93c   ARM Code      12  dflt_noclz.o(x$fpl$dfltu)
-    __aeabi_cdcmple                          0x0010e948   ARM Code       0  dleqf.o(x$fpl$dleqf)
-    _dcmple                                  0x0010e948   ARM Code     148  dleqf.o(x$fpl$dleqf)
-    __fpl_dcmple_InfNaN                      0x0010e9c4   ARM Code       0  dleqf.o(x$fpl$dleqf)
-    __aeabi_dmul                             0x0010e9dc   ARM Code       0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x0010e9dc   ARM Code     372  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x0010eb5c   ARM Code     192  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x0010ec1c   ARM Code      16  dretinf.o(x$fpl$dretinf)
-    __aeabi_cdrcmple                         0x0010ec2c   ARM Code       0  drleqf.o(x$fpl$drleqf)
-    _drcmple                                 0x0010ec2c   ARM Code     140  drleqf.o(x$fpl$drleqf)
-    __aeabi_drsub                            0x0010ecb8   ARM Code       0  daddsub_noclz.o(x$fpl$drsb)
-    _drsb                                    0x0010ecb8   ARM Code      24  daddsub_noclz.o(x$fpl$drsb)
-    _dsqrt                                   0x0010ecd0   ARM Code     516  dsqrt_noumaal.o(x$fpl$dsqrt)
-    __aeabi_dsub                             0x0010eed8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
-    _dsub                                    0x0010eed8   ARM Code     576  daddsub_noclz.o(x$fpl$dsub)
-    __aeabi_f2d                              0x0010f11c   ARM Code       0  f2d.o(x$fpl$f2d)
-    _f2d                                     0x0010f11c   ARM Code     100  f2d.o(x$fpl$f2d)
-    __aeabi_fadd                             0x0010f180   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
-    _fadd                                    0x0010f180   ARM Code     196  faddsub_noclz.o(x$fpl$fadd)
-    __fpl_fcmp_Inf                           0x0010f244   ARM Code      28  fcmpi.o(x$fpl$fcmpinf)
-    __aeabi_fdiv                             0x0010f260   ARM Code       0  fdiv.o(x$fpl$fdiv)
-    _fdiv                                    0x0010f260   ARM Code     396  fdiv.o(x$fpl$fdiv)
-    __aeabi_cfcmpeq                          0x0010f3f0   ARM Code       0  feqf.o(x$fpl$feqf)
-    _fcmpeq                                  0x0010f3f0   ARM Code     132  feqf.o(x$fpl$feqf)
-    __aeabi_f2iz                             0x0010f474   ARM Code       0  ffix.o(x$fpl$ffix)
-    _ffix                                    0x0010f474   ARM Code      68  ffix.o(x$fpl$ffix)
-    __aeabi_i2f                              0x0010f4b8   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
-    _fflt                                    0x0010f4b8   ARM Code      92  fflt_noclz.o(x$fpl$fflt)
-    __fflt_normalise                         0x0010f4c4   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
-    __aeabi_cfcmple                          0x0010f514   ARM Code       0  fleqf.o(x$fpl$fleqf)
-    _fcmple                                  0x0010f514   ARM Code     132  fleqf.o(x$fpl$fleqf)
-    __fpl_fcmple_InfNaN                      0x0010f580   ARM Code       0  fleqf.o(x$fpl$fleqf)
-    __aeabi_fmul                             0x0010f598   ARM Code       0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x0010f598   ARM Code     256  fmul.o(x$fpl$fmul)
-    __fpl_fnaninf                            0x0010f698   ARM Code     168  fnaninf.o(x$fpl$fnaninf)
-    Inline Thumb to ARM Veneer to _fp_init   0x0010f741   Thumb Code     4  fpinit.o(x$fpl$fpinit)
-    _fp_init                                 0x0010f744   ARM Code      24  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x0010f754   ARM Code       0  fpinit.o(x$fpl$fpinit)
-    __fpl_fretinf                            0x0010f75c   ARM Code      16  fretinf.o(x$fpl$fretinf)
-    __aeabi_cfrcmple                         0x0010f76c   ARM Code       0  frleqf.o(x$fpl$frleqf)
-    _frcmple                                 0x0010f76c   ARM Code     124  frleqf.o(x$fpl$frleqf)
-    __aeabi_frsub                            0x0010f7e8   ARM Code       0  faddsub_noclz.o(x$fpl$frsb)
-    _frsb                                    0x0010f7e8   ARM Code      20  faddsub_noclz.o(x$fpl$frsb)
-    __aeabi_fsub                             0x0010f7fc   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
-    _fsub                                    0x0010f7fc   ARM Code     304  faddsub_noclz.o(x$fpl$fsub)
-    __fpl_return_NaN                         0x0010f92c   ARM Code     116  retnan.o(x$fpl$retnan)
-    __ARM_scalbn                             0x0010f9a0   ARM Code       0  scalbn.o(x$fpl$scalbn)
-    scalbn                                   0x0010f9a0   ARM Code     108  scalbn.o(x$fpl$scalbn)
-    __fpl_inf_scalbn                         0x0010fa08   ARM Code       0  scalbn.o(x$fpl$scalbn)
-    __fpl_cmpreturn                          0x0010fa0c   ARM Code      60  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x0010fa48   ARM Code       0  usenofp.o(x$fpl$usenofp)
-    spibuf_ga_tx                             0x0010fa48   Data          60  spi.o(.constdata)
-    devDescriptor                            0x0010fa84   Data          18  usb.o(.constdata)
-    cfgDescriptor                            0x0010fa96   Data          67  usb.o(.constdata)
-    __mathlib_zero                           0x0010fc88   Data           8  qnan.o(.constdata)
-    Region$$Table$$Base                      0x0010fde0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0010fe00   Number         0  anon$$obj.o(Region$$Table)
+    Process250Hz_B                           0x00100e14   ARM Code     284  main.o(.text)
+    ground_work_once                         0x00100f30   ARM Code       4  main.o(.text)
+    Process50Hz                              0x00100f34   ARM Code     796  main.o(.text)
+    Process500Hz                             0x00101250   ARM Code      68  main.o(.text)
+    self_check                               0x00101294   ARM Code     128  main.o(.text)
+    init_loop                                0x00101314   ARM Code     848  main.o(.text)
+    main                                     0x00101664   ARM Code     592  main.o(.text)
+    adc_init                                 0x001018b8   ARM Code      76  adc.o(.text)
+    adc_start_conversion                     0x00101904   ARM Code      16  adc.o(.text)
+    adc_get_converted                        0x00101914   ARM Code      80  adc.o(.text)
+    gps_int_handler                          0x00101970   ARM Code     348  gps.o(.text)
+    gps_init                                 0x00101acc   ARM Code     224  gps.o(.text)
+    char_to_float                            0x00101bac   ARM Code     376  gps.o(.text)
+    get_gps_data                             0x00101d24   ARM Code    1300  gps.o(.text)
+    usb_pullup                               0x001022ac   ARM Code      64  pio.o(.text)
+    PIO_handler                              0x001022ec   ARM Code     512  pio.o(.text)
+    usb_in_pin                               0x001024ec   ARM Code      64  pio.o(.text)
+    pio_init                                 0x0010252c   ARM Code     288  pio.o(.text)
+    led_ctrl                                 0x0010264c   ARM Code     168  pio.o(.text)
+    beep                                     0x001026f4   ARM Code      64  pio.o(.text)
+    USB_armed                                0x00102734   ARM Code      48  pio.o(.text)
+    pit_int_handler                          0x00102790   ARM Code      44  pit.o(.text)
+    pit_init                                 0x001027bc   ARM Code      60  pit.o(.text)
+    pwm_configure_channel                    0x00102800   ARM Code     100  pwm.o(.text)
+    pwm_configure_clock                      0x00102864   ARM Code      12  pwm.o(.text)
+    pwm_set_period                           0x00102870   ARM Code      72  pwm.o(.text)
+    pwm_set_duty_cycle                       0x001028b8   ARM Code      72  pwm.o(.text)
+    pwm_disable_channel                      0x00102900   ARM Code      20  pwm.o(.text)
+    pwm_enable_channel                       0x00102914   ARM Code      20  pwm.o(.text)
+    pwm_init                                 0x00102928   ARM Code     336  pwm.o(.text)
+    motor_cut                                0x00102a78   ARM Code      60  pwm.o(.text)
+    spi_init                                 0x00102ac0   ARM Code     232  spi.o(.text)
+    spi_read_write                           0x00102ba8   ARM Code     100  spi.o(.text)
+    spi_write_1_read_2                       0x00102c0c   ARM Code      84  spi.o(.text)
+    spi_read_reg                             0x00102c60   ARM Code      60  spi.o(.text)
+    spi_write_reg                            0x00102c9c   ARM Code      64  spi.o(.text)
+    spi_dma_decode                           0x00102cdc   ARM Code    1456  spi.o(.text)
+    spi_int_handler                          0x0010328c   ARM Code     120  spi.o(.text)
+    spi_fast_init                            0x00103304   ARM Code     176  spi.o(.text)
+    spi_dma_refill                           0x001033b4   ARM Code     468  spi.o(.text)
+    twi_init                                 0x001035c4   ARM Code     120  twi.o(.text)
+    i2cwtritebyte                            0x0010363c   ARM Code      96  twi.o(.text)
+    i2cwrite                                 0x0010369c   ARM Code      72  twi.o(.text)
+    i2creadbyte                              0x001036e4   ARM Code      88  twi.o(.text)
+    i2cread                                  0x0010373c   ARM Code      72  twi.o(.text)
+    i2c_eeprom_write_byte                    0x00103784   ARM Code      96  twi.o(.text)
+    i2c_eeprom_read_byte                     0x001037e4   ARM Code     108  twi.o(.text)
+    twi_int_handler                          0x00103850   ARM Code     348  twi.o(.text)
+    twi_fast_init                            0x001039ac   ARM Code      60  twi.o(.text)
+    twi_cps_read_start                       0x001039e8   ARM Code     104  twi.o(.text)
+    stop_twi_now                             0x00103a50   ARM Code      36  twi.o(.text)
+    stop_twi_after_complete                  0x00103a74   ARM Code      16  twi.o(.text)
+    AT91F_USB_SendStall                      0x00103aa8   ARM Code      60  usb.o(.text)
+    AT91F_USB_SendZlp                        0x00103ae4   ARM Code      60  usb.o(.text)
+    AT91F_CDC_Open                           0x00104158   ARM Code      88  usb.o(.text)
+    USB_read_Callback                        0x001043d4   ARM Code      16  usb.o(.text)
+    USB_written_Callback                     0x001043e4   ARM Code      20  usb.o(.text)
+    usb_int_handler                          0x00104758   ARM Code     340  usb.o(.text)
+    UDP_Write                                0x001048ac   ARM Code     232  usb.o(.text)
+    UDP_Read                                 0x00104994   ARM Code     140  usb.o(.text)
+    USB_init                                 0x00104a20   ARM Code     168  usb.o(.text)
+    USB_int_init                             0x00104ac8   ARM Code      52  usb.o(.text)
+    USB_wait_connect                         0x00104afc   ARM Code      56  usb.o(.text)
+    USB_check                                0x00104b34   ARM Code     128  usb.o(.text)
+    USB_write_Raspberry                      0x00104bb4   ARM Code     596  usb.o(.text)
+    USB_read_Raspberry                       0x00104e08   ARM Code      40  usb.o(.text)
+    USB_read_Process                         0x00104e30   ARM Code     932  usb.o(.text)
+    usart_int_handler                        0x001051d8   ARM Code     128  xbee.o(.text)
+    xbee_init                                0x00105258   ARM Code     260  xbee.o(.text)
+    refill_tx                                0x0010535c   ARM Code     116  xbee.o(.text)
+    crc_update                               0x001053d0   ARM Code      40  xbee.o(.text)
+    crc16                                    0x001053f8   ARM Code      72  xbee.o(.text)
+    uart_write_char                          0x00105440   ARM Code      32  xbee.o(.text)
+    uart_send_data                           0x00105460   ARM Code      68  xbee.o(.text)
+    __user_initial_stackheap                 0x001054c0   ARM Code       0  sam7.o(.text)
+    rate_IIR_init                            0x001054e0   ARM Code     152  attitudeestimator.o(.text)
+    inv_sqrt                                 0x00105578   ARM Code     108  attitudeestimator.o(.text)
+    glob2body                                0x001055e4   ARM Code     616  attitudeestimator.o(.text)
+    body2glob                                0x0010584c   ARM Code     612  attitudeestimator.o(.text)
+    marg_update                              0x00105ab0   ARM Code    3936  attitudeestimator.o(.text)
+    attitude_compute                         0x00106a10   ARM Code     528  attitudeestimator.o(.text)
+    data_2_angle                             0x00106c20   ARM Code     136  attitudeestimator.o(.text)
+    quarternion_init                         0x00106ca8   ARM Code    3428  attitudeestimator.o(.text)
+    internal_err_pid                         0x00107a20   ARM Code     212  controls.o(.text)
+    external_err_pid                         0x00107af4   ARM Code      64  controls.o(.text)
+    position_control                         0x00107b34   ARM Code    1720  controls.o(.text)
+    altitude_control                         0x001081ec   ARM Code     396  controls.o(.text)
+    manual_R_sp_generate                     0x00108378   ARM Code     836  controls.o(.text)
+    Qsp2Rsp                                  0x001086bc   ARM Code     788  controls.o(.text)
+    set_thrust_force                         0x001089d0   ARM Code      20  controls.o(.text)
+    reset_variables                          0x001089e4   ARM Code     112  controls.o(.text)
+    attitude_control                         0x00108a54   ARM Code    1200  controls.o(.text)
+    IIR_set_cutoff_freq                      0x00108f10   ARM Code     528  filter.o(.text)
+    IIR_apply                                0x00109120   ARM Code     164  filter.o(.text)
+    IIR_reset                                0x001091c4   ARM Code      84  filter.o(.text)
+    FIR_set_cutoff_freq                      0x00109218   ARM Code       4  filter.o(.text)
+    FIR_apply                                0x0010921c   ARM Code      12  filter.o(.text)
+    FIR_reset                                0x00109228   ARM Code      32  filter.o(.text)
+    gyro_calibration                         0x00109258   ARM Code     200  imu.o(.text)
+    continue_cps_read                        0x00109320   ARM Code      20  imu.o(.text)
+    data_conclude                            0x00109334   ARM Code     376  imu.o(.text)
+    acc_lowpass_biascorr                     0x001094ac   ARM Code     340  imu.o(.text)
+    gyro_lowpass_biascorr                    0x00109600   ARM Code     180  imu.o(.text)
+    imu_IIR_init                             0x001096b4   ARM Code     176  imu.o(.text)
+    force2output                             0x001097bc   ARM Code     132  motormixer.o(.text)
+    put_motors                               0x00109840   ARM Code     568  motormixer.o(.text)
+    gps_pos_init                             0x00109a98   ARM Code     372  positionestimator.o(.text)
+    gps2xyz                                  0x00109c0c   ARM Code     456  positionestimator.o(.text)
+    inertial_filter_correct                  0x00109dd4   ARM Code     144  positionestimator.o(.text)
+    gps_pos_corr                             0x00109e64   ARM Code     784  positionestimator.o(.text)
+    baro_pos_corr                            0x0010a174   ARM Code     248  positionestimator.o(.text)
+    zero_pos_corr                            0x0010a26c   ARM Code     128  positionestimator.o(.text)
+    sonar_pos_corr                           0x0010a2ec   ARM Code     124  positionestimator.o(.text)
+    corr_geo_acc                             0x0010a368   ARM Code      52  positionestimator.o(.text)
+    get_geo_acc                              0x0010a39c   ARM Code     220  positionestimator.o(.text)
+    inertial_filter_predict                  0x0010a478   ARM Code     216  positionestimator.o(.text)
+    pos_predict                              0x0010a550   ARM Code     392  positionestimator.o(.text)
+    command_init                             0x0010a748   ARM Code      72  radiocontroller.o(.text)
+    get_rc                                   0x0010a790   ARM Code    1000  radiocontroller.o(.text)
+    hmc5883_config                           0x0010aba4   ARM Code     120  hmc5883.o(.text)
+    hmc5883_read                             0x0010ac1c   ARM Code     116  hmc5883.o(.text)
+    mpu6000_config                           0x0010ac90   ARM Code     160  mpu6000_spi.o(.text)
+    mpu6000_read_all                         0x0010ad30   ARM Code     100  mpu6000_spi.o(.text)
+    data2tempeture                           0x0010ad94   ARM Code     760  ms5611_spi.o(.text)
+    data2pressure                            0x0010b08c   ARM Code      96  ms5611_spi.o(.text)
+    get_altitude                             0x0010b0ec   ARM Code     148  ms5611_spi.o(.text)
+    MS5611_RESET                             0x0010b180   ARM Code      28  ms5611_spi.o(.text)
+    MS5611_init                              0x0010b19c   ARM Code     168  ms5611_spi.o(.text)
+    __aeabi_ldivmod                          0x0010b298   ARM Code       0  llsdiv.o(.text)
+    _ll_sdiv                                 0x0010b298   ARM Code      84  llsdiv.o(.text)
+    __aeabi_memcpy                           0x0010b2ec   ARM Code       0  rt_memcpy.o(.text)
+    __rt_memcpy                              0x0010b2ec   ARM Code     212  rt_memcpy.o(.text)
+    _memcpy_lastbytes                        0x0010b3a0   ARM Code       0  rt_memcpy.o(.text)
+    __aeabi_memcpy4                          0x0010b3c0   ARM Code       0  rt_memcpy_w.o(.text)
+    __aeabi_memcpy8                          0x0010b3c0   ARM Code       0  rt_memcpy_w.o(.text)
+    __rt_memcpy_w                            0x0010b3c0   ARM Code     100  rt_memcpy_w.o(.text)
+    _memcpy_lastbytes_aligned                0x0010b40c   ARM Code       0  rt_memcpy_w.o(.text)
+    __aeabi_idiv                             0x0010b424   ARM Code       0  aeabi_sdiv.o(.text)
+    __aeabi_idivmod                          0x0010b424   ARM Code     384  aeabi_sdiv.o(.text)
+    __use_two_region_memory                  0x0010b5a5   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow                         0x0010b5a7   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand                         0x0010b5a9   Thumb Code     2  heapauxi.o(.text)
+    __aeabi_uldivmod                         0x0010b5ac   ARM Code       0  lludiv.o(.text)
+    _ll_udiv                                 0x0010b5ac   ARM Code     720  lludiv.o(.text)
+    _ll_udiv_donemoving                      0x0010b5c0   ARM Code       0  lludiv.o(.text)
+    Inline ARM to Thumb Veneer to __set_errno 0x0010b87c   ARM Code       8  _rserrno.o(.text)
+    __read_errno                             0x0010b885   Thumb Code    14  _rserrno.o(.text)
+    __set_errno                              0x0010b893   Thumb Code    12  _rserrno.o(.text)
+    __user_libspace                          0x0010b8a0   ARM Code      12  libspace.o(.text)
+    __user_perproc_libspace                  0x0010b8a0   ARM Code       0  libspace.o(.text)
+    __user_perthread_libspace                0x0010b8a0   ARM Code       0  libspace.o(.text)
+    Inline Thumb to ARM Veneer to __aeabi_errno_addr 0x0010b8ad   Thumb Code     4  rt_errno_addr_intlibspace.o(.text)
+    __aeabi_errno_addr                       0x0010b8b0   ARM Code      16  rt_errno_addr_intlibspace.o(.text)
+    __errno$intlibspace                      0x0010b8b0   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
+    __rt_errno_addr$intlibspace              0x0010b8b0   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
+    __user_setup_stackheap                   0x0010b8c0   ARM Code      96  sys_stackheap_outer.o(.text)
+    exit                                     0x0010b921   Thumb Code    12  exit.o(.text)
+    __I$use$semihosting                      0x0010b92c   ARM Code       0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x0010b92c   ARM Code       4  use_no_semi.o(.text)
+    Inline ARM to Thumb Veneer to _sys_exit  0x0010b930   ARM Code       8  sys_exit.o(.text)
+    _sys_exit                                0x0010b939   Thumb Code     8  sys_exit.o(.text)
+    __rt_fp_status_addr                      0x0010b944   ARM Code      16  rt_fp_status_addr_intlibspace.o(.text)
+    __aeabi_uidiv                            0x0010b954   ARM Code       0  aeabi_sdiv.o(.text_udiv)
+    __aeabi_uidivmod                         0x0010b954   ARM Code      36  aeabi_sdiv.o(.text_udiv)
+    __ARM_fpclassify                         0x0010b978   ARM Code      48  fpclassify.o(i.__ARM_fpclassify)
+    __ARM_isfinitef                          0x0010b9a8   ARM Code      36  attitudeestimator.o(i.__ARM_isfinitef)
+    __ieee754_rem_pio2                       0x0010b9cc   ARM Code    1216  rred.o(i.__ieee754_rem_pio2)
+    __kernel_cos                             0x0010becc   ARM Code     404  cos_i.o(i.__kernel_cos)
+    __kernel_poly                            0x0010c068   ARM Code     256  poly.o(i.__kernel_poly)
+    __kernel_sin                             0x0010c168   ARM Code     372  sin_i.o(i.__kernel_sin)
+    __kernel_tan                             0x0010c2e8   ARM Code     984  tan_i.o(i.__kernel_tan)
+    __mathlib_dbl_underflow                  0x0010c6e4   ARM Code      20  dunder.o(i.__mathlib_dbl_underflow)
+    asin                                     0x0010c6f8   ARM Code     944  asin.o(i.asin)
+    atan                                     0x0010cad0   ARM Code     828  atan.o(i.atan)
+    atan2                                    0x0010ce28   ARM Code     568  atan2.o(i.atan2)
+    cos                                      0x0010d080   ARM Code     252  cos.o(i.cos)
+    pow                                      0x0010d180   ARM Code    3832  pow.o(i.pow)
+    sin                                      0x0010e078   ARM Code     260  sin.o(i.sin)
+    sqrt                                     0x0010e180   ARM Code     108  sqrt.o(i.sqrt)
+    tan                                      0x0010e1ec   ARM Code     172  tan.o(i.tan)
+    __aeabi_d2f                              0x0010e29c   ARM Code       0  d2f.o(x$fpl$d2f)
+    _d2f                                     0x0010e29c   ARM Code     108  d2f.o(x$fpl$d2f)
+    __aeabi_dadd                             0x0010e308   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    _dadd                                    0x0010e308   ARM Code     332  daddsub_noclz.o(x$fpl$dadd)
+    __fpl_dcheck_NaN1                        0x0010e458   ARM Code      12  dcheck1.o(x$fpl$dcheck1)
+    __fpl_dcmp_Inf                           0x0010e468   ARM Code      28  dcmpi.o(x$fpl$dcmpinf)
+    __aeabi_ddiv                             0x0010e484   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    _ddiv                                    0x0010e484   ARM Code     600  ddiv.o(x$fpl$ddiv)
+    __aeabi_d2iz                             0x0010e764   ARM Code       0  dfix.o(x$fpl$dfix)
+    _dfix                                    0x0010e764   ARM Code     112  dfix.o(x$fpl$dfix)
+    __aeabi_i2d                              0x0010e7d4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    _dflt                                    0x0010e7d4   ARM Code      88  dflt_noclz.o(x$fpl$dflt)
+    __dflt_normalise                         0x0010e7e4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    __aeabi_ui2d                             0x0010e82c   ARM Code       0  dflt_noclz.o(x$fpl$dfltu)
+    _dfltu                                   0x0010e82c   ARM Code      12  dflt_noclz.o(x$fpl$dfltu)
+    __aeabi_cdcmple                          0x0010e838   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    _dcmple                                  0x0010e838   ARM Code     148  dleqf.o(x$fpl$dleqf)
+    __fpl_dcmple_InfNaN                      0x0010e8b4   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    __aeabi_dmul                             0x0010e8cc   ARM Code       0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x0010e8cc   ARM Code     372  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x0010ea4c   ARM Code     192  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x0010eb0c   ARM Code      16  dretinf.o(x$fpl$dretinf)
+    __aeabi_cdrcmple                         0x0010eb1c   ARM Code       0  drleqf.o(x$fpl$drleqf)
+    _drcmple                                 0x0010eb1c   ARM Code     140  drleqf.o(x$fpl$drleqf)
+    __aeabi_drsub                            0x0010eba8   ARM Code       0  daddsub_noclz.o(x$fpl$drsb)
+    _drsb                                    0x0010eba8   ARM Code      24  daddsub_noclz.o(x$fpl$drsb)
+    _dsqrt                                   0x0010ebc0   ARM Code     516  dsqrt_noumaal.o(x$fpl$dsqrt)
+    __aeabi_dsub                             0x0010edc8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    _dsub                                    0x0010edc8   ARM Code     576  daddsub_noclz.o(x$fpl$dsub)
+    __aeabi_f2d                              0x0010f00c   ARM Code       0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x0010f00c   ARM Code     100  f2d.o(x$fpl$f2d)
+    __aeabi_fadd                             0x0010f070   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    _fadd                                    0x0010f070   ARM Code     196  faddsub_noclz.o(x$fpl$fadd)
+    __fpl_fcmp_Inf                           0x0010f134   ARM Code      28  fcmpi.o(x$fpl$fcmpinf)
+    __aeabi_fdiv                             0x0010f150   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x0010f150   ARM Code     396  fdiv.o(x$fpl$fdiv)
+    __aeabi_cfcmpeq                          0x0010f2e0   ARM Code       0  feqf.o(x$fpl$feqf)
+    _fcmpeq                                  0x0010f2e0   ARM Code     132  feqf.o(x$fpl$feqf)
+    __aeabi_f2iz                             0x0010f364   ARM Code       0  ffix.o(x$fpl$ffix)
+    _ffix                                    0x0010f364   ARM Code      68  ffix.o(x$fpl$ffix)
+    __aeabi_i2f                              0x0010f3a8   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    _fflt                                    0x0010f3a8   ARM Code      92  fflt_noclz.o(x$fpl$fflt)
+    __fflt_normalise                         0x0010f3b4   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    __aeabi_cfcmple                          0x0010f404   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    _fcmple                                  0x0010f404   ARM Code     132  fleqf.o(x$fpl$fleqf)
+    __fpl_fcmple_InfNaN                      0x0010f470   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    __aeabi_fmul                             0x0010f488   ARM Code       0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x0010f488   ARM Code     256  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x0010f588   ARM Code     168  fnaninf.o(x$fpl$fnaninf)
+    Inline Thumb to ARM Veneer to _fp_init   0x0010f631   Thumb Code     4  fpinit.o(x$fpl$fpinit)
+    _fp_init                                 0x0010f634   ARM Code      24  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x0010f644   ARM Code       0  fpinit.o(x$fpl$fpinit)
+    __fpl_fretinf                            0x0010f64c   ARM Code      16  fretinf.o(x$fpl$fretinf)
+    __aeabi_cfrcmple                         0x0010f65c   ARM Code       0  frleqf.o(x$fpl$frleqf)
+    _frcmple                                 0x0010f65c   ARM Code     124  frleqf.o(x$fpl$frleqf)
+    __aeabi_frsub                            0x0010f6d8   ARM Code       0  faddsub_noclz.o(x$fpl$frsb)
+    _frsb                                    0x0010f6d8   ARM Code      20  faddsub_noclz.o(x$fpl$frsb)
+    __aeabi_fsub                             0x0010f6ec   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    _fsub                                    0x0010f6ec   ARM Code     304  faddsub_noclz.o(x$fpl$fsub)
+    __fpl_return_NaN                         0x0010f81c   ARM Code     116  retnan.o(x$fpl$retnan)
+    __ARM_scalbn                             0x0010f890   ARM Code       0  scalbn.o(x$fpl$scalbn)
+    scalbn                                   0x0010f890   ARM Code     108  scalbn.o(x$fpl$scalbn)
+    __fpl_inf_scalbn                         0x0010f8f8   ARM Code       0  scalbn.o(x$fpl$scalbn)
+    __fpl_cmpreturn                          0x0010f8fc   ARM Code      60  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x0010f938   ARM Code       0  usenofp.o(x$fpl$usenofp)
+    spibuf_ga_tx                             0x0010f938   Data          60  spi.o(.constdata)
+    devDescriptor                            0x0010f974   Data          18  usb.o(.constdata)
+    cfgDescriptor                            0x0010f986   Data          67  usb.o(.constdata)
+    __mathlib_zero                           0x0010fb78   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x0010fcd0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0010fcf0   Number         0  anon$$obj.o(Region$$Table)
     smpl                                     0x00200010   Data           8  main.o(.data)
     att                                      0x00200018   Data          76  main.o(.data)
     mode                                     0x00200064   Data           6  main.o(.data)
@@ -2413,102 +2412,102 @@ Image Symbol Table
     l_uart_time                              0x00200104   Data           4  main.o(.data)
     uart_time                                0x00200108   Data           4  main.o(.data)
     idle_time                                0x0020010c   Data           2  main.o(.data)
-    uart_dt                                  0x0020012c   Data           2  main.o(.data)
-    gpsbuffernumber                          0x00200130   Data           1  gps.o(.data)
-    gps_buf_ptr                              0x00200134   Data           4  gps.o(.data)
-    l_buf_ptr                                0x00200138   Data           4  gps.o(.data)
-    buf_ptr_buffer                           0x0020013c   Data           1  gps.o(.data)
-    l_buf_ptr_buffer                         0x0020013d   Data           1  gps.o(.data)
-    package_len                              0x00200140   Data           4  gps.o(.data)
-    buffer_change_times                      0x00200144   Data           1  gps.o(.data)
-    spibuf_gb_tx                             0x00200154   Data          76  spi.o(.data)
-    spi_status                               0x002001a0   Data           1  spi.o(.data)
-    baro2get                                 0x002001a1   Data           1  spi.o(.data)
-    spi_fast_ready                           0x002001a2   Data           1  spi.o(.data)
-    readers                                  0x002001a4   Data          36  twi.o(.data)
-    stop_signal                              0x002001c8   Data           1  twi.o(.data)
-    read_rdy_flag                            0x002001c9   Data           1  twi.o(.data)
-    working_reader                           0x002001ca   Data           1  twi.o(.data)
-    line                                     0x002001cc   Data           8  usb.o(.data)
-    ClearStock                               0x002001d4   Data           4  usb.o(.data)
-    q0                                       0x002001d8   Data           4  attitudeestimator.o(.data)
-    q1                                       0x002001dc   Data           4  attitudeestimator.o(.data)
-    q2                                       0x002001e0   Data           4  attitudeestimator.o(.data)
-    q3                                       0x002001e4   Data           4  attitudeestimator.o(.data)
-    pitchPID                                 0x002001f0   Data          32  controls.o(.data)
-    rollPID                                  0x00200210   Data          32  controls.o(.data)
-    yawPID                                   0x00200230   Data          32  controls.o(.data)
-    altPID                                   0x00200250   Data          32  controls.o(.data)
-    pos_xPID                                 0x00200270   Data          32  controls.o(.data)
-    pos_yPID                                 0x00200290   Data          32  controls.o(.data)
-    gyr_x_bias                               0x002002b0   Data           2  imu.o(.data)
-    gyr_y_bias                               0x002002b2   Data           2  imu.o(.data)
-    gyr_z_bias                               0x002002b4   Data           2  imu.o(.data)
-    acc_x_bias                               0x002002b6   Data           2  imu.o(.data)
-    acc_y_bias                               0x002002b8   Data           2  imu.o(.data)
-    acc_z_bias                               0x002002ba   Data           2  imu.o(.data)
-    mag_x_bias                               0x002002bc   Data           2  imu.o(.data)
-    mag_y_bias                               0x002002be   Data           2  imu.o(.data)
-    mag_z_bias                               0x002002c0   Data           2  imu.o(.data)
-    compass_received                         0x002002ce   Data           6  imu.o(.data)
-    ax                                       0x002002d4   Data           2  imu.o(.data)
-    ay                                       0x002002d6   Data           2  imu.o(.data)
-    az                                       0x002002d8   Data           2  imu.o(.data)
-    buf_ptr                                  0x002002dc   Data           2  positionestimator.o(.data)
-    l_x                                      0x002002e0   Data           4  positionestimator.o(.data)
-    l_y                                      0x002002e4   Data           4  positionestimator.o(.data)
-    l_z                                      0x002002e8   Data           4  positionestimator.o(.data)
-    home_lat                                 0x002002ec   Data           4  positionestimator.o(.data)
-    home_lon                                 0x002002f0   Data           4  positionestimator.o(.data)
-    home_gps_alt                             0x002002f4   Data           4  positionestimator.o(.data)
-    cos_lat_100                              0x002002f8   Data           4  positionestimator.o(.data)
-    setup                                    0x00200300   Data           2  ms5611_spi.o(.data)
-    CRC                                      0x00200302   Data           2  ms5611_spi.o(.data)
-    C1                                       0x00200304   Data           2  ms5611_spi.o(.data)
-    C2                                       0x00200306   Data           2  ms5611_spi.o(.data)
-    C3                                       0x00200308   Data           2  ms5611_spi.o(.data)
-    C4                                       0x0020030a   Data           2  ms5611_spi.o(.data)
-    C5                                       0x0020030c   Data           2  ms5611_spi.o(.data)
-    C6                                       0x0020030e   Data           2  ms5611_spi.o(.data)
-    TEMP                                     0x00200310   Data           4  ms5611_spi.o(.data)
-    OFF                                      0x00200318   Data           8  ms5611_spi.o(.data)
-    SENS                                     0x00200320   Data           8  ms5611_spi.o(.data)
-    dT                                       0x00200328   Data           8  ms5611_spi.o(.data)
-    OFF2                                     0x00200330   Data           8  ms5611_spi.o(.data)
-    SENS2                                    0x00200338   Data           8  ms5611_spi.o(.data)
-    T2                                       0x00200340   Data           8  ms5611_spi.o(.data)
-    AUX                                      0x00200348   Data           8  ms5611_spi.o(.data)
-    AUX2                                     0x00200350   Data           8  ms5611_spi.o(.data)
-    gps                                      0x00200358   Data          52  main.o(.bss)
-    sens                                     0x0020038c   Data          20  main.o(.bss)
-    baro                                     0x002003a0   Data          32  main.o(.bss)
-    pos                                      0x002003c0   Data          40  main.o(.bss)
-    output                                   0x002003e8   Data          16  main.o(.bss)
-    myusb                                    0x002003f8   Data          20  main.o(.bss)
-    data2                                    0x0020040c   Data          18  main.o(.bss)
-    pCDC                                     0x00200420   Data          24  main.o(.bss)
-    gps_buffer0                              0x00200438   Data         160  gps.o(.bss)
-    gps_buffer1                              0x002004d8   Data         160  gps.o(.bss)
-    spibuf_ga_rx                             0x00200578   Data          60  spi.o(.bss)
-    spibuf_gb_rx                             0x002005b4   Data          76  spi.o(.bss)
-    data_from_Raspberry                      0x00200600   Data          64  usb.o(.bss)
-    pEndpoint                                0x00200640   Data         128  usb.o(.bss)
-    xbee_buffer0                             0x002006c0   Data          14  xbee.o(.bss)
-    xbee_buffer1                             0x002006ce   Data          14  xbee.o(.bss)
-    tx_buffer                                0x002006dc   Data          21  xbee.o(.bss)
-    iir_wx                                   0x002006f4   Data          32  attitudeestimator.o(.bss)
-    iir_wy                                   0x00200714   Data          32  attitudeestimator.o(.bss)
-    iir_wz                                   0x00200734   Data          32  attitudeestimator.o(.bss)
-    gyr_bias                                 0x00200754   Data          12  attitudeestimator.o(.bss)
-    R_sp                                     0x00200760   Data          36  controls.o(.bss)
-    iir_ax                                   0x00200784   Data          32  imu.o(.bss)
-    iir_ay                                   0x002007a4   Data          32  imu.o(.bss)
-    iir_az                                   0x002007c4   Data          32  imu.o(.bss)
-    acc_body_bias                            0x002007e4   Data          12  positionestimator.o(.bss)
-    est_buf                                  0x002007f0   Data         960  positionestimator.o(.bss)
-    R_buf                                    0x00200bb0   Data        1440  positionestimator.o(.bss)
-    __libspace_start                         0x00201150   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x002011b0   Data           0  libspace.o(.bss)
+    uart_dt                                  0x00200128   Data           2  main.o(.data)
+    gpsbuffernumber                          0x0020012c   Data           1  gps.o(.data)
+    gps_buf_ptr                              0x00200130   Data           4  gps.o(.data)
+    l_buf_ptr                                0x00200134   Data           4  gps.o(.data)
+    buf_ptr_buffer                           0x00200138   Data           1  gps.o(.data)
+    l_buf_ptr_buffer                         0x00200139   Data           1  gps.o(.data)
+    package_len                              0x0020013c   Data           4  gps.o(.data)
+    buffer_change_times                      0x00200140   Data           1  gps.o(.data)
+    spibuf_gb_tx                             0x00200150   Data          76  spi.o(.data)
+    spi_status                               0x0020019c   Data           1  spi.o(.data)
+    baro2get                                 0x0020019d   Data           1  spi.o(.data)
+    spi_fast_ready                           0x0020019e   Data           1  spi.o(.data)
+    readers                                  0x002001a0   Data          36  twi.o(.data)
+    stop_signal                              0x002001c4   Data           1  twi.o(.data)
+    read_rdy_flag                            0x002001c5   Data           1  twi.o(.data)
+    working_reader                           0x002001c6   Data           1  twi.o(.data)
+    line                                     0x002001c8   Data           8  usb.o(.data)
+    ClearStock                               0x002001d0   Data           4  usb.o(.data)
+    q0                                       0x002001d4   Data           4  attitudeestimator.o(.data)
+    q1                                       0x002001d8   Data           4  attitudeestimator.o(.data)
+    q2                                       0x002001dc   Data           4  attitudeestimator.o(.data)
+    q3                                       0x002001e0   Data           4  attitudeestimator.o(.data)
+    pitchPID                                 0x002001ec   Data          32  controls.o(.data)
+    rollPID                                  0x0020020c   Data          32  controls.o(.data)
+    yawPID                                   0x0020022c   Data          32  controls.o(.data)
+    altPID                                   0x0020024c   Data          32  controls.o(.data)
+    pos_xPID                                 0x0020026c   Data          32  controls.o(.data)
+    pos_yPID                                 0x0020028c   Data          32  controls.o(.data)
+    gyr_x_bias                               0x002002ac   Data           2  imu.o(.data)
+    gyr_y_bias                               0x002002ae   Data           2  imu.o(.data)
+    gyr_z_bias                               0x002002b0   Data           2  imu.o(.data)
+    acc_x_bias                               0x002002b2   Data           2  imu.o(.data)
+    acc_y_bias                               0x002002b4   Data           2  imu.o(.data)
+    acc_z_bias                               0x002002b6   Data           2  imu.o(.data)
+    mag_x_bias                               0x002002b8   Data           2  imu.o(.data)
+    mag_y_bias                               0x002002ba   Data           2  imu.o(.data)
+    mag_z_bias                               0x002002bc   Data           2  imu.o(.data)
+    compass_received                         0x002002ca   Data           6  imu.o(.data)
+    ax                                       0x002002d0   Data           2  imu.o(.data)
+    ay                                       0x002002d2   Data           2  imu.o(.data)
+    az                                       0x002002d4   Data           2  imu.o(.data)
+    buf_ptr                                  0x002002d8   Data           2  positionestimator.o(.data)
+    l_x                                      0x002002dc   Data           4  positionestimator.o(.data)
+    l_y                                      0x002002e0   Data           4  positionestimator.o(.data)
+    l_z                                      0x002002e4   Data           4  positionestimator.o(.data)
+    home_lat                                 0x002002e8   Data           4  positionestimator.o(.data)
+    home_lon                                 0x002002ec   Data           4  positionestimator.o(.data)
+    home_gps_alt                             0x002002f0   Data           4  positionestimator.o(.data)
+    cos_lat_100                              0x002002f4   Data           4  positionestimator.o(.data)
+    setup                                    0x002002f8   Data           2  ms5611_spi.o(.data)
+    CRC                                      0x002002fa   Data           2  ms5611_spi.o(.data)
+    C1                                       0x002002fc   Data           2  ms5611_spi.o(.data)
+    C2                                       0x002002fe   Data           2  ms5611_spi.o(.data)
+    C3                                       0x00200300   Data           2  ms5611_spi.o(.data)
+    C4                                       0x00200302   Data           2  ms5611_spi.o(.data)
+    C5                                       0x00200304   Data           2  ms5611_spi.o(.data)
+    C6                                       0x00200306   Data           2  ms5611_spi.o(.data)
+    TEMP                                     0x00200308   Data           4  ms5611_spi.o(.data)
+    OFF                                      0x00200310   Data           8  ms5611_spi.o(.data)
+    SENS                                     0x00200318   Data           8  ms5611_spi.o(.data)
+    dT                                       0x00200320   Data           8  ms5611_spi.o(.data)
+    OFF2                                     0x00200328   Data           8  ms5611_spi.o(.data)
+    SENS2                                    0x00200330   Data           8  ms5611_spi.o(.data)
+    T2                                       0x00200338   Data           8  ms5611_spi.o(.data)
+    AUX                                      0x00200340   Data           8  ms5611_spi.o(.data)
+    AUX2                                     0x00200348   Data           8  ms5611_spi.o(.data)
+    gps                                      0x00200350   Data          52  main.o(.bss)
+    sens                                     0x00200384   Data          20  main.o(.bss)
+    baro                                     0x00200398   Data          32  main.o(.bss)
+    pos                                      0x002003b8   Data          40  main.o(.bss)
+    output                                   0x002003e0   Data          16  main.o(.bss)
+    myusb                                    0x002003f0   Data          20  main.o(.bss)
+    data2                                    0x00200404   Data          18  main.o(.bss)
+    pCDC                                     0x00200418   Data          24  main.o(.bss)
+    gps_buffer0                              0x00200430   Data         160  gps.o(.bss)
+    gps_buffer1                              0x002004d0   Data         160  gps.o(.bss)
+    spibuf_ga_rx                             0x00200570   Data          60  spi.o(.bss)
+    spibuf_gb_rx                             0x002005ac   Data          76  spi.o(.bss)
+    data_from_Raspberry                      0x002005f8   Data          64  usb.o(.bss)
+    pEndpoint                                0x00200638   Data         128  usb.o(.bss)
+    xbee_buffer0                             0x002006b8   Data          14  xbee.o(.bss)
+    xbee_buffer1                             0x002006c6   Data          14  xbee.o(.bss)
+    tx_buffer                                0x002006d4   Data          21  xbee.o(.bss)
+    iir_wx                                   0x002006ec   Data          32  attitudeestimator.o(.bss)
+    iir_wy                                   0x0020070c   Data          32  attitudeestimator.o(.bss)
+    iir_wz                                   0x0020072c   Data          32  attitudeestimator.o(.bss)
+    gyr_bias                                 0x0020074c   Data          12  attitudeestimator.o(.bss)
+    R_sp                                     0x00200758   Data          36  controls.o(.bss)
+    iir_ax                                   0x0020077c   Data          32  imu.o(.bss)
+    iir_ay                                   0x0020079c   Data          32  imu.o(.bss)
+    iir_az                                   0x002007bc   Data          32  imu.o(.bss)
+    acc_body_bias                            0x002007dc   Data          12  positionestimator.o(.bss)
+    est_buf                                  0x002007e8   Data         960  positionestimator.o(.bss)
+    R_buf                                    0x00200ba8   Data        1440  positionestimator.o(.bss)
+    __libspace_start                         0x00201148   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x002011a8   Data           0  libspace.o(.bss)
 
 
 
@@ -2518,9 +2517,9 @@ Memory Map of the image
 
   Image Entry point : 0x00100150
 
-  Load Region LR_IROM1 (Base: 0x00100000, Size: 0x00010158, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x0000feb0])
+  Load Region LR_IROM1 (Base: 0x00100000, Size: 0x00010040, Max: 0x00040000, ABSOLUTE, COMPRESSED[0x0000fda0])
 
-    Execution Region ER_IROM1 (Base: 0x00100000, Size: 0x0000fe00, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x00100000, Size: 0x0000fcf0, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2574,151 +2573,150 @@ Memory Map of the image
     0x0010028c   0x00000008   Code   RO         1948    .ARM.Collect$$rtexit$$00000004  c_t.l(rtexit2.o)(c_t.l)
     0x00100294   0x000000e0   Code   RO            1    .text               commons.o
     0x00100374   0x000003c4   Code   RO           18    .text               timer.o
-    0x00100738   0x0000128c   Code   RO           45    .text               main.o
-    0x001019c4   0x000000b8   Code   RO          900    .text               adc.o
-    0x00101a7c   0x0000093c   Code   RO          918    .text               gps.o
-    0x001023b8   0x000004e4   Code   RO          941    .text               pio.o
-    0x0010289c   0x00000070   Code   RO          963    .text               pit.o
-    0x0010290c   0x000002c0   Code   RO          978    .text               pwm.o
-    0x00102bcc   0x00000b04   Code   RO          993    .text               spi.o
-    0x001036d0   0x000004e4   Code   RO         1016    .text               twi.o
-    0x00103bb4   0x00001730   Code   RO         1034    .text               usb.o
-    0x001052e4   0x000002e8   Code   RO         1065    .text               xbee.o
-    0x001055cc   0x00000020   Code   RO         1087    .text               sam7.o
-    0x001055ec   0x00002540   Code   RO         1093    .text               attitudeestimator.o
-    0x00107b2c   0x000014f0   Code   RO         1140    .text               controls.o
-    0x0010901c   0x00000348   Code   RO         1167    .text               filter.o
-    0x00109364   0x00000564   Code   RO         1179    .text               imu.o
-    0x001098c8   0x000002dc   Code   RO         1198    .text               motormixer.o
-    0x00109ba4   0x00000cb4   Code   RO         1220    .text               positionestimator.o
-    0x0010a858   0x0000045c   Code   RO         1239    .text               radiocontroller.o
-    0x0010acb4   0x000000ec   Code   RO         1279    .text               hmc5883.o
-    0x0010ada0   0x00000104   Code   RO         1294    .text               mpu6000_spi.o
-    0x0010aea4   0x00000504   Code   RO         1312    .text               ms5611_spi.o
-    0x0010b3a8   0x00000054   Code   RO         1347    .text               c_t.l(llsdiv.o)(c_t.l)
-    0x0010b3fc   0x000000d4   Code   RO         1352    .text               c_t.l(rt_memcpy.o)(c_t.l)
-    0x0010b4d0   0x00000064   Code   RO         1354    .text               c_t.l(rt_memcpy_w.o)(c_t.l)
-    0x0010b534   0x00000180   Code   RO         1358    .text               c_t.l(aeabi_sdiv.o)(c_t.l)
-    0x0010b6b4   0x00000006   Code   RO         1374    .text               c_t.l(heapauxi.o)(c_t.l)
-    0x0010b6ba   0x00000002   PAD
-    0x0010b6bc   0x000002d0   Code   RO         1681    .text               c_t.l(lludiv.o)(c_t.l)
-    0x0010b98c   0x00000008   Ven    RO         1683    .text               c_t.l(_rserrno.o)(c_t.l)
-    0x0010b994   0x0000001a   Code   RO         1683    .text               c_t.l(_rserrno.o)(c_t.l)
-    0x0010b9ae   0x00000002   PAD
-    0x0010b9b0   0x0000000c   Code   RO         1779    .text               c_t.l(libspace.o)(c_t.l)
-    0x0010b9bc   0x00000004   Ven    RO         1816    .text               c_t.l(rt_errno_addr_intlibspace.o)(c_t.l)
-    0x0010b9c0   0x00000010   Code   RO         1816    .text               c_t.l(rt_errno_addr_intlibspace.o)(c_t.l)
-    0x0010b9d0   0x00000060   Code   RO         1885    .text               c_t.l(sys_stackheap_outer.o)(c_t.l)
-    0x0010ba30   0x0000000c   Code   RO         1897    .text               c_t.l(exit.o)(c_t.l)
-    0x0010ba3c   0x00000004   Code   RO         1921    .text               c_t.l(use_no_semi.o)(c_t.l)
-    0x0010ba40   0x00000008   Ven    RO         1943    .text               c_t.l(sys_exit.o)(c_t.l)
-    0x0010ba48   0x0000000c   Code   RO         1943    .text               c_t.l(sys_exit.o)(c_t.l)
-    0x0010ba54   0x00000010   Code   RO         1956    .text               c_t.l(rt_fp_status_addr_intlibspace.o)(c_t.l)
-    0x0010ba64   0x00000024   Code   RO         1359    .text_udiv          c_t.l(aeabi_sdiv.o)(c_t.l)
-    0x0010ba88   0x00000030   Code   RO         1757    i.__ARM_fpclassify  m_ts.l(fpclassify.o)(m_ts.l)
-    0x0010bab8   0x00000024   Code   RO         1106    i.__ARM_isfinitef   attitudeestimator.o
-    0x0010badc   0x00000500   Code   RO         1762    i.__ieee754_rem_pio2  m_ts.l(rred.o)(m_ts.l)
-    0x0010bfdc   0x0000019c   Code   RO         1752    i.__kernel_cos      m_ts.l(cos_i.o)(m_ts.l)
-    0x0010c178   0x00000100   Code   RO         1759    i.__kernel_poly     m_ts.l(poly.o)(m_ts.l)
-    0x0010c278   0x00000180   Code   RO         1767    i.__kernel_sin      m_ts.l(sin_i.o)(m_ts.l)
-    0x0010c3f8   0x000003fc   Code   RO         1773    i.__kernel_tan      m_ts.l(tan_i.o)(m_ts.l)
-    0x0010c7f4   0x00000014   Code   RO         1755    i.__mathlib_dbl_underflow  m_ts.l(dunder.o)(m_ts.l)
-    0x0010c808   0x000003d8   Code   RO         1545    i.asin              m_ts.l(asin.o)(m_ts.l)
-    0x0010cbe0   0x00000358   Code   RO         1743    i.atan              m_ts.l(atan.o)(m_ts.l)
-    0x0010cf38   0x00000258   Code   RO         1555    i.atan2             m_ts.l(atan2.o)(m_ts.l)
-    0x0010d190   0x00000100   Code   RO         1563    i.cos               m_ts.l(cos.o)(m_ts.l)
-    0x0010d290   0x00000ef8   Code   RO         1571    i.pow               m_ts.l(pow.o)(m_ts.l)
-    0x0010e188   0x00000108   Code   RO         1581    i.sin               m_ts.l(sin.o)(m_ts.l)
-    0x0010e290   0x0000006c   Code   RO         1589    i.sqrt              m_ts.l(sqrt.o)(m_ts.l)
-    0x0010e2fc   0x000000b0   Code   RO         1597    i.tan               m_ts.l(tan.o)(m_ts.l)
-    0x0010e3ac   0x0000006c   Code   RO         1490    x$fpl$d2f           fz_ts.l(d2f.o)(fz_ts.l)
-    0x0010e418   0x00000150   Code   RO         1492    x$fpl$dadd          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
-    0x0010e568   0x00000010   Code   RO         1881    x$fpl$dcheck1       fz_ts.l(dcheck1.o)(fz_ts.l)
-    0x0010e578   0x0000001c   Code   RO         1719    x$fpl$dcmpinf       fz_ts.l(dcmpi.o)(fz_ts.l)
-    0x0010e594   0x000002e0   Code   RO         1499    x$fpl$ddiv          fz_ts.l(ddiv.o)(fz_ts.l)
-    0x0010e874   0x00000070   Code   RO         1502    x$fpl$dfix          fz_ts.l(dfix.o)(fz_ts.l)
-    0x0010e8e4   0x00000058   Code   RO         1507    x$fpl$dflt          fz_ts.l(dflt_noclz.o)(fz_ts.l)
-    0x0010e93c   0x0000000c   Code   RO         1506    x$fpl$dfltu         fz_ts.l(dflt_noclz.o)(fz_ts.l)
-    0x0010e948   0x00000094   Code   RO         1510    x$fpl$dleqf         fz_ts.l(dleqf.o)(fz_ts.l)
-    0x0010e9dc   0x00000180   Code   RO         1512    x$fpl$dmul          fz_ts.l(dmul.o)(fz_ts.l)
-    0x0010eb5c   0x000000c0   Code   RO         1721    x$fpl$dnaninf       fz_ts.l(dnaninf.o)(fz_ts.l)
-    0x0010ec1c   0x00000010   Code   RO         1723    x$fpl$dretinf       fz_ts.l(dretinf.o)(fz_ts.l)
-    0x0010ec2c   0x0000008c   Code   RO         1514    x$fpl$drleqf        fz_ts.l(drleqf.o)(fz_ts.l)
-    0x0010ecb8   0x00000018   Code   RO         1493    x$fpl$drsb          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
-    0x0010ecd0   0x00000208   Code   RO         1725    x$fpl$dsqrt         fz_ts.l(dsqrt_noumaal.o)(fz_ts.l)
-    0x0010eed8   0x00000244   Code   RO         1494    x$fpl$dsub          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
-    0x0010f11c   0x00000064   Code   RO         1516    x$fpl$f2d           fz_ts.l(f2d.o)(fz_ts.l)
-    0x0010f180   0x000000c4   Code   RO         1518    x$fpl$fadd          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
-    0x0010f244   0x0000001c   Code   RO         1727    x$fpl$fcmpinf       fz_ts.l(fcmpi.o)(fz_ts.l)
-    0x0010f260   0x00000190   Code   RO         1525    x$fpl$fdiv          fz_ts.l(fdiv.o)(fz_ts.l)
-    0x0010f3f0   0x00000084   Code   RO         1528    x$fpl$feqf          fz_ts.l(feqf.o)(fz_ts.l)
-    0x0010f474   0x00000044   Code   RO         1530    x$fpl$ffix          fz_ts.l(ffix.o)(fz_ts.l)
-    0x0010f4b8   0x0000005c   Code   RO         1535    x$fpl$fflt          fz_ts.l(fflt_noclz.o)(fz_ts.l)
-    0x0010f514   0x00000084   Code   RO         1538    x$fpl$fleqf         fz_ts.l(fleqf.o)(fz_ts.l)
-    0x0010f598   0x00000100   Code   RO         1540    x$fpl$fmul          fz_ts.l(fmul.o)(fz_ts.l)
-    0x0010f698   0x000000a8   Code   RO         1729    x$fpl$fnaninf       fz_ts.l(fnaninf.o)(fz_ts.l)
-    0x0010f740   0x00000004   Ven    RO         1939    x$fpl$fpinit        fz_ts.l(fpinit.o)(fz_ts.l)
-    0x0010f744   0x00000018   Code   RO         1939    x$fpl$fpinit        fz_ts.l(fpinit.o)(fz_ts.l)
-    0x0010f75c   0x00000010   Code   RO         1731    x$fpl$fretinf       fz_ts.l(fretinf.o)(fz_ts.l)
-    0x0010f76c   0x0000007c   Code   RO         1542    x$fpl$frleqf        fz_ts.l(frleqf.o)(fz_ts.l)
-    0x0010f7e8   0x00000014   Code   RO         1519    x$fpl$frsb          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
-    0x0010f7fc   0x00000130   Code   RO         1520    x$fpl$fsub          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
-    0x0010f92c   0x00000074   Code   RO         1919    x$fpl$retnan        fz_ts.l(retnan.o)(fz_ts.l)
-    0x0010f9a0   0x0000006c   Code   RO         1736    x$fpl$scalbn        fz_ts.l(scalbn.o)(fz_ts.l)
-    0x0010fa0c   0x0000003c   Code   RO         1941    x$fpl$trapveneer    fz_ts.l(trapv.o)(fz_ts.l)
-    0x0010fa48   0x00000000   Code   RO         1741    x$fpl$usenofp       fz_ts.l(usenofp.o)(fz_ts.l)
-    0x0010fa48   0x0000003c   Data   RO          995    .constdata          spi.o
-    0x0010fa84   0x00000055   Data   RO         1036    .constdata          usb.o
-    0x0010fad9   0x00000003   PAD
-    0x0010fadc   0x00000008   Data   RO         1199    .constdata          motormixer.o
-    0x0010fae4   0x00000004   PAD
-    0x0010fae8   0x00000050   Data   RO         1546    .constdata          m_ts.l(asin.o)(m_ts.l)
-    0x0010fb38   0x00000088   Data   RO         1572    .constdata          m_ts.l(pow.o)(m_ts.l)
-    0x0010fbc0   0x00000098   Data   RO         1744    .constdata          m_ts.l(atan.o)(m_ts.l)
-    0x0010fc58   0x00000030   Data   RO         1753    .constdata          m_ts.l(cos_i.o)(m_ts.l)
-    0x0010fc88   0x00000008   Data   RO         1761    .constdata          m_ts.l(qnan.o)(m_ts.l)
-    0x0010fc90   0x000000c8   Data   RO         1764    .constdata          m_ts.l(rred.o)(m_ts.l)
-    0x0010fd58   0x00000028   Data   RO         1768    .constdata          m_ts.l(sin_i.o)(m_ts.l)
-    0x0010fd80   0x00000060   Data   RO         1774    .constdata          m_ts.l(tan_i.o)(m_ts.l)
-    0x0010fde0   0x00000020   Data   RO         1989    Region$$Table       anon$$obj.o
+    0x00100738   0x00001180   Code   RO           45    .text               main.o
+    0x001018b8   0x000000b8   Code   RO          900    .text               adc.o
+    0x00101970   0x0000093c   Code   RO          918    .text               gps.o
+    0x001022ac   0x000004e4   Code   RO          941    .text               pio.o
+    0x00102790   0x00000070   Code   RO          963    .text               pit.o
+    0x00102800   0x000002c0   Code   RO          978    .text               pwm.o
+    0x00102ac0   0x00000b04   Code   RO          993    .text               spi.o
+    0x001035c4   0x000004e4   Code   RO         1016    .text               twi.o
+    0x00103aa8   0x00001730   Code   RO         1034    .text               usb.o
+    0x001051d8   0x000002e8   Code   RO         1065    .text               xbee.o
+    0x001054c0   0x00000020   Code   RO         1087    .text               sam7.o
+    0x001054e0   0x00002540   Code   RO         1093    .text               attitudeestimator.o
+    0x00107a20   0x000014f0   Code   RO         1140    .text               controls.o
+    0x00108f10   0x00000348   Code   RO         1167    .text               filter.o
+    0x00109258   0x00000564   Code   RO         1179    .text               imu.o
+    0x001097bc   0x000002dc   Code   RO         1198    .text               motormixer.o
+    0x00109a98   0x00000cb0   Code   RO         1220    .text               positionestimator.o
+    0x0010a748   0x0000045c   Code   RO         1239    .text               radiocontroller.o
+    0x0010aba4   0x000000ec   Code   RO         1279    .text               hmc5883.o
+    0x0010ac90   0x00000104   Code   RO         1294    .text               mpu6000_spi.o
+    0x0010ad94   0x00000504   Code   RO         1312    .text               ms5611_spi.o
+    0x0010b298   0x00000054   Code   RO         1347    .text               c_t.l(llsdiv.o)(c_t.l)
+    0x0010b2ec   0x000000d4   Code   RO         1352    .text               c_t.l(rt_memcpy.o)(c_t.l)
+    0x0010b3c0   0x00000064   Code   RO         1354    .text               c_t.l(rt_memcpy_w.o)(c_t.l)
+    0x0010b424   0x00000180   Code   RO         1358    .text               c_t.l(aeabi_sdiv.o)(c_t.l)
+    0x0010b5a4   0x00000006   Code   RO         1374    .text               c_t.l(heapauxi.o)(c_t.l)
+    0x0010b5aa   0x00000002   PAD
+    0x0010b5ac   0x000002d0   Code   RO         1681    .text               c_t.l(lludiv.o)(c_t.l)
+    0x0010b87c   0x00000008   Ven    RO         1683    .text               c_t.l(_rserrno.o)(c_t.l)
+    0x0010b884   0x0000001a   Code   RO         1683    .text               c_t.l(_rserrno.o)(c_t.l)
+    0x0010b89e   0x00000002   PAD
+    0x0010b8a0   0x0000000c   Code   RO         1779    .text               c_t.l(libspace.o)(c_t.l)
+    0x0010b8ac   0x00000004   Ven    RO         1816    .text               c_t.l(rt_errno_addr_intlibspace.o)(c_t.l)
+    0x0010b8b0   0x00000010   Code   RO         1816    .text               c_t.l(rt_errno_addr_intlibspace.o)(c_t.l)
+    0x0010b8c0   0x00000060   Code   RO         1885    .text               c_t.l(sys_stackheap_outer.o)(c_t.l)
+    0x0010b920   0x0000000c   Code   RO         1897    .text               c_t.l(exit.o)(c_t.l)
+    0x0010b92c   0x00000004   Code   RO         1921    .text               c_t.l(use_no_semi.o)(c_t.l)
+    0x0010b930   0x00000008   Ven    RO         1943    .text               c_t.l(sys_exit.o)(c_t.l)
+    0x0010b938   0x0000000c   Code   RO         1943    .text               c_t.l(sys_exit.o)(c_t.l)
+    0x0010b944   0x00000010   Code   RO         1956    .text               c_t.l(rt_fp_status_addr_intlibspace.o)(c_t.l)
+    0x0010b954   0x00000024   Code   RO         1359    .text_udiv          c_t.l(aeabi_sdiv.o)(c_t.l)
+    0x0010b978   0x00000030   Code   RO         1757    i.__ARM_fpclassify  m_ts.l(fpclassify.o)(m_ts.l)
+    0x0010b9a8   0x00000024   Code   RO         1106    i.__ARM_isfinitef   attitudeestimator.o
+    0x0010b9cc   0x00000500   Code   RO         1762    i.__ieee754_rem_pio2  m_ts.l(rred.o)(m_ts.l)
+    0x0010becc   0x0000019c   Code   RO         1752    i.__kernel_cos      m_ts.l(cos_i.o)(m_ts.l)
+    0x0010c068   0x00000100   Code   RO         1759    i.__kernel_poly     m_ts.l(poly.o)(m_ts.l)
+    0x0010c168   0x00000180   Code   RO         1767    i.__kernel_sin      m_ts.l(sin_i.o)(m_ts.l)
+    0x0010c2e8   0x000003fc   Code   RO         1773    i.__kernel_tan      m_ts.l(tan_i.o)(m_ts.l)
+    0x0010c6e4   0x00000014   Code   RO         1755    i.__mathlib_dbl_underflow  m_ts.l(dunder.o)(m_ts.l)
+    0x0010c6f8   0x000003d8   Code   RO         1545    i.asin              m_ts.l(asin.o)(m_ts.l)
+    0x0010cad0   0x00000358   Code   RO         1743    i.atan              m_ts.l(atan.o)(m_ts.l)
+    0x0010ce28   0x00000258   Code   RO         1555    i.atan2             m_ts.l(atan2.o)(m_ts.l)
+    0x0010d080   0x00000100   Code   RO         1563    i.cos               m_ts.l(cos.o)(m_ts.l)
+    0x0010d180   0x00000ef8   Code   RO         1571    i.pow               m_ts.l(pow.o)(m_ts.l)
+    0x0010e078   0x00000108   Code   RO         1581    i.sin               m_ts.l(sin.o)(m_ts.l)
+    0x0010e180   0x0000006c   Code   RO         1589    i.sqrt              m_ts.l(sqrt.o)(m_ts.l)
+    0x0010e1ec   0x000000b0   Code   RO         1597    i.tan               m_ts.l(tan.o)(m_ts.l)
+    0x0010e29c   0x0000006c   Code   RO         1490    x$fpl$d2f           fz_ts.l(d2f.o)(fz_ts.l)
+    0x0010e308   0x00000150   Code   RO         1492    x$fpl$dadd          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
+    0x0010e458   0x00000010   Code   RO         1881    x$fpl$dcheck1       fz_ts.l(dcheck1.o)(fz_ts.l)
+    0x0010e468   0x0000001c   Code   RO         1719    x$fpl$dcmpinf       fz_ts.l(dcmpi.o)(fz_ts.l)
+    0x0010e484   0x000002e0   Code   RO         1499    x$fpl$ddiv          fz_ts.l(ddiv.o)(fz_ts.l)
+    0x0010e764   0x00000070   Code   RO         1502    x$fpl$dfix          fz_ts.l(dfix.o)(fz_ts.l)
+    0x0010e7d4   0x00000058   Code   RO         1507    x$fpl$dflt          fz_ts.l(dflt_noclz.o)(fz_ts.l)
+    0x0010e82c   0x0000000c   Code   RO         1506    x$fpl$dfltu         fz_ts.l(dflt_noclz.o)(fz_ts.l)
+    0x0010e838   0x00000094   Code   RO         1510    x$fpl$dleqf         fz_ts.l(dleqf.o)(fz_ts.l)
+    0x0010e8cc   0x00000180   Code   RO         1512    x$fpl$dmul          fz_ts.l(dmul.o)(fz_ts.l)
+    0x0010ea4c   0x000000c0   Code   RO         1721    x$fpl$dnaninf       fz_ts.l(dnaninf.o)(fz_ts.l)
+    0x0010eb0c   0x00000010   Code   RO         1723    x$fpl$dretinf       fz_ts.l(dretinf.o)(fz_ts.l)
+    0x0010eb1c   0x0000008c   Code   RO         1514    x$fpl$drleqf        fz_ts.l(drleqf.o)(fz_ts.l)
+    0x0010eba8   0x00000018   Code   RO         1493    x$fpl$drsb          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
+    0x0010ebc0   0x00000208   Code   RO         1725    x$fpl$dsqrt         fz_ts.l(dsqrt_noumaal.o)(fz_ts.l)
+    0x0010edc8   0x00000244   Code   RO         1494    x$fpl$dsub          fz_ts.l(daddsub_noclz.o)(fz_ts.l)
+    0x0010f00c   0x00000064   Code   RO         1516    x$fpl$f2d           fz_ts.l(f2d.o)(fz_ts.l)
+    0x0010f070   0x000000c4   Code   RO         1518    x$fpl$fadd          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
+    0x0010f134   0x0000001c   Code   RO         1727    x$fpl$fcmpinf       fz_ts.l(fcmpi.o)(fz_ts.l)
+    0x0010f150   0x00000190   Code   RO         1525    x$fpl$fdiv          fz_ts.l(fdiv.o)(fz_ts.l)
+    0x0010f2e0   0x00000084   Code   RO         1528    x$fpl$feqf          fz_ts.l(feqf.o)(fz_ts.l)
+    0x0010f364   0x00000044   Code   RO         1530    x$fpl$ffix          fz_ts.l(ffix.o)(fz_ts.l)
+    0x0010f3a8   0x0000005c   Code   RO         1535    x$fpl$fflt          fz_ts.l(fflt_noclz.o)(fz_ts.l)
+    0x0010f404   0x00000084   Code   RO         1538    x$fpl$fleqf         fz_ts.l(fleqf.o)(fz_ts.l)
+    0x0010f488   0x00000100   Code   RO         1540    x$fpl$fmul          fz_ts.l(fmul.o)(fz_ts.l)
+    0x0010f588   0x000000a8   Code   RO         1729    x$fpl$fnaninf       fz_ts.l(fnaninf.o)(fz_ts.l)
+    0x0010f630   0x00000004   Ven    RO         1939    x$fpl$fpinit        fz_ts.l(fpinit.o)(fz_ts.l)
+    0x0010f634   0x00000018   Code   RO         1939    x$fpl$fpinit        fz_ts.l(fpinit.o)(fz_ts.l)
+    0x0010f64c   0x00000010   Code   RO         1731    x$fpl$fretinf       fz_ts.l(fretinf.o)(fz_ts.l)
+    0x0010f65c   0x0000007c   Code   RO         1542    x$fpl$frleqf        fz_ts.l(frleqf.o)(fz_ts.l)
+    0x0010f6d8   0x00000014   Code   RO         1519    x$fpl$frsb          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
+    0x0010f6ec   0x00000130   Code   RO         1520    x$fpl$fsub          fz_ts.l(faddsub_noclz.o)(fz_ts.l)
+    0x0010f81c   0x00000074   Code   RO         1919    x$fpl$retnan        fz_ts.l(retnan.o)(fz_ts.l)
+    0x0010f890   0x0000006c   Code   RO         1736    x$fpl$scalbn        fz_ts.l(scalbn.o)(fz_ts.l)
+    0x0010f8fc   0x0000003c   Code   RO         1941    x$fpl$trapveneer    fz_ts.l(trapv.o)(fz_ts.l)
+    0x0010f938   0x00000000   Code   RO         1741    x$fpl$usenofp       fz_ts.l(usenofp.o)(fz_ts.l)
+    0x0010f938   0x0000003c   Data   RO          995    .constdata          spi.o
+    0x0010f974   0x00000055   Data   RO         1036    .constdata          usb.o
+    0x0010f9c9   0x00000003   PAD
+    0x0010f9cc   0x00000008   Data   RO         1199    .constdata          motormixer.o
+    0x0010f9d4   0x00000004   PAD
+    0x0010f9d8   0x00000050   Data   RO         1546    .constdata          m_ts.l(asin.o)(m_ts.l)
+    0x0010fa28   0x00000088   Data   RO         1572    .constdata          m_ts.l(pow.o)(m_ts.l)
+    0x0010fab0   0x00000098   Data   RO         1744    .constdata          m_ts.l(atan.o)(m_ts.l)
+    0x0010fb48   0x00000030   Data   RO         1753    .constdata          m_ts.l(cos_i.o)(m_ts.l)
+    0x0010fb78   0x00000008   Data   RO         1761    .constdata          m_ts.l(qnan.o)(m_ts.l)
+    0x0010fb80   0x000000c8   Data   RO         1764    .constdata          m_ts.l(rred.o)(m_ts.l)
+    0x0010fc48   0x00000028   Data   RO         1768    .constdata          m_ts.l(sin_i.o)(m_ts.l)
+    0x0010fc70   0x00000060   Data   RO         1774    .constdata          m_ts.l(tan_i.o)(m_ts.l)
+    0x0010fcd0   0x00000020   Data   RO         1989    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x00200000, Size: 0x00002d38, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000000b0])
+    Execution Region RW_IRAM1 (Base: 0x00200000, Size: 0x00002d30, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000000b0])
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00200000   0x0000000e   Data   RW           19    .data               timer.o
     0x0020000e   0x00000002   PAD
-    0x00200010   0x0000011e   Data   RW           47    .data               main.o
-    0x0020012e   0x00000002   PAD
-    0x00200130   0x00000015   Data   RW          920    .data               gps.o
-    0x00200145   0x00000003   PAD
-    0x00200148   0x0000000c   Data   RW          942    .data               pio.o
-    0x00200154   0x0000004f   Data   RW          996    .data               spi.o
-    0x002001a3   0x00000001   PAD
-    0x002001a4   0x00000027   Data   RW         1017    .data               twi.o
-    0x002001cb   0x00000001   PAD
-    0x002001cc   0x0000000c   Data   RW         1037    .data               usb.o
-    0x002001d8   0x00000018   Data   RW         1095    .data               attitudeestimator.o
-    0x002001f0   0x000000c0   Data   RW         1142    .data               controls.o
-    0x002002b0   0x0000002a   Data   RW         1181    .data               imu.o
-    0x002002da   0x00000002   PAD
-    0x002002dc   0x00000020   Data   RW         1222    .data               positionestimator.o
-    0x002002fc   0x00000004   PAD
-    0x00200300   0x00000058   Data   RW         1313    .data               ms5611_spi.o
-    0x00200358   0x000000e0   Zero   RW           46    .bss                main.o
-    0x00200438   0x00000140   Zero   RW          919    .bss                gps.o
-    0x00200578   0x00000088   Zero   RW          994    .bss                spi.o
-    0x00200600   0x000000c0   Zero   RW         1035    .bss                usb.o
-    0x002006c0   0x00000031   Zero   RW         1066    .bss                xbee.o
-    0x002006f1   0x00000003   PAD
-    0x002006f4   0x0000006c   Zero   RW         1094    .bss                attitudeestimator.o
-    0x00200760   0x00000024   Zero   RW         1141    .bss                controls.o
-    0x00200784   0x00000060   Zero   RW         1180    .bss                imu.o
-    0x002007e4   0x0000096c   Zero   RW         1221    .bss                positionestimator.o
-    0x00201150   0x00000060   Zero   RW         1780    .bss                c_t.l(libspace.o)(c_t.l)
-    0x002011b0   0x00000000   Zero   RW         1085    HEAP                sam7.o
-    0x002011b0   0x00001b88   Zero   RW         1084    STACK               sam7.o
+    0x00200010   0x0000011a   Data   RW           47    .data               main.o
+    0x0020012a   0x00000002   PAD
+    0x0020012c   0x00000015   Data   RW          920    .data               gps.o
+    0x00200141   0x00000003   PAD
+    0x00200144   0x0000000c   Data   RW          942    .data               pio.o
+    0x00200150   0x0000004f   Data   RW          996    .data               spi.o
+    0x0020019f   0x00000001   PAD
+    0x002001a0   0x00000027   Data   RW         1017    .data               twi.o
+    0x002001c7   0x00000001   PAD
+    0x002001c8   0x0000000c   Data   RW         1037    .data               usb.o
+    0x002001d4   0x00000018   Data   RW         1095    .data               attitudeestimator.o
+    0x002001ec   0x000000c0   Data   RW         1142    .data               controls.o
+    0x002002ac   0x0000002a   Data   RW         1181    .data               imu.o
+    0x002002d6   0x00000002   PAD
+    0x002002d8   0x00000020   Data   RW         1222    .data               positionestimator.o
+    0x002002f8   0x00000058   Data   RW         1313    .data               ms5611_spi.o
+    0x00200350   0x000000e0   Zero   RW           46    .bss                main.o
+    0x00200430   0x00000140   Zero   RW          919    .bss                gps.o
+    0x00200570   0x00000088   Zero   RW          994    .bss                spi.o
+    0x002005f8   0x000000c0   Zero   RW         1035    .bss                usb.o
+    0x002006b8   0x00000031   Zero   RW         1066    .bss                xbee.o
+    0x002006e9   0x00000003   PAD
+    0x002006ec   0x0000006c   Zero   RW         1094    .bss                attitudeestimator.o
+    0x00200758   0x00000024   Zero   RW         1141    .bss                controls.o
+    0x0020077c   0x00000060   Zero   RW         1180    .bss                imu.o
+    0x002007dc   0x0000096c   Zero   RW         1221    .bss                positionestimator.o
+    0x00201148   0x00000060   Zero   RW         1780    .bss                c_t.l(libspace.o)(c_t.l)
+    0x002011a8   0x00000000   Zero   RW         1085    HEAP                sam7.o
+    0x002011a8   0x00001b88   Zero   RW         1084    STACK               sam7.o
 
 
 ==============================================================================
@@ -2736,13 +2734,13 @@ Image component sizes
       2364        116          0         21        320          0   gps.o
        236          0          0          0          0          0   hmc5883.o
       1380         88          0         42         96          0   imu.o
-      4748        124          0        286        224          0   main.o
+      4480        120          0        282        224          0   main.o
        732         32          8          0          0          0   motormixer.o
        260          0          0          0          0          0   mpu6000_spi.o
       1284         84          0         88          0          0   ms5611_spi.o
       1252         44          0         12          0          0   pio.o
        112          8          0          0          0          0   pit.o
-      3252        116          0         32       2412          0   positionestimator.o
+      3248        112          0         32       2412          0   positionestimator.o
        704         12          0          0          0          0   pwm.o
       1116         44          0          0          0          0   radiocontroller.o
        368         84          0          0       7048          0   sam7.o
@@ -2753,9 +2751,9 @@ Image component sizes
        744         28          0          0         49          0   xbee.o
 
     ----------------------------------------------------------------------
-     45704       1312        192        856      10624          0   Object Totals
+     45432       1304        192        848      10624          0   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         0          0          7         15          3          3   (incl. Padding)
+         0          0          7         11          3          3   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2857,15 +2855,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     64072       2084        952        856      10720     131900   Grand Totals
-     64072       2084        952        176      10720     131900   ELF Image Totals (compressed)
-     64072       2084        952        176          0          0   ROM Totals
+     63800       2076        952        848      10720     131732   Grand Totals
+     63800       2076        952        176      10720     131732   ELF Image Totals (compressed)
+     63800       2076        952        176          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                65024 (  63.50kB)
-    Total RW  Size (RW Data + ZI Data)             11576 (  11.30kB)
-    Total ROM Size (Code + RO Data + RW Data)      65200 (  63.67kB)
+    Total RO  Size (Code + RO Data)                64752 (  63.23kB)
+    Total RW  Size (RW Data + ZI Data)             11568 (  11.30kB)
+    Total ROM Size (Code + RO Data + RW Data)      64928 (  63.41kB)
 
 ==============================================================================
 

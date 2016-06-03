@@ -1,1 +1,0 @@
--c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\controls.o" --omf_browse ".\Outputs\controls.crf" --depend ".\Outputs\controls.d" "Modules\Controls.c"
