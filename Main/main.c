@@ -66,12 +66,12 @@ struct _baro baro = {0,0,0,0,0};
 struct _pos pos = {{0,0},{0,0},{0,0},
 					0,0,0,
 					0};
-struct _cmd cmd = {{0,0,-1024,0,0,0,0,0,0},
+struct _cmd cmd = {{0,0,-1024,0,-1024,-1024,0,0,0},
 					0,0,0,
 					0,0,0,
 					0,0,0,
 					0,0,0,
-					0,SonarOFF,sendATT};
+					0,SonarOFF,sendSENS};
 struct _ctrl ctrl = {{DSCRT_I,0,0,0},0};
 struct _output output = {0,0,0,0};
 struct _adc adc = {0};
@@ -166,6 +166,17 @@ void data_select(void)
 		break;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 int main (void)
 {		
 	pio_init();
@@ -179,10 +190,10 @@ int main (void)
 	timer_init();
 	
 	USB_init();
-	if(USB_armed()){
-		myusb.connect_flag = PLUG_IN;
-	}
-	USB_check();
+//	if(USB_armed()){
+//		myusb.connect_flag = PLUG_IN;
+//	}
+//	USB_check();
 	
 	xbee_init();
 #if OUTDOOR
@@ -203,7 +214,7 @@ int main (void)
 	mpu6000_config();
 	
 	imu_IIR_init();
-	rate_IIR_init(100);
+	rate_IIR_init(150);
 	
 	spi_fast_init();
 	smpl.sens_rdy =1;
@@ -214,11 +225,14 @@ int main (void)
 //		myusb.connect_flag = PLUG_IN;
 //	}
 //	USB_check();
-	delay_ms(1000);
 	beep(ON);
+	delay_ms(500);
+
+	beep(OFF);
 	led_ctrl(LED2,OFF);
 	led_ctrl(LED1,ON);
 	/*wait until the vehicle is stablized for calibration*/		
+
 	while(1){
 	/*The following 3 initiations must be done 
 	when the velcle is in static state, but not 
@@ -235,9 +249,10 @@ int main (void)
 #endif
 		led_ctrl(LED1, OFF);
 		beep(OFF);
-//		if(USB_armed()){
-//			myusb.connect_flag = 1;
-//		}	  
+		if(USB_armed()){
+			myusb.connect_flag = 1;
+		}
+		USB_check();
 		while(1){//flight loop		
 		/*deal with attitude (and position prediction), xbee send, gps (and xy position correction),
 		radio control (and motor output), baro (and altitude correction)*/												
@@ -347,6 +362,7 @@ void init_loop(void)
 			default:
 				break;
 			}
+			USB_check();
 			process_count++;
 			if(process_count==10)
 				process_count=0;
@@ -407,10 +423,10 @@ void Process500Hz(void)
 	attitude_compute();
 	pos_predict(ATT_PERIOD,process_count);
 	attitude_control(ATT_PERIOD);
-	if(!mode.locked)
+//	if(!mode.locked)
 		put_motors();
-	else
-		motor_cut();
+	//else
+		//motor_cut();
 //	beep(OFF);
 }
 void Process250Hz_A(void)
@@ -430,6 +446,7 @@ void Process250Hz_A(void)
 		Qsp2Rsp();
 		set_thrust_force();
 	}
+	arm_control();
 	if(usb_count > 1){//125Hz
 		usb_count=0;
 		if(myusb.connected){
@@ -472,8 +489,9 @@ void Process250Hz_B(void)//baro, mag,
 	if(cps2read){
 	#if PWM16
 	#else
-		continue_cps_read();
+//		continue_cps_read();
 	#endif
+		compass_read_prepared();
 		cps2read = 0;
 	}
 #if OUTDOOR
@@ -590,7 +608,7 @@ void Process50Hz(void)
 		}
 	}
 	#if PWM16
-	pca_write();
+//	pca_write();
 	#endif
 	if(cmd.SonarEnable)
 		sonar_pos_corr(RADIO_PERIOD);

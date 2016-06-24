@@ -2,9 +2,12 @@
 #include "../Drivers/TWI.h"
 #include "../Main/timer.h"
 #include "../Main/global.h"
+#include "string.h"
+
+
 void pca_init(void)
 {
-	int freq = 400;
+	int freq = 100;
 	int prescale = 25000000 / (4096 * freq) - 1;
 	unsigned char presc = prescale;
 	// Get settings and calc bytes for the different states.
@@ -34,10 +37,18 @@ void pca_write(void)
 	i2cwtritebyte(PAC9685_ADDRESS, PWM0_OFF_L, &duty_l);
 	i2cwtritebyte(PAC9685_ADDRESS, PWM0_OFF_H, &duty_h);
 }
-void pca_duty(unsigned int channel, unsigned short duty)
+void start_pca_write(unsigned short duty[4])
 {
 //2400~4800 --  1720~3440
-	unsigned short pca_duty = (int)duty*1720/2400;
-    pca_duty = pca_duty;
+	int i;
+	char pwm_2_write[8];
+	unsigned short pca_duty[4];
+	for(i = 0; i < 8; i++)
+	{
+		pca_duty[i] = (int)duty[i]*1720/9600;
+	}
+
+	memcpy(pwm_2_write, pca_duty, 8);
+	twi_pca_write_start(pwm_2_write);
 	//TODO: put this into a fifo, then send via i2c
 }

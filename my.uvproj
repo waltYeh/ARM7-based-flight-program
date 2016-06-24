@@ -431,14 +431,14 @@
               <FilePath>.\Drivers\PIT.c</FilePath>
             </File>
             <File>
-              <FileName>PWM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drivers\PWM.c</FilePath>
-            </File>
-            <File>
               <FileName>SPI.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Drivers\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\PWM.c</FilePath>
             </File>
             <File>
               <FileName>TWI.c</FileName>

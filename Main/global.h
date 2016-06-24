@@ -39,7 +39,7 @@
 #define I2C_CONTI 0
 #define PPM_STORE 1
 #define OFFBOARD_AVAIL 0
-#define PWM16 0
+#define PWM16 1
 #if OUTDOOR
 struct _gps{
 	int lat;

@@ -1,0 +1,1 @@
+-c --cpu ARM7TDMI -g -O0 --apcs=interwork -I "D:\KEIL4\ARM\INC" -I "D:\KEIL4\ARM\INC\Atmel\SAM7S" -o ".\Outputs\mpu6000_spi.o" --omf_browse ".\Outputs\mpu6000_spi.crf" --depend ".\Outputs\mpu6000_spi.d" "Devices\MPU6000_SPI.c"

@@ -9,8 +9,8 @@
 ### List of Objects: adding '".\outputs\gps.o"'
 ### List of Objects: adding '".\outputs\pio.o"'
 ### List of Objects: adding '".\outputs\pit.o"'
-### List of Objects: adding '".\outputs\pwm.o"'
 ### List of Objects: adding '".\outputs\spi.o"'
+### List of Objects: adding '".\outputs\pwm.o"'
 ### List of Objects: adding '".\outputs\twi.o"'
 ### List of Objects: adding '".\outputs\usb.o"'
 ### List of Objects: adding '".\outputs\xbee.o"'
@@ -28,14 +28,14 @@
 ### List of Objects: adding '".\outputs\ms5611_spi.o"'
 ### List of Objects: adding '".\outputs\pca9685.o"'
 ### ADS-LD Command completed:
---cpu ARM7TDMI ".\outputs\commons.o" ".\outputs\timer.o" ".\outputs\main.o" ".\outputs\test_cpp.o" ".\outputs\adc.o" ".\outputs\gps.o" ".\outputs\pio.o" ".\outputs\pit.o" ".\outputs\pwm.o" ".\outputs\spi.o" ".\outputs\twi.o" ".\outputs\usb.o" ".\outputs\xbee.o" ".\outputs\sam7.o" ".\outputs\attitudeestimator.o" ".\outputs\controls.o" ".\outputs\filter.o" ".\outputs\imu.o" ".\outputs\motormixer.o" ".\outputs\positionestimator.o" ".\outputs\radiocontroller.o" ".\outputs\eeprom.o" ".\outputs\hmc5883.o" ".\outputs\mpu6000_spi.o" ".\outputs\ms5611_spi.o" ".\outputs\pca9685.o" --strict --scatter ".\Outputs\my.sct" 
+--cpu ARM7TDMI ".\outputs\commons.o" ".\outputs\timer.o" ".\outputs\main.o" ".\outputs\test_cpp.o" ".\outputs\adc.o" ".\outputs\gps.o" ".\outputs\pio.o" ".\outputs\pit.o" ".\outputs\spi.o" ".\outputs\pwm.o" ".\outputs\twi.o" ".\outputs\usb.o" ".\outputs\xbee.o" ".\outputs\sam7.o" ".\outputs\attitudeestimator.o" ".\outputs\controls.o" ".\outputs\filter.o" ".\outputs\imu.o" ".\outputs\motormixer.o" ".\outputs\positionestimator.o" ".\outputs\radiocontroller.o" ".\outputs\eeprom.o" ".\outputs\hmc5883.o" ".\outputs\mpu6000_spi.o" ".\outputs\ms5611_spi.o" ".\outputs\pca9685.o" --strict --scatter ".\Outputs\my.sct" 
 --autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\my.map" -o ".\Outputs\my.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: '.\Outputs\my.axf'
 ### ADS-LD Command File: '.\Outputs\my.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\Outputs\my.lnp', Handle=0x00000B18
+### Creating CmdFile '.\Outputs\my.lnp', Handle=0x000007AC
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\Outputs\my.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

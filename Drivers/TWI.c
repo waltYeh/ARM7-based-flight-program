@@ -1,9 +1,12 @@
 #include "at91sam7s256.h"
 #include "TWI.h"
+#include "PIO.h"
 #include "../Modules/IMU.h"
 #include "../Main/timer.h"
 #include "../Main/global.h"
+#include "../Devices/PCA9685.h"
 #define CPS_READER 0
+#define PCA_WRITER 0
 TWI_Reader readers[1]={
 //acc
 //	{0,{0x3B,0x3C,0x3D,0x3E,0x3F,0x40},0x68,0},
@@ -12,16 +15,27 @@ TWI_Reader readers[1]={
 //compass
 	{0,{0x03,0x04,0x05,0x06,0x07,0x08},0x1E,0}
 };	
+
+TWI_Writer pca_writer = {0,{0x08,0x09,0x0C,0x0D,0x10,0x11,0x14,0x15},0x40,0};
+
 char stop_signal=0;
 //set at stop_twi_after_complete(),cleared at last compass interrupt
 char read_rdy_flag=1;
 //set at stop_twi_now() and last compass interrupt,
 //cleared at twi_g_a_read_start() and twi_cps_read_start()
-char working_reader=0;
+char working_reader=NON_WORKING;
 //set as G_A_SWITCH at twi_g_a_read_start(),
 //set as CPS_SWITCH at twi_cps_read_start(),
 //set as NON_WORKING at stop_twi_now() and last compass interrupt
+char working_writer=0;
+#define PCA_WRITING 1
+#define NON_WRITING 0
+char compass_prepare_flag = 0; // COMPASS 读取标志位决定是否读取罗盘
 
+void compass_read_prepared()   // COMPASS 读取标志位置1
+{
+ compass_prepare_flag = 1; 
+}
 
 void twi_init(void)
 {
@@ -131,6 +145,18 @@ int twi_cps_read_start(char *buf)
 	return 0;
 
 }
+int twi_pca_write_start(char *buf)
+{
+	pca_writer.Buf = buf;
+	pca_writer.writeCnt = 0;
+	*AT91C_TWI_MMR = ((pca_writer.devAdd<<16)|AT91C_TWI_IADRSZ_1_BYTE) & ~AT91C_TWI_MREAD;
+	*AT91C_TWI_IADR = pca_writer.intAdd[0];
+	*AT91C_TWI_THR = *(pca_writer.Buf);
+	*AT91C_TWI_IER = AT91C_TWI_TXCOMP;
+	working_writer = PCA_WRITING;
+	return 0;
+
+}
 void stop_twi_now()
 {
 	working_reader = NON_WORKING;
@@ -191,6 +217,29 @@ __irq void twi_int_handler(void)
 				}				
 			}
 		}
+		else if(working_writer == PCA_WRITING)
+		{
+		if(pca_writer.writeCnt < 7)//go on reading
+			{
+				pca_writer.writeCnt++;
+				*AT91C_TWI_IADR = pca_writer.intAdd[pca_writer.writeCnt];
+				*AT91C_TWI_THR = *(pca_writer.Buf + pca_writer.writeCnt);
+			}
+			else //reading of a sensor complete, now conclude
+				{
+					if(compass_prepare_flag==1)	
+					{
+					compass_prepare_flag=0;
+					continue_cps_read();
+					}
+					else
+					{
+					working_writer = NON_WRITING;
+					*AT91C_TWI_IDR = AT91C_TWI_TXCOMP;
+					}
+				}
+		}
+		
 	}
 	
 	#endif

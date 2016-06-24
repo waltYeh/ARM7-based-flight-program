@@ -2,6 +2,7 @@
 #define PCA_H
 void pca_init(void);
 void pca_write(void);
+void start_pca_write(unsigned short duty[4]);
 #define PAC9685_ADDRESS 0x40
 #define MODE_1_REG 0x00
 #define MODE_2_REG 0x01

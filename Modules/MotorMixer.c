@@ -2,6 +2,7 @@
 #include "../Main/commons.h"
 #include "../Drivers/PWM.h"
 #include "../Drivers/Pins.h"
+#include "../Devices/PCA9685.h"
 #include "MotorMixer.h"
 void force2output(int force[4], unsigned short duty[4], unsigned int battery)
 //mNewton to 0~2400
@@ -30,7 +31,10 @@ void put_motors(void)
 {
 	int motorForce[4] = {0,0,0,0};
 	unsigned short motorDuty[4] = {2400,2400,2400,2400};
+	
 	short i;
+	
+	
 	if(cmd.rc[2] < -850){
 		motorForce[0] = 0;
 		motorForce[1] = 0;
@@ -71,4 +75,19 @@ void put_motors(void)
 	pwm_set_duty_cycle(1, constrain(motorDuty[1],2400,4790));
 	pwm_set_duty_cycle(2, constrain(motorDuty[2],2400,4790));
 	pwm_set_duty_cycle(3, constrain(motorDuty[3],2400,4790));
+
 }
+void arm_control(void)
+{
+	unsigned short pca_duty[4] = {2400,2400,2400,2400};
+	static int t=0;
+	t+=2;
+	if(t>2400)
+		t=0;
+	pca_duty[0] = 2400+t;
+	pca_duty[1] = 2400;
+	pca_duty[2] = 3600;
+	pca_duty[3] = 4800;
+	start_pca_write(pca_duty);	
+}
+
